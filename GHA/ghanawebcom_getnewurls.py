@@ -96,7 +96,7 @@ source = 'ghanaweb.com'
 
 for year in range(2024, 2025):
     yearstr = str(year)
-    for month in range(7, 11):
+    for month in range(10, 13):
         if month < 10:
             monthstr = '0' + str(month)
         else:
@@ -159,7 +159,7 @@ for url in final_result:
                     print(article['date_publish'])
                     # Get Main Text:
                     try:
-                        maintext = soup.find("p", {"style": "clear:right"}).text
+                        maintext = soup.find("div", {"class": "article-content-area"}).text
                         article['maintext'] = maintext
                     except: 
                         maintext = article['maintext']

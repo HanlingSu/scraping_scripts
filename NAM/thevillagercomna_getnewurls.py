@@ -39,10 +39,10 @@ for document in documents:
 base = 'https://www.thevillager.com.na/category/'
 category = ['national', 'africa', 'world', 'mining', 'business', 'opinion']
 page_start = [1, 1, 1, 1, 1, 0]
-page_end = [50, 2, 1, 5, 5, 21]
+page_end = [35, 3, 1, 2, 5, 4]
 
 for c, ps, pe in zip(category, page_start, page_end):
-    for p in range(ps+1, pe+1):
+    for p in range(ps, pe+1):
         link = base + c + '/page/' + str(p)
         print(link)
         hdr = {'User-Agent': 'Mozilla/5.0'} #header settings

@@ -36,7 +36,7 @@ direct_URLs = []
 
 
 # post-sitemap 
-for year in range(2024, 2025):
+for year in range(2025, 2026):
     url = 'https://saharamedias.net/sitemap-posttype-post.' + str(year) + '.xml'
 
     print("First Sitemap: ", url)

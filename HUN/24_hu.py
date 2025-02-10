@@ -40,7 +40,7 @@ source = '24.hu'
 
 baseurl = 'https://24.hu/app/uploads/sitemap/24.hu_sitemap_'
 links = []
-for i in range(1, 2): ## UPDATE
+for i in range(0, 1): ## UPDATE
     sitemapurl = baseurl + str(i) + '.xml'
     print(sitemapurl)
     reqs = requests.get(sitemapurl, headers=headers)

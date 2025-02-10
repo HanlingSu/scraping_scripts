@@ -57,8 +57,8 @@ source = 'jawapos.com'
 
 # date range
 direct_URLs = []
-base = 'https://www.jawapos.com/indeks-berita?daterange=21%20August%202024%20-%2017%20September%202024&page='
-for p in range(1, 961+1):
+base = 'https://www.jawapos.com/indeks-berita?daterange=21%20November%202024%20-%2010%20December%202024&page='
+for p in range(1, 733+1):
     url = base +str(p)
     # print(url)
     header = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.102 Safari/537.36'}

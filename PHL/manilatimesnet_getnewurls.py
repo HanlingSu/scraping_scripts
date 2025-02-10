@@ -44,8 +44,8 @@ direct_URLs = []
 base = 'https://www.manilatimes.net/'
 
 category = ['news', 'regions', 'news/world', 'business', "opinion"]
-page_start = [1, 1, 1, 1, 3]
-page_end = [0, 0, 0, 0, 950]
+page_start = [1, 1, 1, 1, 1]
+page_end = [140, 70, 120, 200, 65]
 for c, ps, pe in zip(category, page_start, page_end):
     for p in range(ps, pe+1):
 

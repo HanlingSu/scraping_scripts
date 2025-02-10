@@ -32,7 +32,7 @@ direct_URLs = []
 source = 'nilepost.co.ug'
 sitemap_base = 'https://nilepost.co.ug/sitemap'
 
-start = 40
+start = 41
 end = start +1
 for i in range(start, end):
     sitemap = sitemap_base  + '.xml'
@@ -58,7 +58,7 @@ print(len(final_result))
 url_count = 0
 processed_url_count = 0
 
-for url in final_result:
+for url in final_result[::-1]:
     if url:
         print(url, "FINE")
         ## SCRAPING USING NEWSPLEASE:

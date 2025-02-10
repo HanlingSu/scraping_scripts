@@ -32,7 +32,7 @@ source = 'alakhbar.info'
 categories = [ 'news', 'taxonomy/term/986', 'eco', 'taxonomy/term/993', 'international', 'taxonomy/term/954']
                      # communities, accidents and society, international news, opinion
 page_start = [1,1,1,1,1, 1]
-page_end = [130, 1, 1, 1, 12, 18]
+page_end = [140, 2, 2, 2, 20, 18]
 
 for c, ps, pe in zip(categories, page_start, page_end):
     direct_URLs = []

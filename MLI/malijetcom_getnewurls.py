@@ -20,13 +20,13 @@ base = 'https://malijet.com/'
 categories = ['actualte_dans_les_regions_du_mali', 'actualite-politique-au-mali', 'actualite_internationale',\
     'actualite_economique_du_mali', 'a_la_une_du_mali', 'la_societe_malienne_aujourdhui', 'communiques-de-presse']
 
-page_start = [1, 1, 1, 1, 1, 1, 1]
-page_end = [6, 16, 30, 11, 15, 17, 2]
+page_start = [6, 13, 26, 11, 14, 14, 2]
+page_end = [6, 13, 26, 11, 14, 14, 2]
 
 direct_URLs = []
 
 for c, ps, pe in zip(categories, page_start, page_end):
-    for p in range(ps, pe+1):
+    for p in range(ps+1, pe+2):
         link = base + c + '/?page=' + str(p) 
         print(link)
         hdr = {'User-Agent': 'Mozilla/5.0'} #header settings

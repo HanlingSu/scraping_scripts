@@ -33,13 +33,13 @@ direct_URLs = []
 
 
 
-for month in range(5, 8):
+for month in range(1, 2):
     if month < 10:
         month_str = '0' +str(month)
     else:
         month_str = str(month)
 
-    sitemap = 'https://www.elcomercio.com/post_date-2024-'+month_str+'.xml'
+    sitemap = 'https://www.elcomercio.com/post_date-2025-'+month_str+'.xml'
 
     print(sitemap)
 
@@ -51,7 +51,7 @@ for month in range(5, 8):
 
     print(len(direct_URLs))
 
-blacklist =  [( i['blacklist_url_patterns']) for i in db.sources.find({'source_domain' : source})][0]
+blacklist =  [( i['blacklist_url_patterns']) for i in db.sources.find({'source_domain' : source})][0] + ['/videos/', '/tecnologia/']
 blacklist = re.compile('|'.join([re.escape(word) for word in blacklist]))
 direct_URLs = [word for word in direct_URLs if not blacklist.search(word)]
 

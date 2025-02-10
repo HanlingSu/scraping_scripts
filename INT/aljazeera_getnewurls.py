@@ -51,7 +51,7 @@ source = 'aljazeera.com'
 #https://www.aljazeera.com/sitemap.xml?yyyy=2021&mm=8&dd=12
 ## STEP 0: Define dates
 yearn = "2024"
-monthn = "9"
+monthn = "12"
 daystart = "1"
 dayend = "31" 
 

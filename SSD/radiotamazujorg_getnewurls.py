@@ -29,11 +29,11 @@ db = MongoClient('mongodb://zungru:balsas.rial.tanoaks.schmoe.coffing@db-wibbels
 direct_URLs = []
 
 
-base = 'https://www.radiotamazuj.org/en/news/page/'
+# base = 'https://www.radiotamazuj.org/en/news/page/'
 base = 'https://www.radiotamazuj.org/ar/blog/page/'
 # base = 'https://www.radiotamazuj.org/en/category/opinions/page/'
 opinion_scraping = False
-for p in range(1, 60):
+for p in range(1, 50):
     sitemap = base + str(p) 
     print(sitemap)
     hdr = {'User-Agent': 'Mozilla/5.0'} #header settings

@@ -23,8 +23,8 @@ source = 'solomontimes.com'
 direct_URLs = []
 base = 'https://www.solomontimes.com/news/latest/'
 
-for year in range(2013, 2025):
-    for month in range(1, 13):
+for year in range(2024, 2025):
+    for month in range(9, 13):
         url = base + str(year) + '/' +str(month)
         print('Scraping from ', url, ' ...')
         hdr = {'User-Agent': 'Mozilla/5.0'} #header settings

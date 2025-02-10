@@ -47,7 +47,7 @@ categories = ['https://www.jomhouria.com/index.php?go=rub&id_rub=41&page=', 'htt
                 # internationa;
 
 page_start = [1,1,1,1]
-page_end = [14,30,85,25]
+page_end = [12,30,85,25]
 # page_end = [26,53,143,23]
 
 for c, ps, pe in zip(categories, page_start, page_end):

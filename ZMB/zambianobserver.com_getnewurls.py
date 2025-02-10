@@ -18,22 +18,26 @@ db = MongoClient('mongodb://zungru:balsas.rial.tanoaks.schmoe.coffing@db-wibbels
 
 
 direct_URLs = []
-base = 'https://zambianobserver.com/post-sitemap'
 source = 'zambianobserver.com'
 
-for i in range(21, 40+1):
-    url = base + str(i) + '.xml'
-    # mundo, nacionales, noticias-del-dia, espectaculos, ciencia
-    hdr = {'User-Agent': 'Mozilla/5.0'} #header settings
-    req = requests.get(url, headers = hdr)
-    soup = BeautifulSoup(req.content)
-    item = soup.find_all('loc')
-    for i in item:
-        direct_URLs.append(i.text)
+# base = 'https://zambianobserver.com/post-sitemap'
 
-    print(len(direct_URLs))
+# for i in range(1, 4+1):
+#     url = base + str(i) + '.xml'
+#     # mundo, nacionales, noticias-del-dia, espectaculos, ciencia
+#     hdr = {'User-Agent': 'Mozilla/5.0'} #header settings
+#     req = requests.get(url, headers = hdr)
+#     soup = BeautifulSoup(req.content)
+#     item = soup.find_all('a')
+#     for i in item:
+#         direct_URLs.append(i['href'])
 
+#     print(len(direct_URLs))
 
+text = """
+"""
+direct_URLs = text.split('\n')
+direct_URLs = [i for i in direct_URLs if 'http' in i]
 final_result = direct_URLs.copy()
 print(len(final_result))
 

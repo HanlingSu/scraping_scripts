@@ -36,7 +36,7 @@ for p in range(7, 8):
 
 
 
-final_result = direct_URLs.copy()[::-1]
+final_result = direct_URLs.copy()[-200:-100][::-1]
 print(len(final_result))
 
 

@@ -41,7 +41,7 @@ category = ['headlines', 'latest', 'national', 'international', 'lahore', 'karac
 year = range(2024, 2025)
 
 month_str = []
-for i in range(6, 9):
+for i in range(9, 12):
     month_str.append(calendar.month_abbr[i] )
 
 day = range(1, 32)

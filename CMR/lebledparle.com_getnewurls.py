@@ -37,7 +37,7 @@ hdr = {'User-Agent': 'Mozilla/5.0'} #header settings
 categories = ['societe', 'politique', 'faits-divers', 'international']
 base = 'https://www.lebledparle.com/actualite/'
 page_start = [1, 1, 1, 1]
-page_end = [20, 12, 3, 4]
+page_end = [10, 15, 3, 4]
 header = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.102 Safari/537.36'}
 
 for c, ps, pe in zip(categories, page_start, page_end):

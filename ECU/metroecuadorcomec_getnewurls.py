@@ -40,9 +40,9 @@ source = 'metroecuador.com.ec'
 direct_URLs = []
 
 # collect new urls from sitemaps
-year = [2024]
-months = range(5, 6)
-days = range(10, 32)
+year = [2025]
+months = range(1, 2)
+days = range(1, 32)
 for y in year:
     y_str = str(y)
     for m in months:

@@ -21,7 +21,7 @@ source = 'elnacional.com.do'
 sitemap_base = 'https://elnacional.com.do/post-sitemap'
 
 # 36
-for p in range(519, 531):
+for p in range(530, 538):
     
     sitemap = sitemap_base + str(p)  + '.xml'
     print(sitemap  )
@@ -42,7 +42,7 @@ print(len(final_result))
 url_count = 0
 processed_url_count = 0
 
-for url in final_result:
+for url in final_result[::-1]:
     if url:
         print(url, "FINE")
         ## SCRAPING USING NEWSPLEASE:

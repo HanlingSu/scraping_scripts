@@ -21,7 +21,7 @@ sitemap_base = 'https://www.diariolibre.com/sitemapnoticias/'
 
 # 36
 for year in range(2024, 2025):
-    for month in range(3, 8):
+    for month in range(8, 12):
         if month <10:
             year_month = str(year) + '0' +str(month)
         else:

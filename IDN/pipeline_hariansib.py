@@ -482,8 +482,8 @@ def pipeline(sitemap,
         '''
         Unit: each sitemap
         '''        
-        start_year_month = (2024, 6)
-        end_year_month = (2024, 10)
+        start_year_month = (2024, 9)
+        end_year_month = (2025, 1)
         start_date = datetime(start_year_month[0], start_year_month[1], 1)
         end_date = datetime(end_year_month[0], end_year_month[1], 1)
 

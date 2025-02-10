@@ -33,7 +33,7 @@ hdr = {'User-Agent': 'Mozilla/5.0'} #header settings
 
 categories = ['politique', 'economie', 'societe', 'afrique']
 page_start = [1, 1, 1,1]
-page_end = [2,4,4,4]
+page_end = [10,5,5,5]
 
 url_count = 0
 processed_url_count = 0
@@ -41,7 +41,7 @@ final_result_len = 0
 for c, ps, pe in zip(categories, page_start, page_end):
     for p in range(ps, pe+1):
         direct_URLs = []
-        url = 'https://www.237online.com/' +c +'/page/' +str(p)
+        url = 'https://www.237online.com/category/' +c +'/page/' +str(p)
         print(url)
         req = requests.get(url, headers = hdr)
         soup = BeautifulSoup(req.content)

@@ -41,7 +41,7 @@ base = 'https://newsghana.com.gh'
 
 categories = ['/world-news/', '/ghana-news/', '/headlines/']
 page_start = [1, 1, 1]
-page_end = [60, 300, 60]
+page_end = [90, 450, 100]
 for c, ps, pe in zip(categories, page_start, page_end):
     for p in range(ps, pe+1):
         url = base + c + 'page/' + str(p) 

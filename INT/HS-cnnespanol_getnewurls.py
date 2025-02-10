@@ -35,7 +35,7 @@ direct_URLs = []
 
 base = "https://cnnespanol.cnn.com/post-sitemap"
 
-for p in range(153, 155):
+for p in range(136, 138):
     link = base + str(p) +'.xml'
     hdr = {'User-Agent': 'Mozilla/5.0'}
     req = requests.get(link, headers = hdr)

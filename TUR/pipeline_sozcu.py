@@ -517,7 +517,7 @@ def pipeline(sitemap,
         Unit: month
         '''
         years = [i for i in range(2024,2025)]
-        months = ["%.2d" % i for i in range(6, 10)]
+        months = ["%.2d" % i for i in range(9, 13)]
         days = ["%.2d" % i for i in range(1,32)]
         
         for yy in years:

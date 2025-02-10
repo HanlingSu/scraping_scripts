@@ -21,7 +21,7 @@ categories = ['politique', 'economie', 'la-situation-politique-et-securitaire-au
     'international']
 
 page_start = [1, 1, 1, 1]
-page_end = [30, 25, 2, 60]
+page_end = [25, 25, 2, 65]
 
 direct_URLs = []
 

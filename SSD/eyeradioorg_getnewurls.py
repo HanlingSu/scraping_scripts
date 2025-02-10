@@ -31,7 +31,7 @@ direct_URLs = []
 
 base = 'https://www.eyeradio.org/post-sitemap'
 
-for i in range(21, 24):
+for i in range(22, 24):
     sitemap = base + str(i) +'.xml'
     print(sitemap)
     hdr = {'User-Agent': 'Mozilla/5.0'} #header settings

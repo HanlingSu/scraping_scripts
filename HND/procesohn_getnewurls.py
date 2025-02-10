@@ -9,41 +9,44 @@ from newsplease import NewsPlease
 from dotenv import load_dotenv
 import dateparser
 import re
+import pandas as pd
 
 # db connection:
 db = MongoClient('mongodb://zungru:balsas.rial.tanoaks.schmoe.coffing@db-wibbels.sas.upenn.edu/?authSource=ml4p&tls=true').ml4p
 
-base_list = []
+# base_list = []
 
-base = 'https://proceso.hn/page/'
+# base = 'https://proceso.hn/page/'
 
-hdr = {'User-Agent': 'Mozilla/5.0'} #header settings
+# hdr = {'User-Agent': 'Mozilla/5.0'} #header settings
 
 source = 'proceso.hn'
 
-for i in range(1, 290):
-    base_list.append(base + str(i) + '/?s=e')
+# for i in range(1, 290):
+#     base_list.append(base + str(i) + '/?s=e')
 
-print('Scrape ', len(base_list), ' page of search result for ', source)
+# print('Scrape ', len(base_list), ' page of search result for ', source)
 
 
-direct_URLs = []
-for b in base_list:
-    print(b)
-    try: 
-        hdr = {'User-Agent': 'Mozilla/5.0'}
-        req = requests.get(b, headers = hdr)
-        soup = BeautifulSoup(req.content)
+# direct_URLs = []
+# for b in base_list:
+#     print(b)
+#     try: 
+#         hdr = {'User-Agent': 'Mozilla/5.0'}
+#         req = requests.get(b, headers = hdr)
+#         soup = BeautifulSoup(req.content)
         
-        item = soup.find_all('h3', {'class' : 'entry-title td-module-title'})
-        for i in item:
-            url = i.find('a', href=True)['href']
-            if url:
-                direct_URLs.append(url)
-        print('Now scraped ', len(direct_URLs), ' articles from previous page.')
-    except:
-        pass
+#         item = soup.find_all('h3', {'class' : 'entry-title td-module-title'})
+#         for i in item:
+#             url = i.find('a', href=True)['href']
+#             if url:
+#                 direct_URLs.append(url)
+#         print('Now scraped ', len(direct_URLs), ' articles from previous page.')
+#     except:
+#         pass
 
+
+direct_URLs = pd.read_csv('Downloads/peace-machine/peacemachine/getnewurls/HND/proceso.csv')['0']
 blacklist =  [( i['blacklist_url_patterns']) for i in db.sources.find({'source_domain' : source})][0]
 blacklist = re.compile('|'.join([re.escape(word) for word in blacklist]))
 direct_URLs = [word for word in direct_URLs if not blacklist.search(word)]

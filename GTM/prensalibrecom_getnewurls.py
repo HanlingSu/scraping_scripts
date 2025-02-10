@@ -19,7 +19,7 @@ source = 'prensalibre.com'
 direct_URLs = []
 
 # scraping from sitemap
-for month in range(5,8):
+for month in range(8,11):
     if month >= 10:
         month = str(month)
     else:

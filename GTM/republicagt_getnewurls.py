@@ -17,7 +17,7 @@ source = 'republica.gt'
 # scrape search result
 base = 'https://republica.gt/buscar/e/'
 
-for i in range(1, 240):
+for i in range(1, 150):
     base_link = base + str(i) 
 
     print('Scraping from ', base_link, ' ...')

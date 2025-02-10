@@ -20,9 +20,9 @@ source = 'xalqcebhesi.az'
 sitemap_base = 'https://www.xalqcebhesi.az/sitemaps/sitemap_archive_az_'
 
 direct_URLs = []
-for year in range( 2024, 2025):
+for year in range( 2025, 2026 ):
     year_str = str(year)
-    for month in range(8, 9):
+    for month in range(1, 2):
         
         if month<10:
             month_str = '0' + str(month)

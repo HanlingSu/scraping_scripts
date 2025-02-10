@@ -20,13 +20,13 @@ base = 'https://www.ipn.md/ro/'
 categories = ['politica-7965', 'societate-7967', 'economie-7966','special-7978', 'alegeri-2023-8012']
 
 page_start = [1, 1, 1, 1, 1,1]
-page_end = [40, 120, 30, 5, 3]
+page_end = [50, 90, 34, 3, 1]
 # page_end = [340, 1168, 235, 277, 1008, 667, 133]
 
 direct_URLs = []
 
 for c, ps, pe in zip(categories, page_start, page_end):
-    for p in range(ps, 5+1):
+    for p in range(ps, pe+1):
         link = base + c + '.html?page=' + str(p)
         # print(link)
         hdr = {'User-Agent': 'Mozilla/5.0'} #header settings

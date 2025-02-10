@@ -39,7 +39,7 @@ direct_URLs = []
 
 sections  = ['national-news', 'politics', 'society', 'columns', 'business/business-news']
 page_start = [1, 1, 1 ,1, 1]
-page_end = [80,1,1, 1, 22]
+page_end = [75,1,1, 1, 18]
 
 base = 'https://mwnation.com/category/'
 for s, ps, pe in zip(sections, page_start, page_end):

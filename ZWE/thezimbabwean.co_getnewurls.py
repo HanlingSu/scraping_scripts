@@ -24,7 +24,7 @@ source = 'thezimbabwean.co'
 direct_URLs = []
 
 # 4
-for i in range(42, 43):
+for i in range(42, 44):
     sitemap = 'https://www.thezimbabwean.co/wp-sitemap-posts-post-' + str(i) + '.xml' 
     print(sitemap)
     reqs = requests.get(sitemap, headers=headers)
@@ -41,7 +41,7 @@ final_result = direct_URLs.copy()
 
 url_count = 0
 processed_url_count = 0
-for url in final_result[::-1]:
+for url in final_result[0:-363:-1]:
     if url:
         print(url, "FINE")
         ## SCRAPING USING NEWSPLEASE:

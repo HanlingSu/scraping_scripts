@@ -22,7 +22,7 @@ direct_URLs = []
 sitemap_base = 'https://actualite.cd/sitemap.xml?page='
 source = 'actualite.cd'
 
-for p in range(33, 35):
+for p in range(34, 36):
     sitemap = sitemap_base + str(p) 
     hdr = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.102 Safari/537.36'}
     req = requests.get(sitemap, headers = hdr)

@@ -26,16 +26,15 @@ base = 'https://www.babnet.net/'
 headers = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.102 Safari/537.36'}
 
 categories = ['politique', 'economie', 'regions', 'social', 'sante', 'monde', 'justice', 'tribune']
-page_start = [1, 1, 1, 1, 1, 1, 1, 1]
-# # page_end = [600, 400, 500, 100, 100, 200, 300]
-page_end = [1100, 700, 1200, 300, 180, 510, 390, 30]
+page_start = [1, 800, 1, 300, 180, 510, 390, 1]
+page_end = [0, 1200, 0, 350, 300, 600, 470, 0]
 
 
 
 direct_URLs = []
 
 for c,ps, pe in zip(categories, page_start, page_end):
-    for i in range(ps, pe+1, 30):
+    for i in range(ps, pe+20, 30):
         link = base + c + '.php?p=' + str(i)
         print(link)
         reqs = requests.get(link, headers=headers)

@@ -21,7 +21,7 @@ direct_URLs = []
 url_base = 'http://news.acotonou.com/h/'
 source = 'news.acotonou.com'
 
-for n in range(154334, 154966):
+for n in range(154966,155867 ):
     url = url_base + str(n) + '.html'
     direct_URLs.append(url)
 

@@ -31,7 +31,7 @@ base = 'https://www.nyasatimes.com/category/'
 
 category = ['national', 'politics', 'columns', 'education', 'health', 'news']
 page_start = [1, 1, 1, 1, 1, 1] 
-page_end = [0, 0, 210, 0, 0, 0] #22, 3, 1, 2, 5, 4
+page_end = [0,0,3,0,0,0] #30, 8, 5, 5, 3, 25
 
 direct_URLs = []
 for c, ps, pe in zip(category, page_start, page_end):
@@ -94,7 +94,10 @@ for url in final_result:
             try:
                 year = article['date_publish'].year
                 month = article['date_publish'].month
-                colname = f'opinion-articles-{year}-{month}'
+                if 'Columns' in category:
+                    colname = f'opinion-articles-{year}-{month}'
+                else:
+                    colname = f'articles-{year}-{month}'
             except:
                 colname = 'articles-nodate'
             

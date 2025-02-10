@@ -31,7 +31,7 @@ total_final_result = 0
 
 for year in range(2024, 2025):
 
-    for month in range(9, 10):
+    for month in range(10, 13):
 
         direct_URLs = []
         if month <10:
@@ -39,7 +39,7 @@ for year in range(2024, 2025):
         else:
             strmonth = str(month)
 
-        for day in range(27, 32):
+        for day in range(1, 27):
             if day < 10:
                 strday = '0' + str(day)
             else:

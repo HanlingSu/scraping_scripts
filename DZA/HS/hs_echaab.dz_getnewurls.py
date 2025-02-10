@@ -20,7 +20,7 @@ direct_URLs = []
 
 sitemap_base = 'https://www.echaab.dz/post-sitemap'
 
-for i in range(51, 52):
+for i in range(58, 60):
     sitemap = sitemap_base + str(i) + '.xml'
     print(sitemap  )
     hdr = {'User-Agent': 'Mozilla/5.0'} #header settings

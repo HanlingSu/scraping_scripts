@@ -35,9 +35,9 @@ direct_URLs = []
 
 # direct_URLs = pd.read_csv('Downloads/peace-machine/peacemachine/getnewurls/LBR/thenewdawnliberia.csv')['url'][::-1]
 
-category = ['liberia-news', 'editorial', 'features', 'editorial']
-page_start = [1, 1, 1, 1]
-page_end = [0, 0, 0, 118]
+category = ['liberia-news', 'features', 'editorial']
+page_start = [60, 10, 2]
+page_end = [68, 12, 0]
 for c, ps, pe in zip(category, page_start, page_end):
     for p in range(ps, pe+1):
         url = 'https://thenewdawnliberia.com/category/' + c + '/page/' +str(p)
@@ -46,9 +46,10 @@ for c, ps, pe in zip(category, page_start, page_end):
         soup = BeautifulSoup(req.content)
         for i in soup.find_all('h2', {'class' : 'post-title'}):
             direct_URLs.append(i.find('a')['href'])
+        direct_URLs = list(set(direct_URLs))
         print(len(direct_URLs))
 
-# direct_URLs = ['https://thenewdawnliberia.com' + i for i in direct_URLs]
+direct_URLs = ['https://thenewdawnliberia.com' + i for i in direct_URLs]
 final_result = direct_URLs
 print(len(final_result))
 

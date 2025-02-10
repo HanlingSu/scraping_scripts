@@ -10,30 +10,33 @@ import dateparser
 from pymongo.errors import DuplicateKeyError
 from newsplease import NewsPlease
 import re
+import pandas as pd
 
 # db connection:
 db = MongoClient('mongodb://zungru:balsas.rial.tanoaks.schmoe.coffing@db-wibbels.sas.upenn.edu/?authSource=ml4p&tls=true').ml4p
 direct_URLs = []
 source = 'elheraldo.co'
 
-categories= ['local', 'region', 'judicial', 'internacional', 'politica', 'nacional', 'coronavirus', 'economia']
-pages_start = [1, 1, 1, 1, 1, 1,1,1]
-# pages_end = [80,20,100,0,0,0,0,0]
-pages_end = [70,  10, 90, 110, 35, 230, 5, 60 ]
+# categories= ['local', 'region', 'judicial', 'internacional', 'politica', 'nacional', 'coronavirus', 'economia']
+# pages_start = [1, 1, 1, 1, 1, 1,1,1]
+# # pages_end = [80,20,100,0,0,0,0,0]
+# pages_end = [70,  10, 90, 110, 35, 230, 5, 60 ]
 
-for c, ps, pe in zip(categories,pages_start, pages_end):
-    for i in range(ps, pe+1):
-        link = 'https://www.elheraldo.co/' + c + '?page=' + str(i)
-        hdr = {'User-Agent': 'Mozilla/5.0'}
-        req = requests.get(link, headers = hdr)
-        soup = BeautifulSoup(req.content)
-        items = soup.find_all('article', {'class' : 'item foto-titulo'})
-        for item in items:
-            direct_URLs.append(item.find('div', {'class' : 'text'}).find('h1').find('a')['href'])
-            
-        print('Now collected ', len(direct_URLs), 'articles from previous pages...')
+# for c, ps, pe in zip(categories,pages_start, pages_end):
+#     for i in range(ps, pe+1):
+#         link = 'https://www.elheraldo.co/' + c + '?page=' + str(i)
+#         hdr = {'User-Agent': 'Mozilla/5.0'}
+#         req = requests.get(link, headers = hdr)
+#         soup = BeautifulSoup(req.content)
+#         items = soup.find_all('article', {'class' : 'item foto-titulo'})
+#         for item in items:
+#             direct_URLs.append(item.find('div', {'class' : 'text'}).find('h1').find('a')['href'])
+#         direct_URLs = list(set(direct_URLs))    
+#         print('Now collected ', len(direct_URLs), 'articles from previous pages...')
 
-direct_URLs = ['https://www.elheraldo.co' + i for i  in direct_URLs]
+# direct_URLs = ['https://www.elheraldo.co' + i for i  in direct_URLs]
+
+direct_URLs = pd.read_csv('/home/mlp2/Downloads/peace-machine/peacemachine/getnewurls/COL/elheraldoco.csv')['0']
 
 blacklist =  [( i['blacklist_url_patterns']) for i in db.sources.find({'source_domain' : source})][0]
 blacklist = re.compile('|'.join([re.escape(word) for word in blacklist]))
@@ -58,14 +61,18 @@ for url in final_result:
             article['date_download']=datetime.now()
             article['download_via'] = "Direct2"
             article['source_domain'] = source
-            print("newsplease date: ", article['date_publish'])
             print("newsplease title: ", article['title'])
             print("newsplease maintext: ", article['maintext'][:50])
  
             ## Fixing Date:
             soup = BeautifulSoup(response.content, 'html.parser')
-
-          
+            try:
+                date = soup.find('meta', {'property' : 'article:published_time'})['content']
+                article['date_publish'] = dateparser.parse(date)
+            except:
+                article['date_publish'] = article['date_publish'] 
+            print("newsplease date: ", article['date_publish'])
+            
             try:
                 year = article['date_publish'].year
                 month = article['date_publish'].month

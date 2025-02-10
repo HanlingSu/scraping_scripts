@@ -40,14 +40,17 @@ from dotenv import load_dotenv
 db = MongoClient('mongodb://zungru:balsas.rial.tanoaks.schmoe.coffing@db-wibbels.sas.upenn.edu/?authSource=ml4p&tls=true').ml4p
 
 direct_URLs = []
-sitemap = 'https://www.lanacion.com.py/arcio/sitemap/'
+# sitemap = 'https://www.lanacion.com.py/arcio/sitemap/'
 
-hdr = {'User-Agent': 'Mozilla/5.0'} #header settings
-req = requests.get(sitemap, headers = hdr)
-soup = BeautifulSoup(req.content)
-item = soup.find_all('loc')
-for i in item:
-    direct_URLs.append(i.text)
+# hdr = {'User-Agent': 'Mozilla/5.0'} #header settings
+# req = requests.get(sitemap, headers = hdr)
+# soup = BeautifulSoup(req.content)
+# item = soup.find_all('loc')
+# for i in item:
+#     direct_URLs.append(i.text)
+
+
+direct_URLs = pd.read_csv('/home/mlp2/Downloads/peace-machine/peacemachine/getnewurls/PRY/lanacio.csv')['0']
 
 final_result = list(set(direct_URLs))
 print('Total number of urls found: ', len(final_result))

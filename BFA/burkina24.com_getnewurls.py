@@ -20,7 +20,7 @@ direct_URLs = []
 
 # 51
 # sitemap 37 [678:]
-for i in range(53, 55 +1):
+for i in range(56, 56 +1):
     sitemap = 'https://burkina24.com/post-sitemap' + str(i) + '.xml' 
     print(sitemap)
     reqs = requests.get(sitemap, headers=headers)

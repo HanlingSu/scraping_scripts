@@ -60,7 +60,7 @@ urls = []
 
 # date_dict = {} 
 # # post-sitemap 
-for j in range(129,134):
+for j in range(135,136):
     url = 'https://cnnespanol.cnn.com/post-sitemap' + str(j) + '.xml'
 
     print("First Sitemap: ", url)
@@ -97,8 +97,8 @@ for j in range(129,134):
 #     print(len(urls))
 
 # # KEEP ONLY unique URLS:
-# dedupurls = list(set(urls))
-dedupurls = pd.read_csv('Downloads/peace-machine/peacemachine/getnewurls/INT/cnnespanol.csv')['url']
+dedupurls = list(set(urls))
+# dedupurls = pd.read_csv('Downloads/peace-machine/peacemachine/getnewurls/INT/cnnespanol.csv')['url']
 
 # STEP 1: Get rid or urls from blacklisted sources
 blpatterns = ['/gallery/', '/tag/', '/author/', '/category/', '/tv_show/']

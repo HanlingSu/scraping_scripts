@@ -41,7 +41,7 @@ source = 'danas.rs'
 
 #sitemap_base = 'https://www.danas.rs/sitemap-pt-post-2022-'
 
-sitemap_base = 'https://www.danas.rs/sitemap-pt-post-p'
+sitemap_base = 'https://www.danas.rs/post-sitemap'
 
 #https://www.danas.rs/sitemap-pt-post-p4-2022-03.xml
 
@@ -51,30 +51,30 @@ sitemap_base = 'https://www.danas.rs/sitemap-pt-post-p'
 #     else:
 #         str_month = str(month)
 
-#     for j in range(1, 11):
-#         sitemap = sitemap_base + str(j) + '-2023-' + str_month + '.xml'
-#         print('NOW SCRAPING ', sitemap, ' ... ')
-#         hdr = {'User-Agent': 'Mozilla/5.0'} #header settings
-#         req = requests.get(sitemap, headers = hdr)
-#         soup = BeautifulSoup(req.content)
-#         item = soup.find_all('loc')
-            
-#         for i in item:
-#             direct_URLs.append(i.text)   
-            
-#     print('Now scraped ', len(direct_URLs), ' articles from previous sitemaps.')
-
-for p in range(1, 1150+1):
-    url = 'https://www.danas.rs/najnovije-vesti/page/' + str(p)
+for j in range(680, 700):
+    sitemap = sitemap_base + str(j) + '.xml'
+    print('NOW SCRAPING ', sitemap, ' ... ')
     hdr = {'User-Agent': 'Mozilla/5.0'} #header settings
-    req = requests.get(url, headers = hdr)
+    req = requests.get(sitemap, headers = hdr)
     soup = BeautifulSoup(req.content)
-    item = soup.find_all('h3', {'class' : 'article-post-title'})
+    item = soup.find_all('loc')
         
     for i in item:
-        direct_URLs.append(i.find('a')['href'])   
+        direct_URLs.append(i.text)   
         
-    print('Now scraped ', len(direct_URLs), ' articles from previous pages.')
+print('Now scraped ', len(direct_URLs), ' articles from previous sitemaps.')
+
+# for p in range(1, 1200+1):
+#     url = 'https://www.danas.rs/najnovije-vesti/page/' + str(p)
+#     hdr = {'User-Agent': 'Mozilla/5.0'} #header settings
+#     req = requests.get(url, headers = hdr)
+#     soup = BeautifulSoup(req.content)
+#     item = soup.find_all('h3', {'class' : 'article-post-title'})
+        
+#     for i in item:
+#         direct_URLs.append(i.find('a')['href'])   
+        
+#     print('Now scraped ', len(direct_URLs), ' articles from previous pages.')
 
 
 blacklist =  [( i['blacklist_url_patterns']) for i in db.sources.find({'source_domain' : source})][0]

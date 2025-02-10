@@ -93,7 +93,7 @@ def articulo66_story(soup):
 
 # STEP 0: URLs from the "todas-nuestras-noticias" section
 sections = ['politica','nacionales','internacionales']
-endnumbers = [60,35,45]
+endnumbers = [37,42,35]
 
 #https://www.articulo66.com/categorias/politica/
 #https://www.articulo66.com/categorias/politica/page/906/

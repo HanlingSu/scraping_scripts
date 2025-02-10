@@ -20,24 +20,24 @@ source = 'thesun.my'
 
 
 
-base = 'https://thesun.my/search-result/-/search/the/false/true/20240101/20240831/relevance/false/false/0/0/meta/0/0/0/'
+base = 'https://thesun.my/search-result/-/search/the/false/true/20240901/20241203/relevance/false/false/0/0/meta/0/0/0/'
 hdr = {'User-Agent': 'Mozilla/5.0'}
 len_final_result = 0
 url_count = 0
 processed_url_count = 0
 
-direct_URLs = []
 
-for p in range(1, 2428+1):
+for p in range(1, 1045+1):
+    direct_URLs = []
 
-    link = base + str(p) +';'
+    link = base + str(p) 
     req = requests.get(link, headers = hdr)
     soup = BeautifulSoup(req.content)
     print(link)
     item = soup.find_all('div', {'class' : 'headline'})
     for i in item:
-        if "/opinion" in i:
-            direct_URLs.append(i.find('a')['href'])
+        # if "/opinion" in i:
+        direct_URLs.append(i.find('a')['href'])
     direct_URLs = list(set(direct_URLs))
     print('Now scraped ', len(direct_URLs), ' articles from previous page.')
 

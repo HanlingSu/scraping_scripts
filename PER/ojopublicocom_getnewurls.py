@@ -17,7 +17,7 @@ direct_URLs = []
 
 sitemap_base = 'https://ojo-publico.com/sitemap.xml?page='
 
-for i in range(3, 4):
+for i in range(1, 4):
     sitemap = sitemap_base + str(i)
     print(sitemap  )
     hdr = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.102 Safari/537.36'}
@@ -30,6 +30,7 @@ for i in range(3, 4):
         direct_URLs.append(url)
 
     print(len(direct_URLs))
+direct_URLs = list(set(direct_URLs))
 final_result = direct_URLs.copy()[::-1]
 # [1766:]
 # final_result = ['https://ojo-publico.com/sala-del-poder/el-poder-detras-la-educacion-universitaria-privada',
@@ -170,10 +171,10 @@ for url in final_result:
                     print("Inserted! in ", colname, " - number of urls so far: ", url_count)
                 db['urls'].insert_one({'url': article['url']})
             except DuplicateKeyError:
-                db[colname].delete_one( {'url' : url })
-                db[colname].insert_one(article)
+                # db[colname].delete_one( {'url' : url })
+                # db[colname].insert_one(article)
                 pass
-                print("DUPLICATE! Updated.")
+                print("DUPLICATE! Pass.")
                 
         except Exception as err: 
             print("ERRORRRR......", err)

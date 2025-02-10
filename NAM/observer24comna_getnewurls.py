@@ -15,7 +15,7 @@ db = MongoClient('mongodb://zungru:balsas.rial.tanoaks.schmoe.coffing@db-wibbels
 
 direct_URLs = []
 
-sitemap = 'https://www.observer24.com.na/post-sitemap2.xml'
+sitemap = 'https://www.observer24.com.na/post-sitemap9.xml'
 source = 'observer24.com.na'
 
 # 96
@@ -45,7 +45,7 @@ print(len(final_result))
 url_count = 0
 processed_url_count = 0
 
-for url in final_result:
+for url in final_result[::-1]:
     if url:
         print(url, "FINE")
         ## SCRAPING USING NEWSPLEASE:
@@ -86,10 +86,10 @@ for url in final_result:
                     print("Inserted! in ", colname, " - number of urls so far: ", url_count)
                 db['urls'].insert_one({'url': article['url']})
             except DuplicateKeyError:
-                myquery = { "url": url, "source_domain" : source}
-                db[colname].delete_one(myquery)
-                db[colname].insert_one(article)
-                print("DUPLICATE! Updated.")
+                # myquery = { "url": url, "source_domain" : source}
+                # db[colname].delete_one(myquery)
+                # db[colname].insert_one(article)
+                print("DUPLICATE! PASS.")
                 pass
                 
         except Exception as err: 

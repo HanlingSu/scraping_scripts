@@ -18,7 +18,7 @@ direct_URLs = []
 source = 'musavat.com'
 sitemap_base = 'https://musavat.com/sitemap_part_'
 
-for i in range(1026, 1056+1):
+for i in range(1041, 1060+1):
     sitemap = sitemap_base + str(i) +'.xml'
     print(sitemap  )
 

@@ -17,44 +17,46 @@ from newsplease import NewsPlease
 import re
 import json
 import pandas as pd
-
+import cloudscraper
 
 # db connection:
 db = MongoClient('mongodb://zungru:balsas.rial.tanoaks.schmoe.coffing@db-wibbels.sas.upenn.edu/?authSource=ml4p&tls=true').ml4p
 
+
+scraper = cloudscraper.create_scraper(
+    browser={
+        'browser': 'firefox',
+        'platform': 'windows',
+        'mobile': False
+    }
+)
+
+hdr = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.102 Safari/537.36'}
+
+
 source = 'gazeta.uz'
-sitemap_base = 'https://www.gazeta.uz/sitemap/materials-ru-'
+category = ['economy', 'politics', 'society', 'world']
+base = 'https://www.gazeta.uz/oz/'
 
-
+page_start = [1, 1, 1, 1]
+page_end = [0, 0, 60, 13]
 final_count = 0
 final_inserted_url_count =0
+direct_URLs = []
 
-for year in range(2024, 2025):
-    year_str = str(year)
-    direct_URLs = []
-    for month in range(5, 6):
-        if month < 10:
-            month_str = '0' + str(month)
-        else:
-            month_str = str(month)
-        print('Now scraping', str(year), str(month), '...')
-        for day in range(1, 32):
-            if day < 10:
-                day_str = '0' +str(day)
-            else:
-                day_str = str(day)
+for c, ps, pe in zip(category, page_start, page_end):
+    for p in range(ps, pe+1):
+        link = base + c +'?page=' +str(p)
+        print(link)
+        hdr = {'User-Agent': 'Mozilla/5.0'} #header settings
 
-            sitemap = sitemap_base + year_str +'-' + month_str + '-' + day_str + '.xml'
-            # print(sitemap)
-            hdr = {'User-Agent': 'Mozilla/5.0'} #header settings
+        soup = BeautifulSoup(scraper.get(link).text)
 
-            req = requests.get(sitemap, headers = hdr)
-            soup = BeautifulSoup(req.content)
-
-            for i in soup.find_all('loc'):
-                direct_URLs.append(i.text)
+        for i in soup.find_all('h3'):
+            direct_URLs.append(i.find('a')['href'])
         print('Now collected',len(direct_URLs), 'URLs')
 
+    direct_URLs = ['https://www.gazeta.uz' + i for i in direct_URLs]
     final_result = direct_URLs.copy()
     final_count += len(final_result)
     print('Total articles collected', len(final_result))
@@ -66,95 +68,66 @@ for year in range(2024, 2025):
         print(url)
         hdr = {'User-Agent': 'Mozilla/5.0'} #header settings
 
-        req = requests.get(url, headers = hdr)
-        soup = BeautifulSoup(req.content)
-        article = NewsPlease.from_html(req.text, url=url).__dict__
+        soup = BeautifulSoup(scraper.get(url).text)
+        article = NewsPlease.from_html(scraper.get(url).text).__dict__
+
         
         # add on some extras
         article['date_download']=datetime.now()
         article['download_via'] = "Direct2"
         article['source_domain'] = source
-
+        article['url'] = url
 
         # balcklist by category:
+       
+    
+        print("newsplease title: ", article['title'])
+
+        # fix date
         try:
-            category = soup.find('div', {"class" : 'articleDateTime'}).find('a').text
+            date = soup.find('meta', itemprop = 'datePublished')['content']
+            article['date_publish'] = dateparser.parse(date).replace(tzinfo=None)
         except:
-            category = 'News'
+            article['date_publish'] = article['date_publish'] 
+        print("newsplease date: ", article['date_publish'])
 
-        uninterested = False
-        
-        if category in ['Спорт']:
-                # sports, 
-            uninterested = True
-        else:
-            pass
-                
-        if uninterested: 
-            article['title'] = "From uninterested category"
-            article['date_publish'] = None
-            article['maintext'] = None
-            print(article['title'], category)
-
-        else:
-        
-            print("newsplease title: ", article['title'])
-
-            # fix date
+        # fix maintext
+        if not article['maintext']:
             try:
-                date = soup.find('meta', property = 'article:published_time')['content']
-                article['date_publish'] = dateparser.parse(date).replace(tzinfo=None)
+                maintext = ''
+                for i in soup.find('div', {'itemprop' :'articleBody'}).find_all('p'):
+                    maintext += i.text
+                article['maintext'] = maintext.strip()
             except:
-                article['date_publish'] = article['date_publish'] 
-            print("newsplease date: ", article['date_publish'])
+                article['maintext'] = None
 
-            # fix maintext
-            if not article['maintext']:
-                try:
-                    maintext = ''
-                    for i in soup.find('div', {'class' :'articleContent'}).find_all('p'):
-                        maintext += i.text
-                    article['maintext'] = maintext.strip()
-                except:
-                    try:
-                        article['maintext'] = soup.find('h4', {'class' :None}).text.strip()
-                    
-                    except:
-                        try:
-                            article['maintext'] = soup.find('t-row').text.strip()
-                        except:
-                            try:
-                                article['maintext'] = soup.find('div', {'class' : 't-col t-col_8 t-prefix_2'}).text.strip()
-                            except:
-                                article['maintext'] = None
-
-                if article['maintext']:
-                    print("newsplease maintext: ", article['maintext'][:50])
-            else:
+            if article['maintext']:
                 print("newsplease maintext: ", article['maintext'][:50])
+        else:
+            print("newsplease maintext: ", article['maintext'][:50])
 
-            # add to DB
-            try:
-                year = article['date_publish'].year
-                month = article['date_publish'].month
-                colname = f'articles-{year}-{month}'
-                
-            except:
-                colname = 'articles-nodate'
+        # add to DB
+        try:
+            year = article['date_publish'].year
+            month = article['date_publish'].month
+            colname = f'articles-{year}-{month}'
             
-            # Inserting article into the db:
-            try:
-                db[colname].insert_one(article)
-                # count:
-                if colname != 'articles-nodate':
-                    inserted_url_count +=  1
-                    print("Inserted! in ", colname, " - number of urls so far: ", inserted_url_count)
-                db['urls'].insert_one({'url': article['url']})
-            except DuplicateKeyError:
-                pass
-                print("DUPLICATE! Not inserted.")
-            processed_url_count +=1    
-            print('\n',processed_url_count, '/', len(final_result) , 'articles have been processed ...\n')
+        except:
+            colname = 'articles-nodate'
+        
+        # Inserting article into the db:
+        try:
+            db[colname].insert_one(article)
+            # count:
+            if colname != 'articles-nodate':
+                inserted_url_count +=  1
+                print("Inserted! in ", colname, " - number of urls so far: ", inserted_url_count)
+            db['urls'].insert_one({'url': article['url']})
+        except DuplicateKeyError:
+            pass
+            print("DUPLICATE! Not inserted.")
+        processed_url_count +=1    
+        print('\n',processed_url_count, '/', len(final_result) , 'articles have been processed ...\n')
 
     final_inserted_url_count += inserted_url_count
 

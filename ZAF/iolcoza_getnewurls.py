@@ -124,11 +124,11 @@ for url in final_result:
             except DuplicateKeyError:
                 # db['urls'].delete_one({'url': article['url']})
 
-                db[colname].delete_one( { "url": url, "source_domain" : source})
-                db[colname].insert_one(article)
+                # db[colname].delete_one( { "url": url, "source_domain" : source})
+                # db[colname].insert_one(article)
 
 
-                print("DUPLICATE! Updated.")
+                print("DUPLICATE! Pass.")
         except Exception as err: 
             print("ERRORRRR......", err)
             pass

@@ -32,8 +32,8 @@ db = MongoClient('mongodb://zungru:balsas.rial.tanoaks.schmoe.coffing@db-wibbels
 
 
 # Each sitemap includes 1000 links. Currently there are 165. In the next update, we can scrape only those between 1 and x-166 where x is the biggest sitemap number available. 
-start_sitemap = 102 #CHANGE
-end_sitemap = 105 #CHANGE
+start_sitemap = 1 #CHANGE
+end_sitemap = 7 #CHANGE
 
 
 
@@ -42,8 +42,8 @@ headers = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_5) AppleW
 source = 'diken.com.tr'
 
 
-# base_url = 'https://www.diken.com.tr/post-sitemap'
-base_url = 'https://www.diken.com.tr/wp-sitemap-posts-post-'
+base_url = 'https://www.diken.com.tr/post-sitemap'
+# base_url = 'https://www.diken.com.tr/wp-sitemap-posts-post-'
 links = []
 for i in range(start_sitemap, end_sitemap):
     

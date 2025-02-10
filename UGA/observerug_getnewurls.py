@@ -19,11 +19,11 @@ db = MongoClient('mongodb://zungru:balsas.rial.tanoaks.schmoe.coffing@db-wibbels
 base_list = []
 
 source = 'observer.ug'
-base = 'https://www.observer.ug/search?searchword=the&ordering=newest&searchphrase=all&limit=20&areas[0]=content&start='
+base = 'https://observer.ug/category/business/page/'
 hdr = {'User-Agent': 'Mozilla/5.0'} #header settings
 
-for i in range(1, 11):
-    base_list.append(base + str(20*i))
+for i in range(1, 8):
+    base_list.append(base + str(i) )
 
 
 direct_URLs = []
@@ -34,7 +34,7 @@ for b in base_list:
         req = requests.get(b, headers = hdr)
         soup = BeautifulSoup(req.content)
         
-        item = soup.find_all('dt', {'class' : 'result-title'})
+        item = soup.find_all('h2', {'class' : 'entry-title'})
         for i in item:
             direct_URLs.append(i.find('a', href = True)['href'])
         print(len(direct_URLs))
@@ -46,7 +46,7 @@ blacklist =  [( i['blacklist_url_patterns']) for i in db.sources.find({'source_d
 blacklist = re.compile('|'.join([re.escape(word) for word in blacklist]))
 direct_URLs = [word for word in direct_URLs if not blacklist.search(word)]
 
-final_result = ['https://www.observer.ug' + i for i in direct_URLs]
+final_result = direct_URLs.copy()
 
 print(len(final_result))
 

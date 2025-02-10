@@ -17,7 +17,7 @@ direct_URLs = []
 
 categories = ['politica', 'sociedade', 'economia', 'mundo']
 page_start = [0, 0, 0, 0]
-page_end = [80, 120, 32, 2]
+page_end = [80, 60, 10, 2]
 
 
 

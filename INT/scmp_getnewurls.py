@@ -52,8 +52,8 @@ yearup = 2024
 monthstart = 9
 
 
-# STEP O: get urls from sitemaps:
-sitemaps = ['https://www.scmp.com/sitemap_news.xml','https://www.scmp.com/sitemap_article.xml','https://www.scmp.com/sitemap_economy.xml','https://www.scmp.com/sitemap_business.xml']
+# STEP O: get urls from sitemaps:,'https://www.scmp.com/sitemap_article.xml','https://www.scmp.com/sitemap_economy.xml','https://www.scmp.com/sitemap_business.xml'
+sitemaps = ['https://www.scmp.com/sitemap_news.xml']
 
 for url in sitemaps:
     print("Extracting from: ", url)
@@ -85,7 +85,7 @@ for url in urls:
             clean_urls.append(url)
 
 # List of unique urls:
-list_urls = list(set(clean_urls))
+list_urls = clean_urls.copy()
 
 # Manually check urls:
 #dftest = pd.DataFrame(list_urls)  
@@ -95,7 +95,7 @@ print("Total number of USABLE urls found: ", len(list_urls))
 
 ## INSERTING IN THE DB:
 url_count = 0
-for url in list_urls:
+for url in list_urls[5000:5500]:
     if url == "":
         pass
     else:
@@ -155,7 +155,7 @@ for url in list_urls:
                                 print("No need to insert. Wrong Year.")
                         else:
                             print("No Date.")                               
-                        #print(article['date_publish'])
+                        print(article['date_publish'])
                         #print(article['date_publish'].month)
                         #print(article['title'][0:100])
                         #print(article['maintext'][0:100])

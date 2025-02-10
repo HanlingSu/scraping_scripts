@@ -21,7 +21,7 @@ source = 'elespectador.com'
 categories= ['colombia', 'mundo', 'judicial', 'politica', 'investigacion', 'bogota', 'economia', 'salud']
 # pages = [100, 100, 1000, 100, 100, 100, 100, 100 ]
 page_start = [0,0,0,0,0,0,0,0]
-page_end = [300, 900, 600, 900, 50, 1000, 900, 100 ]
+page_end = [700, 1300, 900, 1200, 50, 1300, 1200, 200 ]
 # page_end = [700, 1600, 900, 400, 100, 1500, 1100]
 for c, ps, pe in zip(categories, page_start, page_end):
     for i in range(ps, pe+1, 100):

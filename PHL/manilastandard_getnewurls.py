@@ -43,7 +43,7 @@ source = 'manilastandard.net'
 direct_URLs = []
 base = 'https://manilastandard.net/page/'
 
-for i in range(2, 1150):
+for i in range(1, 1400):
     link = base + str(i) + '?s=+'
     hdr = {'User-Agent': 'Mozilla/5.0'} #header settings
     req = requests.get(link, headers = hdr)

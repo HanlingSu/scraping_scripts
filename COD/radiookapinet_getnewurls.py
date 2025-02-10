@@ -30,7 +30,7 @@ source = 'radiookapi.net'
 
 # 150
 
-for p in range(1, 170):
+for p in range(2, 170):
     url = 'https://www.radiookapi.net/actualite?page=' + str(p)
     hdr = {'User-Agent': 'Mozilla/5.0'} #header settings
     req = requests.get(url, headers = hdr)

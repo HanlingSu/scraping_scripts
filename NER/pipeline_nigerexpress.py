@@ -415,7 +415,7 @@ def pipeline(sitemap,
         '''        
         #nums = ["%.2d" % i for i in range(9, 10)]
         begin_num = 2
-        end_num = 3
+        end_num = 4
         for num in range(begin_num, end_num):
             
             print('sitemap: ',int(num)-int(begin_num),'/', int(end_num)-int(begin_num))

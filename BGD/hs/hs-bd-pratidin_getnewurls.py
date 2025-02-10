@@ -54,8 +54,8 @@ source = 'bd-pratidin.com'
 base = "https://www.bd-pratidin.com/daily-sitemap/"
 
 for year in range(2024, 2025):
-    for month in range(6, 10):
-        for day in range(1, 32):
+    for month in range(9, 10):
+        for day in range(18, 32):
             # year str
             year_str = str(year)
             # month str

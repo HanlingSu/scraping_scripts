@@ -30,11 +30,11 @@ headers = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_5) AppleW
 final_count = 0
 final_inserted_url_count =0
 
-for year in range(2014, 2024):
+for year in range(2024, 2025):
     year_str = str(year)
     
     # scraping by month
-    for month in range(1, 13):
+    for month in range(9, 13):
         if month < 10:
             month_str = '0' + str(month)
         else:
@@ -63,7 +63,7 @@ for year in range(2014, 2024):
             blacklist =  [( i['blacklist_url_patterns']) for i in db.sources.find({'source_domain' : source})][0]
             blacklist = re.compile('|'.join([re.escape(word) for word in blacklist]))
             direct_URLs = [word for word in direct_URLs if not blacklist.search(word)]
-            direct_URLs = [i for i in direct_URLs if "/opinion/" in i]
+            # direct_URLs = [i for i in direct_URLs if "/opinion/" in i]
 
             final_result = list(set(direct_URLs))
 

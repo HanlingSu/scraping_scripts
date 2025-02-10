@@ -32,7 +32,7 @@ base = 'https://www.cambodiadaily.com/post-sitemap'
 
 direct_URLs = []
 
-for p in range(20,21):
+for p in range(21,22):
     url = base + str(p) +'.xml'
     print(url)
     req = requests.get(url, headers = header)
@@ -41,7 +41,7 @@ for p in range(20,21):
         direct_URLs.append(i.text)
     print('Now collected %s URLs' % len(direct_URLs))
 
-final_result = list(set(direct_URLs))
+final_result = direct_URLs.copy()
 ## INSERTING IN THE DB:
 url_count = 0
 processed_url_count = 0

@@ -22,7 +22,7 @@ direct_URLs = []
 
 categories = ['politike', 'kronike', 'aktualitet', 'kosova', 'ekonomi', 'rajoni', 'bota-rajoni' ]
 page_start = [1, 1, 1, 1, 1, 1, 1]
-page_end = [40, 45, 8, 5, 7, 4, 30]
+page_end = [55, 45, 20, 5, 7, 4, 45]
 # page_start = [50, 35, 12, 8, 5, 50, 5]
 # page_end = [70, 45, 18, 12, 10, 70, 10]
 

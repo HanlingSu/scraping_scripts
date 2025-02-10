@@ -248,6 +248,7 @@ def collect_urls_year_month_day(yy, mm, days): #(keyword[0],keyword[1])
     '''
 
     #iterate thru a month (31 days), collect all urls
+    total_urls = []
     if days==None:
         days=[0]
     for dd in days:
@@ -255,7 +256,12 @@ def collect_urls_year_month_day(yy, mm, days): #(keyword[0],keyword[1])
         bl = ['/spor/','/video/','/magazin/','/gunaydin/','/teknokulis/','/galeri/','/yazarlar/','/yemek-tarifleri/']
         try:
             #### change url pattern
-            page_url = f'https://www.sabah.com.tr/sitemaparchives/post/{yy}-{mm}.xml'
+            # page_url = f'https://www.sabah.com.tr/sitemaparchives/post/{yy}-{mm}.xml'
+            if dd == 0:
+                page_url = f'https://www.sabah.com.tr/sitemaparchives/post/{yy}-{mm}.xml'
+
+            else:
+                page_url = f'https://www.sabah.com.tr/sitemaparchives/post/{yy}-{mm}-{dd}.xml'
             page_req = requests.get(page_url,headers=headers)
             page_soup = BeautifulSoup(page_req.content, features="lxml")
             for link in page_soup.find_all('loc'):
@@ -263,16 +269,24 @@ def collect_urls_year_month_day(yy, mm, days): #(keyword[0],keyword[1])
                 # print(url)
                 if (len(url)>51) and (not any(ele in url for ele in bl)) and ('/roza/' not in url) and ('/video/' not in url):
                     urls.append(link.text)
-                # print(link)
                 
-            print(f'{yy}/{mm} --------------- total urls:{len(urls)}')
-        except:
-            print(f'ERROR !!! collecting urls ----------- {yy}/{mm}')
-            pass   
+                # print(link)
+            urls = list(set(urls))
+            total_urls.extend(urls)
 
-    print(len(urls))
+            total_urls = list(set(total_urls))
+            print(f'{yy}/{mm}/{dd} --------------- total urls:{len(total_urls)}')
+                
+            
+        except:
+            print(f'ERROR !!! collecting urls ----------- {yy}/{mm}/{dd}')
+            continue   
+
+        
+        
+
     
-    return urls
+    return total_urls
 
 
 def collect_urls_keyword(keyword, page):
@@ -475,8 +489,8 @@ def pipeline(sitemap,
         '''
         years = [i for i in range(2024,2025)]
         months_1 = ["%.2d" % i for i in range(12,13)]
-        months_2 = [i for i in range(6, 10)]
-        days = ["%.2d" % i for i in range(1,32)]
+        months_2 = [i for i in range(9, 13)]
+        days = [i for i in range(0,32)]
         
         for yy in years:
             if yy == 2023:
@@ -485,7 +499,7 @@ def pipeline(sitemap,
                 months = months_2
             for mm in months:
                 #collect urls
-                urls2 = collect_urls_year_month_day(yy=yy, mm=mm, days=None)
+                urls2 = collect_urls_year_month_day(yy=yy, mm=mm, days=days)
                 
                    # check if unique
                 urls2 = [url for url in urls2 if url not in unique_urls]

@@ -69,11 +69,11 @@ source = 'enqueteplus.com'
 #number = ['2','2']
 
 sections = ['politique','a','economie','international']
-page_start = [1, 1, 1, 1]
-page_end = [10, 7, 4, 2]
+page_start = [15, 20, 4, 2]
+page_end = [15, 20, 4, 2]
 for sect, ps, pe in zip(sections, page_start, page_end) :
   
-    for p in range(ps,pe+1):
+    for p in range(ps,pe+3):
        
         url = "https://www.enqueteplus.com/sections/" + sect + "?page=" + str(p)
 

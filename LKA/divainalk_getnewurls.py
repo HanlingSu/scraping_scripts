@@ -33,16 +33,18 @@ source = 'divaina.lk'
 
 categories= ['main-news', 'vigasa-puwath', 'pradeshiya-puvath']
                 #main       immediate news  local news          
-page_start = [230, 1, 1, 1 ]
-page_end = [240, 0,0,0 ]
+page_start = [1, 79, 1]
+page_end = [0, 100, 0 ]
 # only change before each update
 
+url_count = 0
+processed_url_count = 0
+final_result_len = 0
 for c, ps, pe in zip(categories, page_start, page_end):
     for i in range(ps, pe+1):
         direct_URLs = []
         link = 'https://divaina.lk/category/' + c + '/page/' + str(i)
         print(link)
-        # time.sleep(300)
 
         hdr = {'User-Agent': 'Mozilla/5.0'}
         req = requests.get(link, headers = hdr)
@@ -57,9 +59,7 @@ for c, ps, pe in zip(categories, page_start, page_end):
 
         final_result = direct_URLs.copy()
         print(len(final_result))
-
-        url_count = 0
-        processed_url_count = 0
+        final_result_len += len(final_result)
         for url in final_result[::-1]:
             if url:
                 print(url, "FINE")
@@ -146,9 +146,10 @@ for c, ps, pe in zip(categories, page_start, page_end):
                     print("ERRORRRR......", err)
                     pass
                 processed_url_count += 1
-                print('\n',processed_url_count, '/', len(final_result), 'articles have been processed ...\n')
+                print('\n',processed_url_count, '/', final_result_len, 'articles have been processed ...\n')
 
             else:
                 pass
+        time.sleep(300)
 
 print("Done inserting ", url_count, " manually collected urls from ",  source, " into the db.")

@@ -30,20 +30,20 @@ db = MongoClient('mongodb://zungru:balsas.rial.tanoaks.schmoe.coffing@db-wibbels
 
 direct_URLs = []
 category = ['societe', 'politique', 'monde', 'economie']
-page_start = [1, 1, 1, 1]
-page_end = [10, 12, 18, 8]
+page_start = [20, 18, 30, 10]
+page_end = [20, 18, 30, 10]
 # page_end = [1, 1, 1, 1]
 base = 'https://www.nouvelobs.com/'
 source = 'nouvelobs.com'
 
 for c, ps, pe in zip(category, page_start, page_end):
-    for p in range(ps, pe+1):
+    for p in range(ps, pe+3):
         sitemap = base + c +'/page/' + str(p) 
         print(sitemap)
         hdr = {'User-Agent': 'Mozilla/5.0'} #header settings
         req = requests.get(sitemap, headers = hdr)
         soup = BeautifulSoup(req.content)
-        item = soup.find_all('div', {'class' : 'article-box-content'})
+        item = soup.find_all('article', {'class' : 'py-lg-25 border-bottom'})
         for i in item:
             url = i.find('a')['href']
             direct_URLs.append(url)
@@ -51,6 +51,8 @@ for c, ps, pe in zip(category, page_start, page_end):
 
         print(len(direct_URLs))
 
+
+direct_URLs = ['https://www.nouvelobs.com' + i for i in direct_URLs]
 final_result = direct_URLs.copy()
 
 url_count = 0

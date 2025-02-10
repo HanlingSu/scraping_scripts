@@ -19,7 +19,7 @@ categories = ['politics', 'society', 'economics', 'world']
             #politics  society      economy         world
 # page_start = [1801, 1754, 455, 6403]
 page_start = [1, 1, 1, 1]
-page_end = [45, 48, 10, 350]
+page_end = [35, 40, 10, 300]
 
 
 base = 'https://zerkalo.az/category/'

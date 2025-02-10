@@ -16,10 +16,22 @@ from pymongo.errors import DuplicateKeyError
 # from peacemachine.helpers import urlFilter
 from newsplease import NewsPlease
 import re
+import cloudscraper
+
 
 # db connection:
 db = MongoClient('mongodb://zungru:balsas.rial.tanoaks.schmoe.coffing@db-wibbels.sas.upenn.edu/?authSource=ml4p&tls=true').ml4p
 
+
+scraper = cloudscraper.create_scraper(
+    browser={
+        'browser': 'firefox',
+        'platform': 'windows',
+        'mobile': False
+    }
+)
+
+hdr = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.102 Safari/537.36'}
 
 
 base = 'https://paanluelwel.com/category/'
@@ -37,10 +49,9 @@ for ps, pe, c in zip(page_start, page_end, category):
         link = base + c + '/page/' + str(p) 
         print(link)
         hdr = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.102 Safari/537.36'}
-        req = requests.get(link, headers = hdr)
-        soup = BeautifulSoup(req.content)
+        soup = BeautifulSoup(scraper.get(link).text)
         try:
-            for h3 in soup.find_all('h4'):
+            for h3 in soup.find_all('h3'):
                 direct_URLs.append(h3.find('a')['href'])
         except:
             pass

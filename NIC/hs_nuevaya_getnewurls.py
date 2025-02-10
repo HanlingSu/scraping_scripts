@@ -63,9 +63,9 @@ base = 'https://nuevaya.com.ni/search/el/page/'
         
 header = {'User-Agent': ('Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_3) AppleWebKit/537.36''(KHTML, like Gecko) Chrome/35.0.1916.47 Safari/537.36')}
 
-category = ['nacionales', 'internacionales',  'destacadas', 'sucesos']
-page_start = [1, 1, 1, 1]
-page_end = [13, 18, 50, 60]
+category = ['nacionales', 'internacionales',  'destacadas', 'sucesos', 'opinion-ya']
+page_start = [1, 1, 1, 1, 1]
+page_end = [0,0,0,0, 5]
 base = 'https://nuevaya.com.ni/'
 
 for c, ps, pe in zip(category, page_start, page_end):
@@ -139,7 +139,11 @@ for url in final_result:
             try:
                 year = article['date_publish'].year
                 month = article['date_publish'].month
-                colname = f'articles-{year}-{month}'
+                if "/opinion-ya/" in url:
+                    colname = f'opinion-articles-{year}-{month}'
+                else:
+                    colname = f'articles-{year}-{month}'
+
                 #print(article)
             except:
                 colname = 'articles-nodate'

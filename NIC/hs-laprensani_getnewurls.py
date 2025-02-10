@@ -48,11 +48,11 @@ source = 'laprensani.com'
 category = ['politica','nacionales','internacionales', 'sucesos', 'economia', 'derecho-humano-ni', ]
 
 page_start = [1, 1, 1, 1, 1, 1]
-page_end = [35, 35, 100, 28, 15, 8]
+page_end = [32, 32, 85, 25, 15, 7]
 direct_URLs = []
 
 for c, ps, pe in zip(category, page_start, page_end):
-    for p in range(ps, pe):
+    for p in range(ps, pe+1):
         url = 'https://www.laprensani.com/' + c + '/page/' +str(p)
         reqs = requests.get(url, headers=headers)
         soup = BeautifulSoup(reqs.text, 'html.parser')

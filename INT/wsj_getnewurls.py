@@ -50,7 +50,7 @@ source = 'wsj.com'
 #https://www.wsj.com/news/archive/2021/08/19
 ## STEP 0: Define dates
 yearn = "2024"
-monthn = "09" # XX
+monthn = "12" # XX
 daystart = "1"
 dayend = "31" 
 

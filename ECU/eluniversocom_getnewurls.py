@@ -38,9 +38,9 @@ source = 'eluniverso.com'
 
 direct_URLs = []
 
-for year in range(2024, 2025):
+for year in range(2025, 2026):
     yearstr = str(year)
-    for month in range(5, 8):
+    for month in range(1, 2):
         if month < 10:
             monthstr = '0' + str(month)
         else:

@@ -25,7 +25,7 @@ source = 'diggers.news'
 direct_URLs = []
 base = 'https://diggers.news/wp-sitemap-posts-post-'
 #31
-for p in range(17, 19):
+for p in range(19, 20):
     url = base+str(p)+'.xml'
     req = requests.get(url, headers = headers)
     soup = BeautifulSoup(req.content)

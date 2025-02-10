@@ -26,7 +26,7 @@ direct_URLs = []
 
 sitemap = 'https://www.alharaca.sv/post-sitemap.xml' 
 print(sitemap)
-response = requests.get(sitemap, headers=hdr)
+response = requests.get(sitemap, verify=False)
 # process
 soup = BeautifulSoup(response.content)
 

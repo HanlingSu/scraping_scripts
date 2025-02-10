@@ -26,9 +26,9 @@ for document in documents:
 
 # categories for scraping
 categories = ['tanzania','world','politics', 'society-culture', 'business', 'health', 'opinions']
-page_start = [1, 12, 9, 10, 35, 7, 1]
+page_start = [1, 1, 1, 1, 1, 1, 1]
 # page_end = [1, 1, 1, 1, 1, 1]
-page_end = [0, 25, 18, 20, 70, 14, 2  ]
+page_end = [100, 25, 21, 30, 45, 12, 9  ]
 
 
 url_count = 0

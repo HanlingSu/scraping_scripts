@@ -35,7 +35,7 @@ direct_URLs = []
 hdr = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.102 Safari/537.36'}
 
 # post-sitemap 26
-for j in range(26,27):
+for j in range(26,28):
     url = 'https://lajornadanet.com/post-sitemap' + str(j) + '.xml'
 
     print("Sitemap: ", url)
@@ -66,7 +66,7 @@ failed_urls = []
 ## INSERTING IN THE DB:
 url_count = 0
 processed_url_count = 0
-for url in final_result:
+for url in final_result[::-1]:
 
     print(url, "FINE")
     time.sleep(5)

@@ -10,14 +10,26 @@ from datetime import datetime
 from pymongo.errors import DuplicateKeyError
 from newsplease import NewsPlease
 import re
+import cloudscraper
+
 # db connection:
 db = MongoClient('mongodb://zungru:balsas.rial.tanoaks.schmoe.coffing@db-wibbels.sas.upenn.edu/?authSource=ml4p&tls=true').ml4p
 
 base = 'https://thehimalayantimes.com/sitemaps/'
 source = 'thehimalayantimes.com'
 
+
+scraper = cloudscraper.create_scraper(
+    browser={
+        'browser': 'firefox',
+        'platform': 'windows',
+        'mobile': False
+    }
+)
+
+
 for year in range(2024, 2025):
-    for month in range(7, 11):
+    for month in range(10, 11):
         direct_URLs = []
 
         sitemap = base + str(year) + '/' + str(month) +'/' + 'sitemap_0.xml?v=1.1'
@@ -50,18 +62,17 @@ for year in range(2024, 2025):
                 try:
                     #header = {'User-Agent': ('Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_3) AppleWebKit/537.36''(KHTML, like Gecko) Chrome/35.0.1916.47 Safari/537.36')}
                     header = hdr = {'User-Agent': 'Mozilla/5.0'}
-                    response = requests.get(url, headers=header)
                     # process
-                    article = NewsPlease.from_html(response.text, url=url).__dict__
+                    
+                    soup = BeautifulSoup(scraper.get(url).text)
+                    article = NewsPlease.from_html(scraper.get(url).text).__dict__
                     # add on some extras
                     article['date_download']=datetime.now()
                     article['download_via'] = "Direct2"
                     article['source_domain'] = source
                     # title has no problem
                     
-                    # custom parser
-                    soup = BeautifulSoup(response.content, 'html.parser')
-                
+                    # custom parser                
 
                     print("newsplease date: ",  article['date_publish'])
                     print("newsplease title: ", article['title'])

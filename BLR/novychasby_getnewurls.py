@@ -50,7 +50,7 @@ pages = [10, 9, 14, 2]
 
 direct_URLs = []
 for c, p in zip(categories, pages):
-    for i in range(p+1):
+    for i in range(p-2):
         url = 'https://novychas.online/' + c + '?page=' + str(i)
         print(url)
         header = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.102 Safari/537.36'}

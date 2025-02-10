@@ -23,15 +23,15 @@ headers = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_5) AppleW
 source = 'inquirernewspaper.com'
 
 direct_URLs = []
-base = 'https://inquirernewspaper.com/category/editorial/page/'
-for p in range(1, 6):
-    sitemap = base+str(p) +'.xml'
+base = 'https://inquirernewspaper.com/category/politics/page/'
+for p in range(1, 2):
+    sitemap = base+str(p)
     print(sitemap)
     req = requests.get(sitemap, headers = headers)
     soup = BeautifulSoup(req.content)
 
-    for i in soup.find_all('loc'):
-        direct_URLs.append(i.text)
+    for i in soup.find_all('h2', {'class' : 'title'}):
+        direct_URLs.append(i.find('a')['href'])
     print(len(direct_URLs))
 
 final_result = direct_URLs.copy()[::-1]

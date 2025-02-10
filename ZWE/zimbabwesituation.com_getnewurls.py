@@ -25,7 +25,7 @@ direct_URLs = []
 
 # 84
 #13-20
-for i in range(86, 88):
+for i in range(87, 90):
     sitemap = 'https://www.zimbabwesituation.com/post-sitemap' + str(i) + '.xml' 
     print(sitemap)
     response = requests.get(sitemap, headers=hdr)
@@ -66,7 +66,7 @@ for url in final_result[::-1]:
       
             
             try:
-                maintext = soup.find('div', {'id' : 'article-content'}).text
+                maintext = soup.find('div', {'class' : 'post--content'}).text
                 article['maintext'] = maintext.strip()
             except:
                 article['maintext'] = article['maintext'].strip()

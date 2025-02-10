@@ -51,7 +51,7 @@ source = 'lefigaro.fr'
 #https://sitemaps.lefigaro.fr/lefigaro.fr/articles/2012-08-12.xml
 ## STEP 0: Define dates
 yearn = "2024"
-monthn = "09" # X
+monthn = "12" # X
 daystart = "01"
 dayend = "31" 
 

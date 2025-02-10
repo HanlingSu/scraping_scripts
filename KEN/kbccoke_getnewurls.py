@@ -37,7 +37,7 @@ source = 'kbc.co.ke'
 #     print('Now scraped ', len(direct_URLs), ' articles from previous sitemaps.')
 
 base = 'https://www.kbc.co.ke/category/news/page/'
-for p in range(2, 100):
+for p in range(1, 3):
     url = base + str(p)
     print(url)
     hdr = {'User-Agent': 'Mozilla/5.0'} #header settings

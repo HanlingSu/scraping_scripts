@@ -21,8 +21,8 @@ direct_URLs = []
 sitemap_base = 'https://www.jamaicaobserver.com/post-sitemap'
 hdr = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.102 Safari/537.36'}
 
-start = 468
-end = 478
+start = 475
+end = 480
 for i in range(start, end+1):
     sitemap = sitemap_base + str(i) + '.xml'
     req = requests.get(sitemap, headers = hdr)

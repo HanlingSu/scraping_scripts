@@ -22,7 +22,7 @@ headers = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_5) AppleW
 
 direct_URLs = []
 
-for p in range(1, 140):
+for p in range(1, 88):
     base = 'https://www.thecitizen.co.tz/service/search/tanzania/2718734?query=the&sortByDate=true&channelId=2486558&pageNum='
     url = base + str(p)
     print(url)

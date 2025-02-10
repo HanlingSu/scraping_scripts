@@ -19,7 +19,7 @@ source = 'adaderana.lk'
 base = 'http://www.adaderana.lk/hot-news/?pageno='
 
 # 5002
-for p in range(47, 60):
+for p in range(30, 40):
   
     direct_URLs = []
     link = base + str(p)

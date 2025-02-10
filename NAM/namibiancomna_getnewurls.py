@@ -18,7 +18,7 @@ direct_URLs = []
 sitemap_base = 'https://www.namibian.com.na/post-sitemap'
 
 # 96
-for i in range(33, 40):
+for i in range(60, 65):
     sitemap = sitemap_base + str(i) + '.xml'
     print(sitemap  )
     hdr = {'User-Agent': 'Mozilla/5.0'} #header settings

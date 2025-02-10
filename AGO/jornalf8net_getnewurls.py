@@ -45,7 +45,7 @@ base = 'https://jornalf8.net/post-sitemap'
 
 
 
-for i in range(15, 16):
+for i in range(15, 17):
     sitemap = base + str(i) +'.xml'
     print(sitemap)
     hdr = {'User-Agent': 'Mozilla/5.0'} #header settings

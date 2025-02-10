@@ -51,7 +51,7 @@ source = 'liberation.fr'
 ## STEP 0: Define dates
 
 ## STEP 0: Define dates
-yearmonths = ["/2024/09/"]
+yearmonths = ["/2024/12/"]
 #yearmonths = ["/2021/10/","/2022/08/"]]
 
 list31 = [1,3,5,7,8,10,12]

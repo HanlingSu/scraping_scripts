@@ -43,11 +43,11 @@ source = 'kompas.com'
 #     print('Now scraped ', len(direct_URLs), ' articles from previous sitemaps.')
 
 
+direct_URLs = []
 
 for year in range(2024, 2025):
     year_str = str(year)
-    for month in range(7, 8):
-        direct_URLs = []
+    for month in range(10, 11):
         if month < 10:
             month_str = '0' + str(month)
         else:

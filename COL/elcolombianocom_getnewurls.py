@@ -32,9 +32,9 @@ source = 'elcolombiano.com'
 #         for i in items:
 #             direct_URLs.append(i.text)
             
-link_base = 'https://www.elcolombiano.com/busquedas/-/search/el/false/true/20240701/20240801/date/true/true/0/0/meta/0/0/0/'
+link_base = 'https://www.elcolombiano.com/busquedas/-/search/el/false/true/20240901/20241101/date/true/true/0/0/meta/0/0/0/'
 # 2090
-for j in range(1, 317+1):
+for j in range(1, 583+1):
     hdr = {'User-Agent': 'Mozilla/5.0'}
     req = requests.get(link_base + str(j), headers = hdr)
     soup = BeautifulSoup(req.content)

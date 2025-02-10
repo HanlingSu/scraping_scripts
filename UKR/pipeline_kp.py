@@ -453,7 +453,7 @@ def pipeline(sitemap,
             if yy == 2023:
                 months =  ['december']
             if yy == 2024:
-                months = ['june','july','august','september']
+                months = ['september', 'october', 'november', 'december']
             for mm in months:
                 #collect urls
                 urls2 = collect_urls_year_month_day(yy=yy, mm=mm, days=days)

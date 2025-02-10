@@ -17,7 +17,7 @@ direct_URLs = []
 
 
 sitemap_base = 'http://skopjediem.com/post-sitemap'
-for i in range(8, 9):
+for i in range(8, 10):
     sitemap = sitemap_base + str(i) + '.xml'
     print(sitemap  )
     hdr = {'User-Agent': 'Mozilla/5.0'} #header settings
@@ -37,7 +37,7 @@ print(len(final_result))
 url_count = 0
 processed_url_count = 0
 source = 'skopjediem.com'
-for url in final_result:
+for url in final_result[::-1]:
     if url:
         print(url, "FINE")
         ## SCRAPING USING NEWSPLEASE:

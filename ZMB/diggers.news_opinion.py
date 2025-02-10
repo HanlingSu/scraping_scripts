@@ -26,7 +26,7 @@ source = 'diggers.news'
 direct_URLs = []
 base = 'https://diggers.news/opinion/page/'
 #31
-for p in range(2, 163):
+for p in range(1, 15):
     url = base + str(p)
     req = requests.get(url, headers = headers)
     soup = BeautifulSoup(req.content)

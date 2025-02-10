@@ -38,13 +38,13 @@ direct_URLs = []
 categorise = ['main_Incidents', 'main_world', 'main_economy', 'main_policy', 'main_society', 'tags/Окно%20в%20Китай' ]
 # pages = [45, 245, 140, 60, 10, 1]
 
-page_start = [40, 150, 4, 4, 500, 1]
-page_end = [0,0,0,0,550,0]
+page_start = [0,0,0,0,0,0]
+page_end = [40,183,80,60,400,7]
 # pages = [950, 140, 80, 35, 1, 260]
 
 
 for c, ps, pe in zip(categorise, page_start, page_end):
-    for i in range(ps, pe):
+    for i in range(ps, pe+1):
         direct_URLs = []
         url = 'https://www.sb.by/articles/' + c + '/?PAGEN_2=' + str(i)
         hdr = {'User-Agent': 'Mozilla/5.0'} 

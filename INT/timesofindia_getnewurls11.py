@@ -117,7 +117,7 @@ soup = BeautifulSoup(reqs.text, 'html.parser')
 for link in soup.findAll('loc'):
     foundurl = link.text
     if "/2024" in foundurl:
-        if "-August-" in foundurl:
+        if "-December-" in foundurl:
             pass
         else:
             print(foundurl)

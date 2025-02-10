@@ -40,11 +40,11 @@ from dotenv import load_dotenv
 db = MongoClient('mongodb://zungru:balsas.rial.tanoaks.schmoe.coffing@db-wibbels.sas.upenn.edu/?authSource=ml4p&tls=true').ml4p
 
 direct_URLs = []
-# base = 'https://newsinfo.inquirer.net/category/latest-stories/page/'
+base = 'https://newsinfo.inquirer.net/category/latest-stories/page/'
 
-opinion_base = "https://opinion.inquirer.net/category/editorial/page/"
-for i in range(2, 450):
-    link = opinion_base + str(i) 
+# opinion_base = "https://opinion.inquirer.net/category/editorial/page/"
+for i in range(1, 390):
+    link = base + str(i) 
     hdr = {'User-Agent': 'Mozilla/5.0'} #header settings
     req = requests.get(link, headers = hdr)
     soup = BeautifulSoup(req.content)

@@ -56,10 +56,12 @@ category = ['actualite', 'economie', 'international', 'regions',\
     'lepoque', 'contributions']
 
 page_start = [1, 1, 1, 1, 1, 1]
-page_end = [40, 22, 13, 2, 20, 3]
+page_end = [1, 1, 1, 1, 1, 1]
+
+# page_end = [60, 26, 40, 3, 30, 4]
 # page_end = [312, 169, 221, 19, 159, 25]
 for c, ps, pe in zip(category, page_start, page_end):
-    for p in range(ps, pe+1):
+    for p in range(ps, pe+5):
         url = 'https://elwatan-dz.com/categories/' + c + '?page=' + str(p)
         print(url)
         reqs = requests.get(url, headers=headers)

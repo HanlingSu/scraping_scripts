@@ -18,7 +18,7 @@ direct_URLs = []
 sitemap_base = 'https://kloop.kg/post-sitemap'
 
 # 36
-for i in range(38, 40):
+for i in range(39, 40):
     sitemap = sitemap_base + str(i) + '.xml'
     print(sitemap  )
     hdr = {'User-Agent': 'Mozilla/5.0'} #header settings
@@ -37,7 +37,7 @@ print(len(final_result))
 url_count = 0
 processed_url_count = 0
 source = 'kloop.kg'
-for url in final_result[100+248:][::-1]:
+for url in final_result[::-1]:
     if url:
         print(url, "FINE")
         ## SCRAPING USING NEWSPLEASE:

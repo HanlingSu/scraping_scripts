@@ -31,7 +31,7 @@ db = MongoClient('mongodb://zungru:balsas.rial.tanoaks.schmoe.coffing@db-wibbels
 categories = ['1007', '1006', '1008', '10470', '1']
          # articles, accidents and society, international news
 page_start = [1,1,1,1,1]
-page_end = [4, 4, 7, 7, 110]
+page_end = [5, 5, 8, 8, 110]
 
 direct_URLs = []
 for c, ps, pe in zip(categories, page_start, page_end):

@@ -105,7 +105,7 @@ sections = ['politica','economia','nacionales','el-mundo']
 # CHANGE endnumbers for each section in accordance with how far 
 # back you need to go:
 #endnumber = ['1140','590','1563','1024']
-endnumber = ['35','25','55','40']
+endnumber = ['50','40','90','80']
 # endnumber = ['50','30','80','63']
 
 for section in sections:

@@ -36,7 +36,7 @@ for i in item:
     direct_URLs.append(i.text)
 print(len(direct_URLs))
 
-final_result = direct_URLs[5000:5200][::-1]
+final_result = direct_URLs.copy()
 print(len(final_result))
 
 source = 'soy502.com'

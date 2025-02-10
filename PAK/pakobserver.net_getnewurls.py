@@ -35,8 +35,8 @@ base = 'https://pakobserver.net/post-sitemap'
 
 
 direct_URLs = []
-#188scre
-for p in range(221,229):
+
+for p in range(229,236):
     sitemap = base + str(p) +'.xml'
     req = requests.get(sitemap, headers = header)
     soup = BeautifulSoup(req.text)

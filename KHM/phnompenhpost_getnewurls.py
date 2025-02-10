@@ -30,6 +30,17 @@ from bs4 import BeautifulSoup
 # %pip install dateparser
 import dateparser
 import pandas as pd
+import cloudscraper
+
+scraper = cloudscraper.create_scraper(
+    browser={
+        'browser': 'firefox',
+        'platform': 'windows',
+        'mobile': False
+    }
+)
+
+hdr = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.102 Safari/537.36'}
 
 # db connection:
 db = MongoClient('mongodb://zungru:balsas.rial.tanoaks.schmoe.coffing@db-wibbels.sas.upenn.edu/?authSource=ml4p&tls=true').ml4p
@@ -115,16 +126,16 @@ for url in list_urls:
                 try:
                     #header = {'User-Agent': ('Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_3) AppleWebKit/537.36''(KHTML, like Gecko) Chrome/35.0.1916.47 Safari/537.36')}
                     header = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.102 Safari/537.36'}
-                    response = requests.get(url, headers=header)
                     # process
-                    article = NewsPlease.from_html(response.text, url=url).__dict__
+                    article = NewsPlease.from_html(scraper.get(url).text).__dict__
                     # add on some extras
                     article['date_download']=datetime.now()
                     article['download_via'] = "Direct2"
                     print("newsplease title: ", article['title'])
                     
                     ## Fixing Date:
-                    soup = BeautifulSoup(response.content, 'html.parser')
+                    soup = BeautifulSoup(scraper.get(url).text)
+
                     try:
                         date = soup.find('div', {'class' : 'ads-social-left-title'}).text.split('date ')[1].split('\n', 1)[0]
                         article['date_publish'] =  dateparser.parse(date)

@@ -20,7 +20,7 @@ sitemap_base = 'https://www.dailymirror.lk/sitemaps/english-'
 # 100000 110000
 #14 15
 # 17-18
-for p in range(287000, 289000, 1000):
+for p in range(314000, 315000, 1000):
 # change number before each run
     sitemap = sitemap_base + str(p)
     hdr = {'User-Agent': 'Mozilla/5.0'}

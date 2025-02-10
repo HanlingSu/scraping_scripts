@@ -8,7 +8,36 @@ import dateparser
 from pymongo.errors import DuplicateKeyError
 from newsplease import NewsPlease
 
-text = """http://www.lesoftonline.net/articles/alingete-un-homme-en-danger
+text = """http://www.lesoftonline.net/articles/des-candidats-malheureux-paient-des-avocats
+http://www.lesoftonline.net/articles/lhomme-de-lannée
+http://www.lesoftonline.net/articles/ne-laissons-pas-des-théâtreux-faire-la-politique
+http://www.lesoftonline.net/articles/le-complot-d’effacement-de-masimanimba-déjoué
+http://www.lesoftonline.net/articles/parler-moins-agir-plus
+http://www.lesoftonline.net/articles/nangaa-un-énième-congolais-de-service
+http://www.lesoftonline.net/articles/denis-kadima-vante-son-approche
+http://www.lesoftonline.net/articles/les-nominations-dans-les-états-majors-des-forces-armées-la-réponse-attendue
+http://www.lesoftonline.net/articles/à-goma-tuungana-lance-un-appel-de-solidarité-pour-les-enfants-déplacés-de-guerre
+http://www.lesoftonline.net/articles/trump-back
+http://www.lesoftonline.net/articles/urgence-extrême
+http://www.lesoftonline.net/articles/augustin-matata-ponyo-fait-rebondir-bukanga-lonzo
+http://www.lesoftonline.net/articles/le-chef-de-letat-met-la-pression-sur-le-gouvernement-en-activant-lévaluation
+http://www.lesoftonline.net/articles/chiffré-à-18-milliards-de-us-le-projet-de-budget-suminwa-2025-fait-rêver
+http://www.lesoftonline.net/articles/lancien-ministre-rubota-devant-ses-juges
+http://www.lesoftonline.net/articles/cessez-le-feu-à-lest-le-rwanda-ny-croirait-pas
+http://www.lesoftonline.net/articles/une-autoroute-électrique-dafrique-de-lest-relie-lethiopie-à-son-voisin-kenyan
+http://www.lesoftonline.net/articles/bangboka-fait-espérer-kisangani
+http://www.lesoftonline.net/articles/jean-pierre-bemba-croit-à-leffet-de-laéroport-de-kisangani
+http://www.lesoftonline.net/articles/le-long-chemin-parcouru-par-laéroport-bangboka
+http://www.lesoftonline.net/articles/augustin-kabuya-au-cœur-du-débat-sur-la-constitution
+http://www.lesoftonline.net/articles/jean-lucien-bussa-veut-donner-une-impulsion-aux-entreprises-publiques
+http://www.lesoftonline.net/articles/léconomie-congolaise-en-position-satisfaisante
+http://www.lesoftonline.net/articles/accusé-dappel-à-la-désobéissance
+http://www.lesoftonline.net/articles/alingete-couronné
+http://www.lesoftonline.net/articles/cet-acte-de-reconnaissance-publique
+http://www.lesoftonline.net/articles/une-victoire-diplomatique-le-congo-est-élu-membre-du-conseil-des-droits-de-lhomme
+http://www.lesoftonline.net/articles/le-procureur-général-près-la-cour-de-cassation-alerte-sur-la-montée-de-la-violence-dans-la
+http://www.lesoftonline.net/articles/la-nouvelle-aérogare-de-kisangani-en-voie-douvrir-ses-portes-aux-passagers
+http://www.lesoftonline.net/articles/alingete-un-homme-en-danger
 http://www.lesoftonline.net/articles/les-congolais-outrés-appellent-au-départ-de-la-francophonie-de-leur-pays
 http://www.lesoftonline.net/articles/des-responsables-du-énième-naufrage-dun-navire-sanctionnés
 http://www.lesoftonline.net/articles/quatre-dossiers-économiques-traités-en-conseil-des-ministres
@@ -26,51 +55,6 @@ http://www.lesoftonline.net/articles/au-foca-2024-xi-jinping-vante-une-communaut
 http://www.lesoftonline.net/articles/après-le-carnage-à-makala-la-crise-saccentue-entre-les-magistrats-et-le-ministère-de-la
 http://www.lesoftonline.net/articles/crise-bahati-menace-de-quitter-lunion-sacrée
 http://www.lesoftonline.net/articles/en-savoir-plus-sur-la-maladie-mpox
-http://www.lesoftonline.net/articles/laéroport-international-de-ndjili-fait-peau-neuve
-http://www.lesoftonline.net/articles/le-cycle-électoral-est-clos
-http://www.lesoftonline.net/articles/la-paix-à-luanda
-http://www.lesoftonline.net/articles/le-député-michel-moto-muhima-plaide-à-la-rva-sa-pour-laérodrome-de-walikale
-http://www.lesoftonline.net/articles/grâce-à-des-mesures-drastiques-laéroport-international-de-ndjili-fait-peau-neuve
-http://www.lesoftonline.net/articles/entre-synamac-et-constant-mutamba-la-guerre-entre-juges-et-dupond-moretti-en-france
-http://www.lesoftonline.net/articles/plus-de-80-de-femmes-ont-échoué-aux-scrutins
-http://www.lesoftonline.net/articles/la-variole-du-singe-sempare-du-congo
-http://www.lesoftonline.net/articles/refus-de-visa-business-colossal-pour-les-pays-schengen
-http://www.lesoftonline.net/articles/cette-sociale-démocratie-dont-se-réclament-nombre-de-partis
-http://www.lesoftonline.net/articles/suminwa-monte-ses-ministres-en-puissance
-http://www.lesoftonline.net/articles/il-pleut-abondamment-sur-corneille-nangaa-yobeluo
-http://www.lesoftonline.net/articles/le-procès-nangaa
-http://www.lesoftonline.net/articles/sous-suminwa-les-mandataires-de-létat-sengagent-désormais
-http://www.lesoftonline.net/articles/le-dg-de-congo-airways-sa-est-révoqué-pour-incompétence-par-le-conseil-dadministration
-http://www.lesoftonline.net/articles/il-tente-de-corrompre-un-ministre-pele-mongo-en-prison
-http://www.lesoftonline.net/articles/première-congolaise-cheffe-du-gouvernement-elle-dit-avoir-reçu-le-message-de-ses
-http://www.lesoftonline.net/articles/les-premières-actions-suminwa-sont-jugées-positivement-par-les-chefs-dentreprises
-http://www.lesoftonline.net/articles/cette-énième-guerre-contre-ligf
-http://www.lesoftonline.net/articles/mise-en-place-des-cadres-à-la-rva-sa
-http://www.lesoftonline.net/articles/les-banquiers-chez-largentier-national
-http://www.lesoftonline.net/articles/des-hommes-politiques-en-contact-avec-des-rebelles-en-ituri
-http://www.lesoftonline.net/articles/congo-airways-va-être-dotée-de-trois-airbus-320
-http://www.lesoftonline.net/articles/sauvé-par-son-déstin
-http://www.lesoftonline.net/articles/la-stratégie-gagnante-de-la-guerre-au-kivu
-http://www.lesoftonline.net/articles/kagame-sous-pression-inédite-des-occidentaux
-http://www.lesoftonline.net/articles/le-rapport-onusien-qui-accable-kigali
-http://www.lesoftonline.net/articles/espoir-ou-désespoir-pour-léconomie-congolaise
-http://www.lesoftonline.net/articles/la-belgique-lance-lalerte-trop-de-demandeurs-dasile-venus-du-congo
-http://www.lesoftonline.net/articles/actions-de-sauvegarde-de-lintégrité-du-territoire
-http://www.lesoftonline.net/articles/2-août-commémoration-du-génocide-congolais
-http://www.lesoftonline.net/articles/face-à-la-guerre-que-faire
-http://www.lesoftonline.net/articles/dans-son-discours-du-30-juin-le-président-assure-ses-compatriotes
-http://www.lesoftonline.net/articles/les-infrastructures-au-cœur-du-dernier-conseil-des-ministres
-http://www.lesoftonline.net/articles/la-rva-sa-sur-la-voie-de-relèvement-même-si-les-défis-restent-énormes
-http://www.lesoftonline.net/articles/amorcé-en-2018-le-projet-de-construction-dun-nouvel-aéroport-à-ndjili-tarde-à-démarrer
-http://www.lesoftonline.net/articles/un-désordre-organisé-à-laéroport-de-ndjili-mêlé-à-une-léthargie-éloquente
-http://www.lesoftonline.net/articles/laffaire-du-coup-détat-manqué
-http://www.lesoftonline.net/articles/echec-patent-du-congo-dans-lérection-de-médias-professionnels-de-responsabilité
-http://www.lesoftonline.net/articles/ligf-soriente-vers-un-nouveau-cap
-http://www.lesoftonline.net/articles/la-mort-de-bofassa
-http://www.lesoftonline.net/articles/feu-au-dessus-de-goma
-http://www.lesoftonline.net/articles/le-chef-de-letat-appelle-le-gouvernement-à-réévaluer-les-mesures-de-stabilisation-du-cdf
-http://www.lesoftonline.net/articles/les-mensonges-de-paul-kagame
-http://www.lesoftonline.net/articles/une-enquête-qui-désactive-kigali
 """
 direct_URLs = text.split('\n')
 direct_URLs = [i for i in direct_URLs if "http" in i]

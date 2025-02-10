@@ -32,13 +32,13 @@ for i in range(4, 5):
 
     print(len(direct_URLs))
 
-direct_URLs = [x for x in direct_URLs if "/2024/10" in x]
+# direct_URLs = [x for x in direct_URLs if "/2024/11" in x]
 final_result = direct_URLs.copy()
 print(len(final_result))
 
 url_count = 0
 processed_url_count = 0
-for url in final_result:
+for url in final_result[::-1]:
     if url:
         print(url, "FINE")
         ## SCRAPING USING NEWSPLEASE:

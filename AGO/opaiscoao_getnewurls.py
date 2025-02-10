@@ -61,8 +61,8 @@ cate_num = ['/?_gl=1%2A1kp1chp%2A_up%2AMQ..%2A_ga%2AMjA2Mjg4MDUzOS4xNzEyODU4Mjgw
             '/?_gl=1%2A13o5s9e%2A_up%2AMQ..%2A_ga%2AMjA2Mjg4MDUzOS4xNzEyODU4Mjgw%2A_ga_VBLS1N932S%2AMTcxMjg2MDc4Ny4yLjEuMTcxMjg2MTA1MS4wLjAuMA..', \
             '']
             
-page_start = [1, 10, 20, 20, 10]
-page_end = [0,14,30,35, 10]
+page_start = [1, 15, 1, 1, 10]
+page_end = [0,50,30,35, 30]
 url_count = 0
 processed_url_count = 0
 len_final_result = 0

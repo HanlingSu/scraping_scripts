@@ -32,7 +32,7 @@ base = 'https://moneaksekarkhmer.com/all-news/page/'
 
 direct_URLs = []
 
-for p in range(1,15):
+for p in range(1,5):
     url = base + str(p) 
     print(url)
     req = requests.get(url, headers = header)
@@ -41,12 +41,12 @@ for p in range(1,15):
         direct_URLs.append(i.find('a')['href'])
     print('Now collected %s URLs' % len(direct_URLs))
 
-final_result = list(set(direct_URLs))
+final_result = direct_URLs.copy()
 ## INSERTING IN THE DB:
 url_count = 0
 processed_url_count = 0
 
-for url in final_result:
+for url in final_result[::-1]:
     try:
         #header = {'User-Agent': ('Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_3) AppleWebKit/537.36''(KHTML, like Gecko) Chrome/35.0.1916.47 Safari/537.36')}
         header = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.102 Safari/537.36'}
@@ -107,12 +107,12 @@ for url in final_result:
             db['urls'].insert_one({'url': article['url']})
 
         except DuplicateKeyError:
-            myquery = { "url": url}
-            db[colname].delete_one(myquery)
+            # myquery = { "url": url}
+            # db[colname].delete_one(myquery)
             # Inserting article into the db:
-            db[colname].insert_one(article)
-            print("DUPLICATE! UPDATED.")
-            # print("DUPLICATE! Not inserted.")
+            # db[colname].insert_one(article)
+            # print("DUPLICATE! UPDATED.")
+            print("DUPLICATE! Not inserted.")
     except Exception as err: 
 
         print("ERRORRRR......", err)

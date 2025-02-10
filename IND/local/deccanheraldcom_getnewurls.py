@@ -38,8 +38,8 @@ len_all_inserted_url_count = 0
 len_final_urls = 0
 
 years = range(2024, 2025)
-months = range(7, 8)
-days = range(19, 32)
+months = range(10, 13)
+days = range(1, 32)
 direct_URLs = []
 for year in years:
     year_str = str(year)
@@ -101,13 +101,16 @@ for year in years:
                     article['date_publish'] =article['date_publish'] 
                 print("newsplease date: ", article['date_publish'])
 
-                try:
-                    maintext = ''
-                    for i in soup.find_all('div', {'class' : 'story-element story-element-text'}):
-                        maintext += (i.text)
-                    article['maintext'] = maintext
-                except:
-                    article['maintext'] = article['maintext'] 
+                if not article['maintext'] :
+                    try:
+                        maintext = ''
+                        for i in soup.find_all('div', {'class' : 'story-element story-element-text'}):
+                            maintext += (i.text)
+                        article['maintext'] = maintext
+                    except:
+                        article['maintext'] = article['maintext'] 
+                
+
                 print("newsplease maintext: ", article['maintext'][:50])
 
 

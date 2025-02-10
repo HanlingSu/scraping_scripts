@@ -48,7 +48,7 @@ source = 'themoscowtimes.com'
 # https://static.themoscowtimes.com/sitemap/2021-9.xml
 ## STEP 0: Define dates
 yearn = "2024"
-monthn = "9" # X
+monthn = "12" # X
 
 url = "https://static.themoscowtimes.com/sitemap/" + yearn + "-" + monthn + ".xml"
 print("Extracting from: ", url)

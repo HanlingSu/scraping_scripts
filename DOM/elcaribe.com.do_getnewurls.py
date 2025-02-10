@@ -21,7 +21,7 @@ source = 'elcaribe.com.do'
 sitemap_base = 'https://www.elcaribe.com.do/post-sitemap'
 
 # 2553
-for p in range(2565, 2650):
+for p in range(2650, 2715):
     
     sitemap = sitemap_base + str(p)  + '.xml'
     print(sitemap  )

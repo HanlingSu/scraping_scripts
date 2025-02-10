@@ -23,7 +23,7 @@ source = 'juznevesti.com'
 direct_URLs = []
 sitemap_base = 'https://www.juznevesti.com/sitemap'
 
-for i in range(104, 107): # the higher the sitemap number is, the more recent the content is.
+for i in range(106, 109): # the higher the sitemap number is, the more recent the content is.
     sitemap = sitemap_base + str(i) + '.xml'
     print(sitemap)
     hdr = {'User-Agent': 'Mozilla/5.0'} #header settings

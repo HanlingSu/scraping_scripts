@@ -96,8 +96,8 @@ for url in list_urls:
             article['date_download'] = datetime.now()
             article['download_via'] = "Direct2"
             
-            # Check if the article was published in August 2024
-            if article['date_publish'] and article['date_publish'].year == 2024 and article['date_publish'].month == 8:
+            # Check if the article was published in [month] 2024
+            if article['date_publish'] and article['date_publish'].year == 2024 and article['date_publish'].month == 12:
                 try:
                     year = article['date_publish'].year
                     month = article['date_publish'].month
@@ -116,7 +116,7 @@ for url in list_urls:
                 except DuplicateKeyError:
                     print("DUPLICATE! Not inserted.")
             else:
-                print("Article not from August 2024. Skipping...")
+                print("Article not from December 2024. Skipping...")
         except Exception as err: 
             print("ERRORRRR......", err)
             pass

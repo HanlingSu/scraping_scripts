@@ -79,7 +79,7 @@ def timesofindia_story(soup):
 
     return hold_dict
 
-# STEP 0: Get sitemap urls for August 2024 only:
+# STEP 0: Get sitemap urls for INSERT month:
 siteurls = []
 
 url = "https://timesofindia.indiatimes.com/staticsitemap/toi/sitemap-index.xml"
@@ -88,12 +88,12 @@ reqs = requests.get(url, headers=headers)
 soup = BeautifulSoup(reqs.text, 'html.parser')
 for link in soup.findAll('loc'):
     foundurl = link.text
-    # Only consider sitemaps for August 2024
-    if "/2024" in foundurl and "-August-" in foundurl:
+    # Only consider sitemaps 
+    if "/2024" in foundurl and "-December" in foundurl:
         print(foundurl)
         siteurls.append(link.text)
 
-print("Number of sitemaps found for August 2024: ", len(siteurls))
+print("Number of sitemaps found for December 2024: ", len(siteurls))
 
 # STEP 1: Get urls of articles from sitemaps:
 for sitmp in siteurls:
@@ -146,7 +146,7 @@ for sitmp in siteurls:
                 article['date_publish'] = timesofindia_story(soup)['date_publish']
                 
                 # Filter articles by date - only keep August 2024 articles
-                if article['date_publish'] and article['date_publish'].year == 2024 and article['date_publish'].month == 8:
+                if article['date_publish'] and article['date_publish'].year == 2024 and article['date_publish'].month == 12:
                     # Add additional metadata to the article
                     article['date_download'] = datetime.now()
                     article['download_via'] = "Direct2"
@@ -154,7 +154,7 @@ for sitmp in siteurls:
 
                     # Insert article into MongoDB
                     try:
-                        colname = f'articles-2024-8'
+                        colname = f'articles-2024-12'
                         db[colname].insert_one(article)
                         print("+ URL: ", url)
                         print("+ DATE: ", article['date_publish'])
@@ -163,7 +163,7 @@ for sitmp in siteurls:
                     except DuplicateKeyError:
                         print("DUPLICATE! Not inserted.")
                 else:
-                    print(f"Skipping article {url} - Not from August 2024 or no valid date.")
+                    print(f"Skipping article {url} - Not from Dec 2024 or no valid date.")
             
             except Exception as err:
                 print("ERRORRRR......", err)

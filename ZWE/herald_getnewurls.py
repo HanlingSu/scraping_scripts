@@ -49,7 +49,7 @@ source = 'herald.co.zw'
 base = 'https://www.herald.co.zw/category/'
 categories = ['national', 'business', 'africa', 'international', 'crime-and-courts']
 
-page_start = [0,0,0, 0, 0]
+page_start = [1, 1, 1, 1]
 # page_end = [1,1,1,1]
 page_end = [140,40,7,8, 40]
 

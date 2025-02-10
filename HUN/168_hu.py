@@ -41,7 +41,7 @@ source = '168.hu'
 #months = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
 
 years = [2024]
-months = [  6, 7, 8, 9]
+months = [  9, 10, 11, 12]
 
 baseurl = 'https://168.hu/sitemap_article_'
 links = []

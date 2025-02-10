@@ -93,7 +93,7 @@ urls = []
 source = 'xalimasn.com'
 
 # STEP 0: Get sitemap urls:
-for i in range(190,192):
+for i in range(191,194):
     url = "https://www.xalimasn.com/post-sitemap" + str(i) + ".xml"
     print("Extracting from: ", url)
     reqs = requests.get(url, headers=headers)

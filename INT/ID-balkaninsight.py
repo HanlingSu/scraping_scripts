@@ -49,8 +49,8 @@ processed_url_count = 0
 source = 'https://balkaninsight.com'
 
 # Define the date range for September 2024
-start_date = datetime(2024, 9, 1)
-end_date = datetime(2024, 9, 30, 23, 59, 59)
+start_date = datetime(2024, 10, 1)
+end_date = datetime(2024, 10, 30, 23, 59, 59)
 
 # Scrape and process each URL
 for url in final_result:

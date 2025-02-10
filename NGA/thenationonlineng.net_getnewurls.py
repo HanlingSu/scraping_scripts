@@ -40,7 +40,7 @@ base = 'https://thenationonlineng.net/'
 # delete blacklist URLs
 
 page_start = [1, 1]
-page_end = [16, 500 ]
+page_end = [12, 450 ]
 # 0,0,  700,1000
 
 

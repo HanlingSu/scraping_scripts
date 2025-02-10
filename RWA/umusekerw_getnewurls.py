@@ -46,7 +46,7 @@ urls = []
 #https://umuseke.rw/wp-sitemap.xml
 
 # post-sitemap 
-for j in range(7, 9):
+for j in range(8, 9):
     url = 'https://umuseke.rw/wp-sitemap-posts-post-' + str(j) + '.xml'
 
     print("First Sitemap: ", url)

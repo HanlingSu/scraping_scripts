@@ -17,7 +17,7 @@ source = 'lankadeepa.lk'
 
 sitemap_base = 'https://www.lankadeepa.lk/sitemaps/sinhala-'
 # 176000
-for p in range(317000, 319000, 1000):
+for p in range(325000, 326000, 1000):
     sitemap = sitemap_base + str(p) 
     hdr = {'User-Agent': 'Mozilla/5.0'}
     req = requests.get(sitemap, headers = hdr)

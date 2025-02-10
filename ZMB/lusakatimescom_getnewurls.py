@@ -41,13 +41,13 @@ base = 'https://www.lusakatimes.com/'
 categories = ['other-news', 'zambiancolumn', 'economy','headlines', 'ruralnews']
 
 page_start = [1, 1, 1, 1, 1]
-page_end = [20, 15, 15, 15, 25]
+page_end = [20, 12, 8, 18, 3]
 
 direct_URLs = []
 
 
 for c, ps, pe in zip(categories, page_start, page_end):
-    for p in range(ps+1, pe):
+    for p in range(ps, pe+1):
         link = base + c + '/page/' + str(p) 
         # print(link)
         hdr = {'User-Agent': 'Mozilla/5.0'} #header settings

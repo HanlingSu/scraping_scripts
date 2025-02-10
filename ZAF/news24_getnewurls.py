@@ -12,7 +12,15 @@ from pymongo.errors import DuplicateKeyError
 from newsplease import NewsPlease
 from dotenv import load_dotenv
 import pandas as pd
+import cloudscraper
 
+scraper = cloudscraper.create_scraper(
+    browser={
+        'browser': 'firefox',
+        'platform': 'windows',
+        'mobile': False
+    }
+)
 # db connection:
 db = MongoClient('mongodb://zungru:balsas.rial.tanoaks.schmoe.coffing@db-wibbels.sas.upenn.edu/?authSource=ml4p&tls=true').ml4p
 
@@ -41,18 +49,18 @@ for url in final_result:
         try:
             #header = {'User-Agent': ('Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_3) AppleWebKit/537.36''(KHTML, like Gecko) Chrome/35.0.1916.47 Safari/537.36')}
             header = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.102 Safari/537.36'}
-            response = requests.get(url, headers=header)
             # process
-            article = NewsPlease.from_html(response.text, url=url).__dict__
+            article = NewsPlease.from_html(scraper.get(url).text).__dict__
             # add on some extras
             article['date_download']=datetime.now()
             article['download_via'] = "Direct2"
             article['source_domain'] = source
+            article['url'] = url
             print("newsplease title: ", article['title'])
 #             print("newsplease maintext: ", article['maintext'][:50])
 
            
-            soup = BeautifulSoup(response.content, 'html.parser')
+            soup = BeautifulSoup(scraper.get(url).text)
 
             try:
                 maintext = soup.find('div', {'class' : 'article__body NewsArticle'}).text

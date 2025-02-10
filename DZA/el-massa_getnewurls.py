@@ -94,7 +94,7 @@ def elmassa_story(soup):
 ##
 
 ##
-sitemap1n = 140
+sitemap1n = 40
 
 #https://www.el-massa.com/dz/%D8%A7%D9%84%D8%A3%D8%AE%D9%8A%D8%B1%D8%A9?start=9080
 for i in range(1,int(sitemap1n)+1, 20):

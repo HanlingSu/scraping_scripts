@@ -17,7 +17,7 @@ base_list = []
 
 categories = ['malaysia', 'singapore', 'world', 'opinion']
 # 8282, 202, 5898
-pages = [0,0,0, 387]
+pages = [200,18,75, 3]
 # pages = [250, 10, 150]
 
 hdr = {'User-Agent': 'Mozilla/5.0'} #header settings

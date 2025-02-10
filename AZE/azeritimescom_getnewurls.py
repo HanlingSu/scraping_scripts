@@ -17,22 +17,22 @@ direct_URLs = []
 
 # sitemap_base = 'https://azeritimes.com/wp-sitemap-posts-post-'
 
-sitemap_base = 'https://azeritimes.com/page/'
-for i in range(1, 280):
-    sitemap = sitemap_base + str(i) + '?s=+'
-    print(sitemap  )
-    hdr = {'User-Agent': 'Mozilla/5.0'} #header settings
-    req = requests.get(sitemap, headers = hdr)
-    soup = BeautifulSoup(req.content)
-    item = soup.find_all('li', {'class' : 'mvp-blog-story-wrap left relative infinite-post'})
-    for i in item:
-        url = i.find('a')['href']
-        direct_URLs.append(url)
+# sitemap_base = 'https://azeritimes.com/page/'
+# for i in range(1, 280):
+#     sitemap = sitemap_base + str(i) + '?s=+'
+#     print(sitemap  )
+#     hdr = {'User-Agent': 'Mozilla/5.0'} #header settings
+#     req = requests.get(sitemap, headers = hdr)
+#     soup = BeautifulSoup(req.content)
+#     item = soup.find_all('li', {'class' : 'mvp-blog-story-wrap left relative infinite-post'})
+#     for i in item:
+#         url = i.find('a')['href']
+#         direct_URLs.append(url)
 
-    print(len(direct_URLs))
+#     print(len(direct_URLs))
 
 
-# direct_URLs = pd.read_csv('Downloads/peace-machine/peacemachine/getnewurls/AZE/azeritimes.csv')['url']
+direct_URLs = pd.read_csv('Downloads/peace-machine/peacemachine/getnewurls/AZE/azeritimes.csv')['0']
 final_result = direct_URLs.copy()
 print(len(final_result))
 
@@ -62,7 +62,7 @@ for url in final_result:
                 category = soup.find('span' , {'class' : 'mvp-post-cat left'}).text
             except:
                 category = 'News'
-                 
+            print(category)  
             if category in ['Entertainment']:
                 article['title'] = 'From unintersted category'
                 article['date_publish'] = None
@@ -71,7 +71,7 @@ for url in final_result:
             print("newsplease title: ", article['title'], category)
 
             try:
-                date = '-'.join(url.replace('https://azeritimes.com/', '').split('/')[:3])
+                date = soup.find('meta', {'property' : 'article:published_time'})['content']
             except:
                 pass
             

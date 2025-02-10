@@ -18,10 +18,10 @@ db = MongoClient('mongodb://zungru:balsas.rial.tanoaks.schmoe.coffing@db-wibbels
 direct_URLs = []
 source = 'hoy.com.do'
 
-sitemap_base = 'https://hoy.com.do/post-sitemap'
+sitemap_base = 'https://hoy.com.do/wp-sitemap-posts-post-'
 
 # 36
-for p in range(1014, 1017):
+for p in range(511, 512):
     
     sitemap = sitemap_base + str(p)  + '.xml'
     print(sitemap  )

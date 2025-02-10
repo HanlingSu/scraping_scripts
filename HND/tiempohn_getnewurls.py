@@ -61,14 +61,14 @@ category = ['/avances-de-honduras/', '/noticias-de-politica-en-honduras/', '/suc
     '/periodismo-ciudadanos-honduras/', '/coronavirus/']
 
 page_start = [1,1,1,1,1,1]
-page_end = [0, 18, 200, 200, 1,1]
+page_end = [0, 11, 100, 90, 1,1]
 for c, ps, pe in zip(category, page_start, page_end):
     for p in range(ps, pe+1):
         url = 'https://tiempo.hn/category' + c + 'page/' + str(p)
         print(url)
         reqs = requests.get(url, headers=headers)
         soup = BeautifulSoup(reqs.text, 'html.parser')
-        for link in soup.find_all('p', {'class' :'entry-title td-module-title'}):
+        for link in soup.find_all('h3'):
             direct_URLs.append(link.find('a')['href'])
         print('Now collected', len(direct_URLs), 'articles ...')
 
@@ -76,6 +76,7 @@ blacklist =  [( i['blacklist_url_patterns']) for i in db.sources.find({'source_d
 blacklist = re.compile('|'.join([re.escape(word) for word in blacklist]))
 direct_URLs = [word for word in direct_URLs if not blacklist.search(word)]
 
+direct_URLs = list(set(direct_URLs))
 final_result = direct_URLs.copy()
 url_count = 0
 processed_url_count = 0

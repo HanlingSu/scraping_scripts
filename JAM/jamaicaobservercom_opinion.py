@@ -24,8 +24,8 @@ direct_URLs = []
 sitemap_base = 'https://www.jamaicaobserver.com/category/editorial/page/'
 
 hdr = {'User-Agent': 'Mozilla/5.0'}
-start = 5
-end = 211
+start = 1
+end = 5
 for i in range(start, end+1):
     sitemap = sitemap_base + str(i) + '/?host=www-jamaicaobserver-com.newsmemory.netl'
     req = requests.get(sitemap, headers = hdr)

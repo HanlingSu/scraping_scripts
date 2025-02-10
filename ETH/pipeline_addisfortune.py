@@ -432,14 +432,14 @@ def pipeline(sitemap,
         '''
         Unit: each sitemap
         '''        
-        begin_num = 5
+        begin_num = 6
         end_num = 7
         for num in range(begin_num, end_num):
             
             print('sitemap: ',int(num)-int(begin_num),'/', int(end_num)-int(begin_num))
             #collect urls
             urls1 = collect_urls_sitemap(num)
-            urls1 = urls1[::-1][:1000]
+            urls1 = urls1[::-1]
             batch_size = 20
             ### if the progree is interruppted, you can restart from urls1[index * batch_size] 
             ### eg. if len(urls)= 2000, batch_size = 20, so the len(batched_list) =101,
@@ -580,9 +580,9 @@ def fix_only_with_custom_parser(collections, start_year, end_year, src, _custom_
             
 if __name__ == "__main__": 
     
-    pipeline(sitemap = False, # used to collect this way
+    pipeline(sitemap = True, # used to collect this way
             year_month_day = False,
-            keyword = True,
+            keyword = False,
             _custom_parser = True,
             _title=True, _maintext=False, _date=True)
             

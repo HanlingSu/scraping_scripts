@@ -24,7 +24,7 @@ headers = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_5) AppleW
 categories = ['actualites', 'international', 'economie', 'societe', 'editorial']
 
 page_start = [1, 1, 1, 1, 1 ]
-page_end = [100,5,25,30, 11]
+page_end = [140,25,85,100, 7]
 
 base = 'https://lapresse.tn/category/'
 

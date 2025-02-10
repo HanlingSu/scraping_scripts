@@ -54,7 +54,7 @@ number = ['4','13','24','50','2','2','4','1']
 #number = ['44','44','44','44','20','22','30','42']
 
 year_up = 2024
-month_up = 9
+month_up = 12
 
 for sect in sections:
     time.sleep(2)

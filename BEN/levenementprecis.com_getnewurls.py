@@ -19,23 +19,23 @@ from newsplease import NewsPlease
 db = MongoClient('mongodb://zungru:balsas.rial.tanoaks.schmoe.coffing@db-wibbels.sas.upenn.edu/?authSource=ml4p&tls=true').ml4p
 
 direct_URLs = []
-base = 'https://levenementprecis.com/category/'
+base = 'https://levenementprecis.com/'
 source = 'levenementprecis.com'
 
 # , 'rubriques/manchette' editorial
-categories = ['rubriques/vie-de-societe', 'rubriques/politique', 'inter-actualite']
+categories = ['?cat=8', '?cat=4', '?cat=2714']
 page_start = [1, 1, 1]
 # page_end = 
-page_end = [20, 25, 2]
+page_end = [10, 20, 2]
 
 for c, ps, pe in zip(categories, page_start, page_end):
     for p in range(ps, pe+1):
-        link = base + c +'/page/' + str(p) 
+        link = base + c +'&paged=' + str(p) 
         print(link)
         hdr = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.102 Safari/537.36'}
         req = requests.get(link, headers = hdr)
         soup = BeautifulSoup(req.content)
-        for i in soup.find_all('h3'):
+        for i in soup.find_all('h1', {'class' : 'entry-title'}):
             try:
                 direct_URLs.append(i.find('a')['href'])
             except:

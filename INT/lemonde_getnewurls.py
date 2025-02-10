@@ -52,7 +52,7 @@ source = 'lemonde.fr'
 ## STEP 0: Define dates
 yearn = "2024"
 #monthn = "09" # XX
-mondays = ["08-05", "08-12", "08-19", "08-26"] # enter the number of every Monday you want to visit
+mondays = ["12-02", "12-09", "12-16", "12-23"] # enter the number of every Monday you want to visit
 #mondays = ["11-01", "10-04","01-10"] # enter the number of every Monday you want to visit
 
 

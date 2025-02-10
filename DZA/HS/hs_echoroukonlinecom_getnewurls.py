@@ -26,7 +26,7 @@ scraper = cloudscraper.create_scraper(
 sitemap_base = 'https://www.echoroukonline.com/post-sitemap'
 
 # 36
-for i in range(438, 442):
+for i in range(445, 448):
     sitemap = sitemap_base + str(i) + '.xml'
     print(sitemap  )
     hdr = {'User-Agent': 'Mozilla/5.0'} #header settings

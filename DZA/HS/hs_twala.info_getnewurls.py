@@ -37,8 +37,8 @@ source = 'twala.info'
 
 direct_URLs = []
 
-for p in range(0, 48+1, 6):
-    url = 'https://twala.info/fr/category/opinions/?offset=' + str(p)
+for p in range(0, 24+1, 6):
+    url = 'https://twala.info/fr/category/a-chaud-actualite-algerienne/?offset=' + str(p)
 
     print("Extracting from ", url)
     response = requests.get(url, verify=False)
@@ -75,8 +75,8 @@ final_result = direct_URLs.copy()
 #         direct_URLs.append(i.find('a')['href'])
 #     print(len(direct_URLs))
         
-# final_result = direct_URLs.copy()
-# print('Total number of urls found: ', len(final_result))
+final_result = direct_URLs.copy()
+print('Total number of urls found: ', len(final_result))
 
 
 url_count = 0
@@ -121,7 +121,7 @@ for url in final_result:
             try:
                 year = article['date_publish'].year
                 month = article['date_publish'].month
-                colname = f'opinion-articles-{year}-{month}'
+                colname = f'articles-{year}-{month}'
                 article['primary_location'] = "DZA"
                 
             except:

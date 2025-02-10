@@ -20,10 +20,10 @@ direct_URLs = []
 
 for year in range(2024, 2025):
     year_str = str(year)
-    for month in range(9, 10):
+    for month in range(11, 12):
         month_str = str(month)
         print('Now scraping articles published in ', year_str, '-', month_str)
-        for day in range(25, 32):
+        for day in range(1, 32):
             day_str = str(day)
             for page in range(1,4):
                 page_str = str(page)
@@ -40,7 +40,7 @@ for year in range(2024, 2025):
 
 print(len(direct_URLs))
 
-final_result = list(set(direct_URLs))
+final_result = direct_URLs.copy()
 final_result = ['https://nashaniva.com' + i for i in final_result if 'https://nashaniva.com' not in i]
 print(len(final_result))
 
@@ -93,7 +93,8 @@ for url in final_result:
             pass
         processed_url_count += 1
         print('\n',processed_url_count, '/', len(final_result), 'articles have been processed ...\n')
-
+        if processed_url_count % 100 == 0:
+            time.sleep(500)
     else:
         pass
 

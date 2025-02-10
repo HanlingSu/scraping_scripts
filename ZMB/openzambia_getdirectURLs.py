@@ -28,8 +28,8 @@ import json
 import pymongo
 db = MongoClient('mongodb://zungru:balsas.rial.tanoaks.schmoe.coffing@db-wibbels.sas.upenn.edu/?authSource=ml4p&tls=true').ml4p
 
-url = 'https://www.openzambia.com/politics'
-# url = 'https://www.openzambia.com/economics'
+# url = 'https://www.openzambia.com/politics'
+url = 'https://www.openzambia.com/economics'
 hdr = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.102 Safari/537.36'}
 
 direct_URLs = []

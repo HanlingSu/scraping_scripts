@@ -34,9 +34,15 @@ db = MongoClient('mongodb://zungru:balsas.rial.tanoaks.schmoe.coffing@db-wibbels
 
 # headers for scraping
 headers = {
-    'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.102 Safari/537.36',
-    'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8'
+    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36',
+    'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8',
+    'Accept-Encoding': 'gzip, deflate, br',
+    'Accept-Language': 'en-US,en;q=0.9',
+    'Connection': 'keep-alive'
 }
+
+response = requests.get(url, headers=headers)
+
 
 # COLLECTING URLS
 urls = []
@@ -44,7 +50,7 @@ urls = []
 ## NEED TO DEFINE SOURCE!
 source = 'lemonde.fr'
 yearn = "2024"
-mondays = ["09-02", "09-09", "09-16", "09-23", "09-30"]  # Enter the dates of every Monday you want to visit
+mondays = ["12-02", "12-09", "12-16", "12-23"]  # Enter the dates of every Monday you want to visit
 
 for monday in mondays:
     url = f"https://www.lemonde.fr/sitemap/articles/{yearn}-{monday}.xml"

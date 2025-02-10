@@ -25,7 +25,7 @@ categories = ['%D8%B3%D9%8A%D8%A7%D8%B3%D8%A9', '%D8%B9%D8%A7%D9%84%D9%85%D9%8A%
                 # policy                            international                       patriotism
 
 page_start =[1, 1, 1]
-page_end = [60, 48, 75]
+page_end = [50, 55, 90]
 # page_end = [1, 1, 1]
 
 base = 'https://www.assarih.com/category/'

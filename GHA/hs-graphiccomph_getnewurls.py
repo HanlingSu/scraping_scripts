@@ -51,7 +51,7 @@ base = 'https://www.graphic.com.gh/'
 categories = ['news/general-news', 'news/politics', 'international/international-news', ]
 page_start = [0, 0, 0]
 # page_start = [2000, 600, 200]
-page_end = [2000, 700, 330]
+page_end = [2000, 1000, 300]
 for c, ps, pe in zip(categories, page_start, page_end):
     for p in range(ps, pe+1, 1):
         url = base + c + '.html?start=' + str(p) 

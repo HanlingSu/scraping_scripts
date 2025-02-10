@@ -126,41 +126,45 @@ def custom_parser(soup):
     # Date Parser
     # date = ''
     try:
-        soup2= soup.find("span" ,{'class':"author-links"})
-        for i in soup2.find_all('span', class_='posts-date'):
-            date = i.text.strip()
-            date = dateparser.parse(date, languages=['fr']).replace(tzinfo = None) 
-
-
+        date = soup.find('span',{'class': "item-metadata posts-date"}).text.strip()
+        date = dateparser.parse(date, languages=['fr']).replace(tzinfo = None) 
     except:
         try:
-            s = str(json.loads(soup.find('script',type="application/ld+json").string))
-            date = re.findall("'datePublished': '(.*)', 'dateModified", s)[0]
-            date = dateparser.parse(date).replace(tzinfo = None) 
+            soup2= soup.find("span" ,{'class':"author-links"})
+            for i in soup2.find_all('span', class_='posts-date'):
+                date = i.text.strip()
+                date = dateparser.parse(date, languages=['fr']).replace(tzinfo = None) 
+
+
         except:
             try:
                 s = str(json.loads(soup.find('script',type="application/ld+json").string))
-                date = re.findall('"datePublished": "(.*)", "dateModified', s)[0]
-                date = dateparser.parse(date).replace(tzinfo = None)
-
+                date = re.findall("'datePublished': '(.*)', 'dateModified", s)[0]
+                date = dateparser.parse(date).replace(tzinfo = None) 
             except:
                 try:
-                    s = str(soup.find_all('div',{'class':'date1'}))
-                    date = re.findall('--></div>\n(.*)\n</div>', s)[0]
+                    s = str(json.loads(soup.find('script',type="application/ld+json").string))
+                    date = re.findall('"datePublished": "(.*)", "dateModified', s)[0]
                     date = dateparser.parse(date).replace(tzinfo = None)
-                except:    
-                    try:
-                        ds = str(json.loads(soup.find('script',type="application/ld+json").string))
-                        date = re.findall("'article_publication_date': '(.*)'", s)[0]
-                        date = dateparser.parse(date).replace(tzinfo = None)
-                    except:
-                        try:
-                            date = '20'+re.findall("/20(.*)", url)[0][:5]
-                            date = dateparser.parse(date).replace(tzinfo = None)
 
+                except:
+                    try:
+                        s = str(soup.find_all('div',{'class':'date1'}))
+                        date = re.findall('--></div>\n(.*)\n</div>', s)[0]
+                        date = dateparser.parse(date).replace(tzinfo = None)
+                    except:    
+                        try:
+                            ds = str(json.loads(soup.find('script',type="application/ld+json").string))
+                            date = re.findall("'article_publication_date': '(.*)'", s)[0]
+                            date = dateparser.parse(date).replace(tzinfo = None)
                         except:
-                            date = None 
-                            print('Custom_parser: Empty date!')
+                            try:
+                                date = '20'+re.findall("/20(.*)", url)[0][:5]
+                                date = dateparser.parse(date).replace(tzinfo = None)
+
+                            except:
+                                date = None 
+                                print('Custom_parser: Empty date!')
 
                 
 
@@ -421,7 +425,7 @@ def pipeline(sitemap,
         '''        
         #nums = ["%.2d" % i for i in range(9, 10)]
         begin_num = 8
-        end_num = 9
+        end_num = 10
         for num in range(begin_num, end_num):
             
             print('sitemap: ',int(num)-int(begin_num),'/', int(end_num)-int(begin_num))

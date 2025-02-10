@@ -30,7 +30,7 @@ source = '237actu.com'
 
 direct_URLs = []
 
-url = "https://237actu.com/wp-sitemap-posts-post-14.xml"
+url = "https://237actu.com/wp-sitemap-posts-post-15.xml"
 hdr = {'User-Agent': 'Mozilla/5.0'} #header settings
 req = requests.get(url, headers = hdr)
 soup = BeautifulSoup(req.content)
@@ -72,7 +72,7 @@ print(len(final_result))
 url_count = 0
 processed_url_count = 0
 
-for url in final_result:
+for url in final_result[::-1]:
     if url:
         print(url, "FINE")
         ## SCRAPING USING NEWSPLEASE:

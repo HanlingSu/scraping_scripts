@@ -22,9 +22,9 @@ direct_URLs = []
 sitemap_base = 'http://www.utusan.com.my/post-sitemap'
 
 hdr = {'User-Agent': 'Mozilla/5.0'}
-start = 326
+start = 336
 # 228, 241
-end = 329
+end = 344
 for i in range(start, end+1):
     sitemap = sitemap_base + str(i) + '.xml'
     req = requests.get(sitemap, headers = hdr)

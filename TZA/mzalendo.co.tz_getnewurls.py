@@ -22,7 +22,7 @@ direct_URLs = []
 sitemap_base = 'https://mzalendo.co.tz/post-sitemap'
 source = 'mzalendo.co.tz'
 
-for p in range(11, 12):
+for p in range(12, 13):
     sitemap = sitemap_base + str(p) + '.xml'
     hdr = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.102 Safari/537.36'}
     req = requests.get(sitemap, headers = hdr)

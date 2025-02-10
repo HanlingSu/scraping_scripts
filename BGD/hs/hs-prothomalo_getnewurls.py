@@ -47,7 +47,7 @@ base = "https://prothomalo.com/sitemap/sitemap-daily-"
 
 direct_URLs = []
 for year in range(2024, 2025):
-    for month in range(6, 9):
+    for month in range(8, 9):
         for day in range(1, 32):
             year_str = str(year)
             

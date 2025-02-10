@@ -24,7 +24,7 @@ source = 'frontpageafricaonline.com'
 
 direct_URLs = []
 base = 'https://frontpageafricaonline.com/post-sitemap'
-for p in range(30, 32):
+for p in range(31, 33):
     sitemap = base+str(p) +'.xml'
     print(sitemap)
     req = requests.get(sitemap, headers = headers)
@@ -45,7 +45,7 @@ print(len(final_result))
 
 url_count = 0
 processed_url_count = 0
-for url in final_result:
+for url in final_result[::-1]:
     if url:
         print(url, "FINE")
         ## SCRAPING USING NEWSPLEASE:

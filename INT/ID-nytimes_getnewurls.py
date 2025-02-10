@@ -53,7 +53,7 @@ source = 'nytimes.com'
 
 ## STEP 0: Define dates 
 year = 2024
-month = 9
+month = 12
 year_str = str(year)
 month_str = '0' + str(month)  
 

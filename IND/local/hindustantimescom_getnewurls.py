@@ -34,9 +34,9 @@ final_inserted_url_count =0
 
 hdr = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.102 Safari/537.36'}
 
-for year in range(2012, 2024):
+for year in range(2024, 2025):
     year_str = str(year)
-    for month in range(1, 13):
+    for month in range(9, 13):
         direct_URLs = []
         month_str = datetime.strptime(str(month), "%m").strftime("%B").lower()
         print('Now scraping', str(year), str(month), '...')
@@ -54,10 +54,10 @@ for year in range(2012, 2024):
         print('Now collected',len(direct_URLs), 'URLs')
 
 
-        # blacklist =  [( i['blacklist_url_patterns']) for i in db.sources.find({'source_domain' : source})][0]
-        # blacklist = re.compile('|'.join([re.escape(word) for word in blacklist]))
-        # direct_URLs = [word for word in direct_URLs if not blacklist.search(word)]
-        direct_URLs = [i for i in direct_URLs if  '/analysis/' in i or '/opinion/' in i]
+        blacklist =  [( i['blacklist_url_patterns']) for i in db.sources.find({'source_domain' : source})][0]
+        blacklist = re.compile('|'.join([re.escape(word) for word in blacklist]))
+        direct_URLs = [word for word in direct_URLs if not blacklist.search(word)]
+        # direct_URLs = [i for i in direct_URLs if  '/analysis/' in i or '/opinion/' in i]
         final_result = list(set(direct_URLs))
        
         final_count += len(final_result)

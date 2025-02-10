@@ -22,7 +22,7 @@ direct_URLs = []
 sitemap_base = 'https://lanouvelletribune.info/sitemap-posttype-post.2024'
 source = 'lanouvelletribune.info'
 
-for month in range(7, 10):
+for month in range(10, 13):
     if month < 10:
         month = '0' + str(month)
     else:

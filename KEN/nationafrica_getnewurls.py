@@ -47,7 +47,7 @@ categories = ['&channelId=516', '&channelId=522', '&channelId=520']
                 # news,         countries,          business
 
 page_start = [1, 1, 1]
-page_end = [170, 60, 35]
+page_end = [200, 65, 35]
 
 base = 'https://nation.africa/service/search/kenya/290754?docType=CMArticle&query=the&pageNum='
 
@@ -56,7 +56,7 @@ direct_URLs = []
 for c,ps, pe in zip(categories, page_start, page_end):
     for i in range(ps, pe+1):
         link = base + str(i) + c + '&sortByDate=true'
-
+        print(link)
         reqs = requests.get(link, headers=headers)
         soup = BeautifulSoup(reqs.text, 'html.parser')
 

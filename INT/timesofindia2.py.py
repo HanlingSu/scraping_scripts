@@ -117,8 +117,8 @@ reqs = requests.get(url, headers=headers)
 soup = BeautifulSoup(reqs.text, 'html.parser')
 for link in soup.findAll('loc'):
     foundurl = link.text
-    if "/2023" in foundurl:
-        if "-September-" in foundurl:
+    if "/2024" in foundurl:
+        if "-December-" in foundurl:
             print(foundurl)
             siteurls.append(link.text)
         else:

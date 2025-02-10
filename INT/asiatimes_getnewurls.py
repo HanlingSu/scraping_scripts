@@ -2,7 +2,8 @@
 # -*- coding: utf-8 -*-
 """
 Created on Feb 3 2021
-
+Modified on Nov 11 2024 
+@author : Iman
 @author: diegoromero
 
 This script updates asiatimes.com using sitemaps.
@@ -33,6 +34,7 @@ from bs4 import BeautifulSoup
 # %pip install dateparser
 import dateparser
 import pandas as pd
+import time
 
 # db connection:
 db = MongoClient('mongodb://zungru:balsas.rial.tanoaks.schmoe.coffing@db-wibbels.sas.upenn.edu/?authSource=ml4p&tls=true').ml4p
@@ -47,8 +49,8 @@ headers = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_5) AppleW
 urls = []
 
 # Define Pages you'll scrape from the sitemap
-page_0 = 68
-page_1 = 69
+page_0 = 36
+page_1 = 37
 pageslist = list(range(page_0, page_1))
 
 # Define the dates you want to scrape
@@ -113,6 +115,7 @@ for url in list_urls:
         else:
             if 'asiatimes.com' in url:
                 print(url, "FINE")
+                time.sleep(10)
                 ## SCRAPING USING NEWSPLEASE:
                 try:
                     #header = {'User-Agent': ('Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_3) AppleWebKit/537.36''(KHTML, like Gecko) Chrome/35.0.1916.47 Safari/537.36')}
@@ -152,14 +155,14 @@ for url in list_urls:
                         print("Date extracted: ", article['date_publish'], " + Inserted! in ", colname, " - number of urls so far: ", url_count)
                         #db['urls'].insert_one({'url': article['url']})
                     except DuplicateKeyError:
-                        #myquery = { "url": url, "source_domain" : 'asiatimes.com'}
-                        #db[colname].delete_one(myquery)
+                        myquery = { "url": url, "source_domain" : 'asiatimes.com'}
+                        db[colname].delete_one(myquery)
                         
-                        #db[colname].insert_one(article)
-                        #print("DUPLICATE --> +TITLE: ", article['title'][0:20], " +MAIN TEXT: ", article['maintext'][0:25])
-                        #print("Date extracted: ", article['date_publish'], " + Inserted! in ", colname, " - number of urls so far: ", url_count)
-                        #db['urls'].insert_one({'url': article['url']})
-                        print("DUPLICATE! Not inserted.")
+                        db[colname].insert_one(article)
+                        print("DUPLICATE --> +TITLE: ", article['title'][0:20], " +MAIN TEXT: ", article['maintext'][0:25])
+                        print("Date extracted: ", article['date_publish'], " + Inserted! in ", colname, " - number of urls so far: ", url_count)
+                        # db['urls'].insert_one({'url': article['url']})
+                        # print("DUPLICATE! Not inserted.")
 
                 except Exception as err: 
                     print("ERRORRRR......", err)

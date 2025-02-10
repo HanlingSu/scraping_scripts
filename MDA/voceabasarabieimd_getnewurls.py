@@ -19,7 +19,7 @@ source = 'voceabasarabiei.md'
 sitemap_base = 'https://voceabasarabiei.md/post-sitemap'
 
 #13 last 100
-for i in range(22, 23):
+for i in range(19, 20):
     sitemap = sitemap_base + str(i) + '.xml'
     print(sitemap  )
     hdr = {'User-Agent': 'Mozilla/5.0'} #header settings
@@ -32,7 +32,7 @@ for i in range(22, 23):
 
     print(len(direct_URLs))
 
-final_result = direct_URLs.copy()[::-1]
+final_result = direct_URLs.copy()
 print(len(final_result))
 
 url_count = 0

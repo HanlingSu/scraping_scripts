@@ -34,11 +34,11 @@ headers = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_5) AppleW
 ## NEED TO DEFINE SOURCE!
 source = 'elkhabar.com'
 
-direct_URLs = []
 for year in range(2024, 2025):
     yearstr = str(year)
 
-    for month in range(6, 9) :
+    for month in range(9, 12) :
+        direct_URLs = []
         
 
         if month < 10:
@@ -132,8 +132,8 @@ for year in range(2024, 2025):
                                 print("MAIN TEXT: ",article['maintext'][0:50])
                                 print("Inserted! in ", colname, " - number of urls so far: ", url_count)
                             except DuplicateKeyError:
-                                db[colname].delete_one({'url' : url})
-                                db[colname].insert_one(article)
+                                # db[colname].delete_one({'url' : url})
+                                # db[colname].insert_one(article)
                                 print("DUPLICATE! Updated." )
                         except Exception as err: 
                             print("ERRORRRR......", err)

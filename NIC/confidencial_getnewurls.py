@@ -52,7 +52,7 @@ scraper = cloudscraper.create_scraper(
 direct_URLs = []
 
 # post-sitemap 
-for j in range(10,32):
+for j in range(32,34):
     url = 'https://confidencial.digital/post-sitemap' + str(j) + '.xml'
 
     print("Sitemap: ", url)
@@ -67,9 +67,10 @@ for j in range(10,32):
 
 # STEP 1: Get rid or urls from blacklisted sources
 
-# blacklist =  [( i['blacklist_url_patterns']) for i in db.sources.find({'source_domain' : source})][0]
-# blacklist = re.compile('|'.join([re.escape(word) for word in blacklist]))
+blacklist =  [( i['blacklist_url_patterns']) for i in db.sources.find({'source_domain' : source})][0]
+blacklist = re.compile('|'.join([re.escape(word) for word in blacklist]))
 direct_URLs = [i for i in direct_URLs if "/opinion/" in i]
+# direct_URLs = [word for word in direct_URLs if not blacklist.search(word)]
 
 final_result = direct_URLs.copy()
 

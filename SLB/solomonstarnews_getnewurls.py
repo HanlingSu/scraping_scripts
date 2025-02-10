@@ -23,7 +23,7 @@ source = 'solomonstarnews.com'
 direct_URLs = []
 sitemap_base = 'https://www.solomonstarnews.com/wp-sitemap-posts-post-'
 
-for i in range(8, 14): # smaller numbered-sitemaps host the more recent stuff.
+for i in range(13, 14): # smaller numbered-sitemaps host the more recent stuff.
     sitemap = sitemap_base + str(i) + '.xml'
     print('Scraping from ', sitemap, ' ...')
     hdr = {'User-Agent': 'Mozilla/5.0'} #header settings
@@ -37,7 +37,7 @@ for i in range(8, 14): # smaller numbered-sitemaps host the more recent stuff.
     print('Now scraped ', len(direct_URLs), ' articles from previous sitemaps.')
 
 
-final_result = list(set(direct_URLs))
+final_result = direct_URLs.copy()[::-1]
 print('Total number of urls found: ', len(final_result))
 
 

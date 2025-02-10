@@ -15,10 +15,11 @@ db = MongoClient('mongodb://zungru:balsas.rial.tanoaks.schmoe.coffing@db-wibbels
 
 base_list = []
 
-categories = ['news', 'focus', 'world-news', 'lead-stories', 'commentary', 'business', 'commentary']
+categories = ['news', 'focus', 'world-news', 'lead-stories', 'business']
+pages = [80, 3, 25, 28, 15]
 
-pages = [0, 0, 0, 0, 0, 0, 695]
-
+# categories = ['commentary']
+# pages = [15]
 hdr = {'User-Agent': 'Mozilla/5.0'} #header settings
 
 source = 'jamaica-gleaner.com'

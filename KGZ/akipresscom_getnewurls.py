@@ -22,13 +22,13 @@ len_final_result = 0
 base = 'https://akipress.com/archive:'
 for year in range(2024, 2025):
     year_str = str(year)
-    for month in range(5, 6):
+    for month in range(8, 12):
         direct_URLs = []
         if month<10:
             month_str = '0' + str(month)
         else:
             month_str = str(month)
-        for day in range(18, 32):
+        for day in range(1, 32):
             if day<10:
                 day_str = '0' + str(day)
             else:

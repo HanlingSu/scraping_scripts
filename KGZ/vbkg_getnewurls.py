@@ -23,7 +23,7 @@ base = 'https://www.vb.kg/?date='
 
 for year in range( 2024, 2025):
     year_str = str(year)
-    for month in range(5, 6):
+    for month in range(8, 12):
         direct_URLs = []
         if month<10:
             month_str = '0' + str(month)

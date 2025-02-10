@@ -25,7 +25,7 @@ source = 'malawivoice.com'
 
 direct_URLs = []
 sitemap_base = 'https://www.malawivoice.com/category/opinion/page/'
-for i in range(1, 57+1):
+for i in range(1, 3+1):
     
     sitemap = sitemap_base + str(i)
     print('Now scraping: ', sitemap)
@@ -61,7 +61,7 @@ for url in final_result:
 
             try: 
                 category = [] 
-                for i in soup.find_all('li', {'class' : 'entry-category'}):
+                for i in soup.find_all('a', {'class' : 'tdb-entry-category'}):
                     category.append(i.text)
             except:
                 category = ['News']

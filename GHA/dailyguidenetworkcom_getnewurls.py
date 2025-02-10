@@ -42,8 +42,8 @@ source = 'dailyguidenetwork.com'
 
 ## STEP 0: URLS FROM SITEMAP:
 
-beginnumber = 93
-endnumber = 95
+beginnumber = 96
+endnumber = 98
 
 for i in range(beginnumber, endnumber+1):
     url = "https://dailyguidenetwork.com/post-sitemap" + str(i) + ".xml"

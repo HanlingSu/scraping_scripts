@@ -18,7 +18,7 @@ source = 'eltiempo.com'
 # sitemap_base = 'https://www.eltiempo.com/sitemap-articles-'
 for year in range(2024, 2025):
     year_str = str(year)
-    for month in range(6, 8):
+    for month in range(8, 11):
         if month<10:
             month_str = '0' + str(month)
         else:

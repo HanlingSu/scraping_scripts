@@ -20,7 +20,7 @@ direct_URLs = []
 source = 'eagle.co.ug'
 sitemap_base = 'https://eagle.co.ug/post-sitemap'
 
-for i in range(22, 23):
+for i in range(23, 24):
     sitemap = sitemap_base + str(i) + '.xml'
     print(sitemap)
     hdr = {'User-Agent': 'Mozilla/5.0'} #header settings

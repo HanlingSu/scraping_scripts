@@ -28,7 +28,7 @@ source = 'leconomiste.com'
 base = 'https://www.leconomiste.com/sitemap.xml?page='
 
 
-for i in range(257, 258):
+for i in range(261, 262):
     base_link = base + str(i) 
     print(base_link)
      #header settings
@@ -87,7 +87,7 @@ print('Total number of urls found: ', len(final_result))
 
 url_count = 0
 processed_url_count = 0
-for url in final_result[::-1]:
+for url in final_result:
     if url:
         print(url, "FINE")
         ## SCRAPING USING NEWSPLEASE:

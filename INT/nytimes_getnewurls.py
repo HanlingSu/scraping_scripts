@@ -60,7 +60,7 @@ source = 'nytimes.com'
 #https://www.nytimes.com/sitemap/2021/11/05/
 ## STEP 0: Define dates
 
-for year in range(2023, 2024):
+for year in range(2024, 2025):
     year_str = str(year)
     for month in range(12, 13):
         if month < 10:

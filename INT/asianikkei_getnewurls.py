@@ -48,7 +48,7 @@ source = 'asia.nikkei.com'
 
 ## Define YEAR and MONTH to update:
 year_up = 2024
-month_up = 7
+month_up = 12
 
 # Custom Parser
 def asianikkeicom_story(soup):

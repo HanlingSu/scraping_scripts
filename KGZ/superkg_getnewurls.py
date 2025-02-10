@@ -19,7 +19,7 @@ direct_URLs = []
 categories = ['5',  '43',     '65',                     '41',       '9',            '7']
         #POLITICS  society   Legal cases in politics    world   CRIMES & ACCIDENTS, PUBLIC NEWS
 page_start = [1, 1, 1, 1, 1, 1]
-page_end = [12, 38, 1, 18, 15, 1]
+page_end = [15, 40, 1, 22, 15, 1]
 # page_end = [964, 1294, 13, 277, 659, 71 ]
 
 

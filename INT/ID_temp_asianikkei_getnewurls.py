@@ -21,7 +21,7 @@ db = MongoClient('mongodb://zungru:balsas.rial.tanoaks.schmoe.coffing@db-wibbels
 
 direct_URLs = []
 
-base = "https://asia.nikkei.com/search?contentType=article&facet%5B0%5D=article_display_date_value_dt%3A%221month%22&query=is&sortBy=newest&dateFrom=01-09-2024&dateTo=15-10-2024&page="
+base = "https://asia.nikkei.com/search?contentType=article&facet%5B0%5D=article_display_date_value_dt%3A%221month%22&query=is&sortBy=newest&dateFrom=01-12-2024&dateTo=04-01-2025&page="
 
 for p in range(1, 24):
     link = base + str(p)

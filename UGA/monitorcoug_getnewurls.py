@@ -18,10 +18,10 @@ db = MongoClient('mongodb://zungru:balsas.rial.tanoaks.schmoe.coffing@db-wibbels
 
 direct_URLs = []
 source = 'monitor.co.ug'
-sitemap_base = 'https://www.monitor.co.ug/service/search/uganda/1822068?docType=CMArticle&query=the&pageNum='
+sitemap_base = 'https://www.monitor.co.ug/service/search/uganda/1822068?pageNum='
 
-for i in range(1, 480):
-    sitemap = sitemap_base + str(i) + '&channelId=1448278&sortByDate=true'
+for i in range(1, 430):
+    sitemap = sitemap_base + str(i) + '&docType=CMArticle&query=the&sortByDate=true'
     # print(sitemap)
     hdr = {'User-Agent': 'Mozilla/5.0'} #header settings
     req = requests.get(sitemap, headers = hdr)

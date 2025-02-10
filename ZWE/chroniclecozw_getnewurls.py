@@ -53,7 +53,7 @@ scraper = cloudscraper.create_scraper(
 hdr = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.102 Safari/537.36'}
 
 page_start = [1, 1, 1, 1]
-page_end = [135, 135, 15, 25]
+page_end = [120, 110, 15, 15]
 categories = ['c37-top-stories', 'c38-local-news', 'c45-international-news', 'c46-crime-a-courts']
 url_base = 'https://www.chronicle.co.zw/category/s6-demo-section/'
 for c, p_s, p_e in zip(categories, page_start, page_end):

@@ -29,7 +29,7 @@ for document in documents:
 direct_URLs = []
 base = 'https://dailynationzambia.com/wp-sitemap-posts-post-'
 #18
-for p in range(1, 6):
+for p in range(14, 15):
     url = base+str(p)+'.xml'
     req = requests.get(url, headers = headers)
     soup = BeautifulSoup(req.content)

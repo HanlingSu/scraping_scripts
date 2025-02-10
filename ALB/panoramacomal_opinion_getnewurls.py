@@ -21,7 +21,7 @@ source = 'panorama.com.al'
 direct_URLs = []
 
 page_start = 1
-page_end = 1
+page_end = 10
 # page_start = [50, 35, 12, 8, 5, 50, 5]
 # page_end = [70, 45, 18, 12, 10, 70, 10]
 

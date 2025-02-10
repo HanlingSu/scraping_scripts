@@ -33,7 +33,7 @@ hdr = {'User-Agent': 'Mozilla/5.0'} #header settings
 
 categories = ['politics', 'business', 'society-2', 'world']
 page_start = [1, 1, 1, 1]
-page_end = [8, 1, 1, 1]
+page_end = [9, 2, 2, 2]
 
 
 url_count = 0
