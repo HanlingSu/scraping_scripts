@@ -1,22 +1,22 @@
-# Introduction
+## Introduction
 This repository contains all the scraping scripts developed for the MLP Project and environmental project. 
 The scripts are organized by country and environmental sources are stored in env_project folder.
 
-# The primary goal of this repository is to:
+## The primary goal of this repository is to:
 
 1. Store and manage all scraping scripts for collecting data from sources worldwide.
 2. Ensure scripts are properly grouped by country for ease of access and collaboration.
 3. Maintain an organized and scalable repository for future development and updates.
 
-# Scraping process
+## Scraping process
 1.	Scraping:
-a.	Direct Scrape:
-i.	Collect URLs from sitemap 
-ii.	Date archived website structure
-iii.	Empty search results that can be sorted by date
-iv.	Category sections, allowing blacklisting while scraping
-v.	Selenium dynamic scraping
-b.	Old ways: Wayback, Gdelt
+  - Direct Scrape:
+  - Collect URLs from sitemap 
+  - Date archived website structure
+  - Empty search results that can be sorted by date
+  - Category sections, allowing blacklisting while scraping
+  - Selenium dynamic scraping
+2.	Old ways: Wayback, Gdelt
 
 ### Before starting batch scraping, check for individual article’s date, title and main text content, if any mismatch from website, a custom parser is required. 
 
