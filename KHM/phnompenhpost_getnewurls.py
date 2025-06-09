@@ -131,6 +131,9 @@ for url in list_urls:
                     # add on some extras
                     article['date_download']=datetime.now()
                     article['download_via'] = "Direct2"
+                    article['source_domain'] = source
+                    article['url'] = url
+
                     print("newsplease title: ", article['title'])
                     
                     ## Fixing Date:

@@ -57,8 +57,8 @@ source = 'jawapos.com'
 
 # date range
 direct_URLs = []
-base = 'https://www.jawapos.com/indeks-berita?daterange=21%20November%202024%20-%2010%20December%202024&page='
-for p in range(1, 733+1):
+base = 'https://www.jawapos.com/indeks-berita?daterange=14%20February%202025%20-%2028%20February%202025&page='
+for p in range(1, 768+1):
     url = base +str(p)
     # print(url)
     header = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.102 Safari/537.36'}
@@ -69,7 +69,7 @@ for p in range(1, 733+1):
     print(len(direct_URLs))
 
 # baliexpress.jawapos.com
-# for month in range(9, 13):
+# for month in range(12, 13):
 #     direct_URLs = []
 #     if month <10:
 #         month_str = '0'+str(month)
@@ -77,7 +77,7 @@ for p in range(1, 733+1):
 #         month_str = str(month)
 
 #     for p in range(1, 100):
-#         url = 'https://baliexpress.jawapos.com/sitemap-pt-post-p'+str(p)+'-2023-' + month_str+'.xml'
+#         url = 'https://baliexpress.jawapos.com/sitemap-pt-post-p'+str(p)+'-2024-' + month_str+'.xml'
 #         print(url)
 #         header = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.102 Safari/537.36'}
 #         response = requests.get(url, headers=header)

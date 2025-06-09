@@ -32,7 +32,7 @@ base = 'https://moneaksekarkhmer.com/all-news/page/'
 
 direct_URLs = []
 
-for p in range(1,5):
+for p in range(1,10):
     url = base + str(p) 
     print(url)
     req = requests.get(url, headers = header)

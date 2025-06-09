@@ -51,7 +51,7 @@ siteurls = []
 source = 'bbc.com'
 
 # STEP 0: Get sitemap urls:
-url = "https://www.bbc.com/sitemaps/sitemap-com-ws-topics.xml"
+url = "https://www.bbc.com/sitemaps/https-sitemap-com-news-1.xml"
 print("Extracting from: ", url)
 reqs = requests.get(url, headers=headers)
 soup = BeautifulSoup(reqs.text, 'html.parser')

@@ -37,7 +37,7 @@ source = 'twala.info'
 
 direct_URLs = []
 
-for p in range(0, 24+1, 6):
+for p in range(0, 30+1, 6):
     url = 'https://twala.info/fr/category/a-chaud-actualite-algerienne/?offset=' + str(p)
 
     print("Extracting from ", url)

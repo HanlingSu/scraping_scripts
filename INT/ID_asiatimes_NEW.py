@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-Script to scrape articles from https://asiatimes.com/2024/11/
-and insert them into MongoDB, categorizing by November 2024.
+Script to crawl asiatimes.com and scrape all articles from December 2024.
+Inserts into MongoDB collection: articles-2024-12
 """
 import requests
 from bs4 import BeautifulSoup
@@ -10,70 +10,89 @@ from datetime import datetime
 from pymongo import MongoClient
 from pymongo.errors import DuplicateKeyError
 from newsplease import NewsPlease
+from urllib.parse import urljoin, urlparse
 import re
 
-# Database connection
+# MongoDB connection
 db = MongoClient('mongodb://zungru:balsas.rial.tanoaks.schmoe.coffing@db-wibbels.sas.upenn.edu/?authSource=ml4p&tls=true').ml4p
 source = 'asiatimes.com'
+colname = 'articles-2024-12'
 
-# Set headers for requests
 headers = {
     'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.102 Safari/537.36'
 }
 
-# Base URL for December 2024
-base_url = "https://asiatimes.com/2024/12/"
+# Match only full article URLs for December 2024
+ARTICLE_REGEX = re.compile(r'https://asiatimes\.com/2024/12/[^/]+/?$')
 
-# Function to extract article URLs from the main URL
-def get_article_urls(main_url):
-    print(f"Scraping main URL: {main_url}")
-    response = requests.get(main_url, headers=headers)
-    soup = BeautifulSoup(response.text, 'html.parser')
-    article_links = []
+# Crawling logic
+def crawl_for_december_articles(start_url, max_depth=2):
+    to_visit = [(start_url, 0)]
+    visited = set()
+    found_articles = set()
 
-    # Extract links to articles (adjust selector as per the website structure)
-    for link in soup.find_all('a', href=True):
-        url = link['href']
-        # Ensure the URL is part of the target month and matches the correct format
-        if re.match(r'https://asiatimes\.com/2024/12/.+', url):
-            article_links.append(url)
+    while to_visit:
+        url, depth = to_visit.pop(0)
+        if url in visited or depth > max_depth:
+            continue
 
-    return list(set(article_links))  # Deduplicate URLs
+        visited.add(url)
+        print(f"Crawling: {url} (depth {depth})")
 
-# Scrape articles and insert them into the database
-def scrape_articles(urls):
+        try:
+            response = requests.get(url, headers=headers, timeout=10)
+            soup = BeautifulSoup(response.text, 'html.parser')
+
+            for link in soup.find_all('a', href=True):
+                href = urljoin(url, link['href'])
+                # Normalize and restrict to asiatimes.com
+                if not href.startswith('https://asiatimes.com'):
+                    continue
+                href = href.split('#')[0]  # Remove fragment identifiers
+
+                # If it's a December 2024 article, store it
+                if ARTICLE_REGEX.match(href):
+                    found_articles.add(href)
+                else:
+                    # If it's not an article, crawl it if not visited
+                    if href not in visited:
+                        to_visit.append((href, depth + 1))
+
+        except Exception as e:
+            print(f"Failed to crawl {url}: {e}")
+
+    return list(found_articles)
+
+# Article scraping logic
+def scrape_and_insert_articles(article_urls):
     url_count = 0
-    for url in urls:
+    for url in article_urls:
         try:
             print(f"Scraping article: {url}")
             response = requests.get(url, headers=headers)
             article = NewsPlease.from_html(response.text, url=url).__dict__
+
             article['date_download'] = datetime.now()
-            article['download_via'] = "Direct"
+            article['download_via'] = "Recursive Crawl"
             article['source_domain'] = source
 
-            # Determine collection name based on November 2024
-            colname = 'articles-2024-12'
 
-            # Insert into MongoDB
             try:
                 db[colname].insert_one(article)
                 url_count += 1
-                print(f"Inserted into '{colname}': {article['title'][:20]} ...")
+                print(f"Inserted: {article.get('title', '')[:50]} ...")
             except DuplicateKeyError:
-                print(f"Duplicate article, not inserted: {url}")
+                print(f"Duplicate article skipped: {url}")
+
         except Exception as e:
             print(f"Error scraping {url}: {e}")
 
     print(f"Total articles scraped and inserted: {url_count}")
 
-# Main execution
+# Main
 if __name__ == "__main__":
-    # Fetch all article URLs from the main November 2024 page
-    article_urls = get_article_urls(base_url)
+    homepage = "https://asiatimes.com/"
+    article_urls = crawl_for_december_articles(homepage, max_depth=2)
 
-    # Log the total number of articles found
-    print(f"Total unique articles found: {len(article_urls)}")
-
-    # Scrape articles and insert them into the database
-    scrape_articles(article_urls)
+    print(f"Total unique December 2024 articles found: {len(article_urls)}")
+    scrape_and_insert_articles(article_urls)

@@ -18,9 +18,9 @@ db = MongoClient('mongodb://zungru:balsas.rial.tanoaks.schmoe.coffing@db-wibbels
 
 direct_URLs = []
 
-for year in range(2024, 2025):
+for year in range(2025, 2026):
     year_str = str(year)
-    for month in range(11, 12):
+    for month in range(1, 4):
         month_str = str(month)
         print('Now scraping articles published in ', year_str, '-', month_str)
         for day in range(1, 32):

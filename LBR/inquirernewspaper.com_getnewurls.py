@@ -24,7 +24,7 @@ source = 'inquirernewspaper.com'
 
 direct_URLs = []
 base = 'https://inquirernewspaper.com/category/politics/page/'
-for p in range(1, 2):
+for p in range(1, 5):
     sitemap = base+str(p)
     print(sitemap)
     req = requests.get(sitemap, headers = headers)

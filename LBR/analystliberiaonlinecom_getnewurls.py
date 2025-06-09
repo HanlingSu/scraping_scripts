@@ -24,7 +24,7 @@ source = 'analystliberiaonline.com'
 
 direct_URLs = []
 base = 'https://analystliberiaonline.com/post-sitemap'
-for p in range(7, 8):
+for p in range(8, 9):
     sitemap = base+str(p) +'.xml'
     print(sitemap)
     req = requests.get(sitemap, headers = headers)
@@ -36,7 +36,7 @@ for p in range(7, 8):
 
 
 
-final_result = direct_URLs.copy()[-200:-100][::-1]
+final_result = direct_URLs.copy()[::-1]
 print(len(final_result))
 
 
@@ -90,10 +90,10 @@ for url in final_result:
                     print("Inserted! in ", colname)
                 db['urls'].insert_one({'url': article['url']})
             except DuplicateKeyError:
-                db[colname].delete_one({"url" : url})
-                db[colname].insert_one(article)
+                # db[colname].delete_one({"url" : url})
+                # db[colname].insert_one(article)
 
-                print("DUPLICATE! Updated.")
+                print("DUPLICATE! Pass.")
         except Exception as err: 
             print("ERRORRRR......", err)
             pass

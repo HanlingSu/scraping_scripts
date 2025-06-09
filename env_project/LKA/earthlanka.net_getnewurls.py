@@ -24,38 +24,39 @@ from pymongo.errors import DuplicateKeyError
 from pymongo.errors import CursorNotFound
 from newsplease import NewsPlease
 from dotenv import load_dotenv
-import cloudscraper
-
-scraper = cloudscraper.create_scraper(
-    browser={
-        'browser': 'firefox',
-        'platform': 'windows',
-        'mobile': False
-    }
-)
+import cloudscraper 
 
 hdr = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.102 Safari/537.36'}
 
 # db connection:
 db = MongoClient('mongodb://zungru:balsas.rial.tanoaks.schmoe.coffing@db-wibbels.sas.upenn.edu/?authSource=ml4p&tls=true').ml4p
 
-source = 'thenewhumanitarian.org'
+source = 'earthlanka.net'
+direct_URLs = set()
+region = ('global-news', 'local-news')
+pages = (180, 115) 
+# pages = (2, 2) 
 
-direct_URLs = []
+for r, max_p in zip(region, pages):
+    for p in range(1, max_p + 1):
+        link = 'https://earthlanka.net/category/'+ str(r) + '/page/' + str(p)
+        print("Getting urls from: ", link)
 
-for p in range(2, 75):
-    link = 'https://www.thenewhumanitarian.org/environnement-and-catastrophes?page=' + str(p) 
-    soup = BeautifulSoup(scraper.get(link).text)
-    for i in soup.find_all('li', {'class':'teaser-list__item'}):
-        direct_URLs.append(i.find('a')['href'])
-    print('Now scraped ', len(direct_URLs), 'articles from previous months ... ')
+        response = requests.get(link, verify=False)
+        response.encoding = 'utf-8'
+        soup = BeautifulSoup(response.content)
 
 
-print('There are ', len(direct_URLs), 'in previous pages.')
+        for i in soup.find_all('div', {'class': 'post-details'}):
+            a_tag = i.find('a')
+            if a_tag and 'href' in a_tag.attrs:
+                direct_URLs.add(a_tag['href'])
 
-direct_URLs = ['https://www.thenewhumanitarian.org' + i for i in direct_URLs]
-final_result = direct_URLs.copy()
+        print('Now scraped ', len(direct_URLs), 'articles from previous months ... ')
 
+
+print('There are ', len(direct_URLs), 'urls')
+final_result = list(direct_URLs).copy()
 
 print('The total count of final result is: ', len(final_result))
 
@@ -67,8 +68,9 @@ for url in final_result:
         ## SCRAPING USING NEWSPLEASE:
         try:
             # process
-            soup = BeautifulSoup(scraper.get(url).text)
-            article = NewsPlease.from_html(scraper.get(url).text).__dict__
+            response = requests.get(url, verify=False)
+            soup = BeautifulSoup(response.content)
+            article = NewsPlease.from_html(response.text, url=url).__dict__
 
             # add on some extras
             article['date_download']=datetime.now()
@@ -76,6 +78,21 @@ for url in final_result:
             article['source_domain'] = source
             article['url'] = url
             article['environmental'] = True
+
+            # Extract title 
+            try: 
+                title = soup.find('h4').text
+                article['title'] = title.strip()
+            except: 
+                article['title'] = article['title']
+            
+            # Extract date 
+            try:
+                date = soup.find('div', {'class': 'body'}).find('p').text
+                date = date.strip()
+                article['date_publish'] = dateparser.parse(date)
+            except: 
+                article['date_publish'] = article['date_publish'] 
 
             print("newsplease date: ", article['date_publish'])
             print("newsplease title: ", article['title'])
@@ -111,3 +128,4 @@ for url in final_result:
         pass
 
 print("Done inserting ", url_count, " manually collected urls from ",  source, " into the db.")
+

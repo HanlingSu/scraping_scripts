@@ -23,11 +23,11 @@ category = ['sociedade', 'economia', 'politica']
                                         #politica
 # page_start = [0,0,0,0,0, 0]
 page_start = [1,1,1]
-page_end = [5, 5, 5]
+page_end = [10, 10, 10]
 
 for c, ps, pe in zip(category, page_start, page_end):
     for p in range(ps, pe+1):
-        url = base + c + '?page=' + str(p)
+        url = base + c + '/page/' + str(p)
         print(url)
         hdr = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.102 Safari/537.36'} #header settings
         req = requests.get(url, headers = hdr)

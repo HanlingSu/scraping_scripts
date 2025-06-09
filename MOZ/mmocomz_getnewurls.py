@@ -16,7 +16,7 @@ import json
 # db connection:
 db = MongoClient('mongodb://zungru:balsas.rial.tanoaks.schmoe.coffing@db-wibbels.sas.upenn.edu/?authSource=ml4p&tls=true').ml4p
 
-direct_URLs = []
+direct_URLs = set()
 source = 'mmo.co.mz'
 
 # # sitemap
@@ -39,8 +39,8 @@ source = 'mmo.co.mz'
 
 # category
 base = 'https://noticias.mmo.co.mz/sobre/'
-page_start = [1, 1, 1]
-page_end = [20, 6, 4]
+page_start = [20, 2, 1]
+page_end = [30, 5, 0]
 category = ['sociedade', 'politica', 'economia']
 
 for c, ps, pe in zip(category, page_start, page_end):
@@ -52,7 +52,7 @@ for c, ps, pe in zip(category, page_start, page_end):
         soup = BeautifulSoup(req.content)
         item = soup.find_all('h3', {'class' : 'entry-title td-module-title' })
         for i in item:
-            direct_URLs.append(i.find('a')['href'])
+            direct_URLs.add(i.find('a')['href'])
         print('Now scraped ', len(direct_URLs), ' articles from previous pages.')
 
 final_result = direct_URLs.copy()

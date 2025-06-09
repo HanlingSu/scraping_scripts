@@ -56,7 +56,7 @@ category = ['actualite', 'economie', 'international', 'regions',\
     'lepoque', 'contributions']
 
 page_start = [1, 1, 1, 1, 1, 1]
-page_end = [1, 1, 1, 1, 1, 1]
+page_end = [70, 35, 45, 7, 50, 5]
 
 # page_end = [60, 26, 40, 3, 30, 4]
 # page_end = [312, 169, 221, 19, 159, 25]

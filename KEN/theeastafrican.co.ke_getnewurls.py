@@ -29,7 +29,7 @@ len_final_result = 0
 
 base = 'https://www.theeastafrican.co.ke/service/search/tea/1446352?query=the&channelId=1289144&docType=CMArticle&sortByDate=true&pageNum='
 
-for p in range(90, 100):
+for p in range(1, 100):
     direct_URLs = []
 
     url = base + str(p)
@@ -37,9 +37,10 @@ for p in range(90, 100):
     req = requests.get(url, headers = hdr)
     soup = BeautifulSoup(req.content)
 
-    for i in soup.find_all('h3', {'class' : None}):
+    for i in soup.find_all('li', {'class' : 'search-result'}):
         direct_URLs.append(i.find('a')['href'])
         final_result = ['https://www.theeastafrican.co.ke' + i for i in direct_URLs]
+        print(final_result)
         len_final_result += len(final_result)
 
         for url in final_result:

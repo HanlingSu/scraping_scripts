@@ -67,7 +67,7 @@ for year in range(2024, 2025):
         urls.append(link.text)
 
 
-final_result = urls[-7200:]
+final_result = urls[-8000:]
 print("Obtained ", len(urls), " URLs from year ", str(year))
 
 
@@ -100,7 +100,7 @@ for url in final_result[::-1]:
                 category = soup.find('meta', {'itemprop' : 'articleSection'})['content']
             except:
                 category = 'News'
-            
+            print(category)
             if category in ['Культура', 'Наука', 'Спорт', 'Досуг']:
                             # culture,  science, sport, leisure
                 article['date_publish'] = None

@@ -32,7 +32,7 @@ sitemap_base = 'https://balkaninsight.com/post-sitemap'
 
 
 
-for i in range(93, 94):
+for i in range(96, 97):
     sitemap = sitemap_base + str(i) + '.xml'
     print(sitemap)
     hdr = {'User-Agent': 'Mozilla/5.0'} #header settings
@@ -93,12 +93,12 @@ for url in final_result:
                     print("Inserted! in ", colname, " - number of urls so far: ", url_count)
                 db['urls'].insert_one({'url': article['url']})
             except DuplicateKeyError:
-                myquery = { "url": url}
-                db[colname].delete_one(myquery)
-                db[colname].insert_one(article)
+                # myquery = { "url": url}
+                # db[colname].delete_one(myquery)
+                # db[colname].insert_one(article)
                 pass
-                print('DUPLICATE! UPDATED!')
-                # print("DUPLICATE! Not inserted.")
+                # print('DUPLICATE! UPDATED!')
+                print("DUPLICATE! Not inserted.")
                 
         except Exception as err: 
             print("ERRORRRR......", err)

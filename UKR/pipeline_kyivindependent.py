@@ -497,7 +497,7 @@ def pipeline(sitemap,
         #keywords = [ ('was',630),('on',650), ('has',700), ('an',650), ('not',920),('were',210), ('not',920), ('all',50), ('have',400)]
         # keywords = [('national',10), ('politics',2), ('eastern-europe', 3), ('opinion', 4),('business',3),('culture',3)]
 
-        keywords = [('kyivindependentnews', 60),('elsa',15),('oleg-sukhov',5),('daria-shulzhenko',5),('asami-terajima',3),('alexander-khrebet',5),('dinara-khalilova',15), ('chris',3),('katya-denisova',10),('kateryna-hodunova',5)]
+        keywords = [('kyivindependentnews', 120),('elsa',30),('oleg-sukhov',10),('daria-shulzhenko',10),('asami-terajima',5),('alexander-khrebet',10),('dinara-khalilova',30), ('chris',6),('katya-denisova',20),('kateryna-hodunova',10)]
         # keywords = [()]
         for keyword_tuple in keywords:
             

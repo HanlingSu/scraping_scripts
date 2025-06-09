@@ -40,7 +40,7 @@ direct_URLs = []
 
 sections  = ['national', 'world', 'business-2', ]
 page_start = [1, 1, 1 ]
-page_end = [40, 6, 30]
+page_end = [50, 9, 40]
 
 base = 'https://times.mw/category/'
 for s, ps, pe in zip(sections, page_start, page_end):

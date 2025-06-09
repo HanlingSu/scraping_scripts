@@ -47,7 +47,7 @@ base = "https://prothomalo.com/sitemap/sitemap-daily-"
 
 direct_URLs = []
 for year in range(2024, 2025):
-    for month in range(8, 9):
+    for month in range(9, 10):
         for day in range(1, 32):
             year_str = str(year)
             
@@ -97,13 +97,17 @@ for url in final_result:
         article['download_via'] = "Direct2"
         article['source_domain'] = source
         article['language'] = 'bn'
-        print('newsplease date', article['date_publish'])
 
         ## Fixing what needs to be fixed:
         soup = BeautifulSoup(response.content, 'html.parser')
+        try:
+            date = soup.find('div', {'class' : 'time-social-share-wrapper _24WTx'}).find('time')['datetime']
+            article['date_publish'] = dateparser.parse(date)
+        except:
+            article['date_publish'] = None
+        print('newsplease date', article['date_publish'])
 
         try:
-            #article_title = soup.find("title").text
             contains_title = soup.find("meta", {"property":"og:title"})
             article_title = contains_title['content']
             article['title']  = article_title   
@@ -136,6 +140,7 @@ for url in final_result:
                 article['maintext'] = maintext
         print('newsplease maintext', article['maintext'][:50])
 
+       
 
             
         try:

@@ -51,7 +51,7 @@ sitemap_base = 'https://www.danas.rs/post-sitemap'
 #     else:
 #         str_month = str(month)
 
-for j in range(680, 700):
+for j in range(697, 698):
     sitemap = sitemap_base + str(j) + '.xml'
     print('NOW SCRAPING ', sitemap, ' ... ')
     hdr = {'User-Agent': 'Mozilla/5.0'} #header settings
@@ -81,7 +81,7 @@ blacklist =  [( i['blacklist_url_patterns']) for i in db.sources.find({'source_d
 blacklist = re.compile('|'.join([re.escape(word) for word in blacklist]))
 direct_URLs = [word for word in direct_URLs if not blacklist.search(word)]
 
-final_result = direct_URLs.copy()
+final_result = direct_URLs.copy()[::-1]
 print('Total number of urls found: ', len(final_result))
 
 

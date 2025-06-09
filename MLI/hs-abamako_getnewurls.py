@@ -21,8 +21,8 @@ url_count = 0
 processed_url_count = 0
 
 
-start = 294725
-end = 296674
+start = 296674
+end = 299143
 for i in range(end +1, start, -1):    
     url = base + str(i) + '.html'
     print(url)

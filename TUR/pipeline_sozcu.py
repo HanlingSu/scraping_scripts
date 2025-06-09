@@ -516,15 +516,16 @@ def pipeline(sitemap,
         '''
         Unit: month
         '''
-        years = [i for i in range(2024,2025)]
-        months = ["%.2d" % i for i in range(9, 13)]
+        years = [i for i in range(2024,2026)]
+        months_1 = ["%.2d" % i for i in range(11, 13)]
+        months_2 = ["%.2d" % i for i in range(1, 5)]
         days = ["%.2d" % i for i in range(1,32)]
         
         for yy in years:
-            if yy == 2023:
-                months = [12]
+            if yy == 2024:
+                months = months_1
             else:
-                months = months
+                months = months_2
             for mm in months:
                 #collect urls
                 urls2 = collect_urls_year_month_day(yy=yy, mm=mm, days=days)

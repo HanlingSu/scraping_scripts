@@ -41,7 +41,7 @@ base = 'https://www.lusakatimes.com/'
 categories = ['other-news', 'zambiancolumn', 'economy','headlines', 'ruralnews']
 
 page_start = [1, 1, 1, 1, 1]
-page_end = [20, 12, 8, 18, 3]
+page_end = [25, 22, 12, 28, 5]
 
 direct_URLs = []
 

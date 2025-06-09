@@ -1,0 +1,125 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""
+Script to scrape Liberation articles (Jan, Feb, Mar 2025) 
+and insert them into MongoDB.
+"""
+
+import requests
+from bs4 import BeautifulSoup
+from datetime import datetime
+from pymongo import MongoClient
+from pymongo.errors import DuplicateKeyError
+from newsplease import NewsPlease
+import dateparser
+
+# Database connection
+db = MongoClient('mongodb://zungru:balsas.rial.tanoaks.schmoe.coffing@db-wibbels.sas.upenn.edu/?authSource=ml4p&tls=true').ml4p
+source = "liberation.fr"
+
+# Headers for scraping
+headers = {
+    'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.102 Safari/537.36'
+}
+
+# Define months and days for January, February, March 2025
+TARGET_YEAR = "2025"
+TARGET_MONTHS = [1, 2, 3]  # January, February, March
+DAYS_IN_MONTH = {
+    1: 31,  # January
+    2: 28,  # February (assuming no leap year)
+    3: 31   # March
+}
+
+# Blacklisted URL patterns (skip these categories)
+BLACKLIST_PATTERNS = [
+    "/checknews/", "/societe/", "/sexualite-et-genres/", "/environnement/",
+    "/culture/", "/idees-et-debats/", "/lifestyle/", "/auteur/", "/sports/",
+    "/cinema/", "/livres/", "/arts/", "/food/", "/images/", "/musique/",
+    "/nytiw/", "/photographie/", "/amphtml/", "/theatre/"
+]
+
+def get_article_urls(year, month, day):
+    """Extract article URLs from Liberation's daily archives page."""
+    archive_url = f"https://www.liberation.fr/archives/{year}/{str(month).zfill(2)}/{str(day).zfill(2)}/"
+    print(f"Extracting from: {archive_url}")
+
+    response = requests.get(archive_url, headers=headers)
+    if response.status_code != 200:
+        print(f"Skipping {archive_url} - Page not found.")
+        return []
+
+    soup = BeautifulSoup(response.text, 'html.parser')
+    article_links = []
+
+    for link in soup.find_all('a', href=True):
+        url = link['href']
+        if url.startswith("/") and "2025" in url:  # Ensure it's a valid article URL
+            url = "https://www.liberation.fr" + url
+            if not any(pattern in url for pattern in BLACKLIST_PATTERNS):
+                article_links.append(url)
+
+    return list(set(article_links))  # Remove duplicates
+
+def scrape_articles(urls, month):
+    """Scrape articles and insert them into MongoDB."""
+    url_count = 0
+    colname = f'articles-2025-{month}'
+
+    for url in urls:
+        try:
+            print(f"Scraping: {url}")
+            response = requests.get(url, headers=headers)
+            article = NewsPlease.from_html(response.text, url=url).__dict__
+
+            # Add metadata
+            article['date_download'] = datetime.now()
+            article['download_via'] = "Direct2"
+            article['source_domain'] = source
+
+            # Fixing Title, Main Text, and Date
+            soup = BeautifulSoup(response.content, 'html.parser')
+
+            # Get Title:
+            try:
+                contains_title = soup.find("meta", {"property": "og:title"})
+                article['title'] = contains_title['content'] if contains_title else article.get('title', None)
+            except:
+                pass
+
+            # Get Main Text:
+            try:
+                maintext = soup.find("p", {"class": "article_link"}).text
+                article['maintext'] = maintext
+            except:
+                pass
+
+            # Get Date:
+            try:
+                contains_date = soup.find("meta", {"property": "date:published_time"})
+                article['date_publish'] = dateparser.parse(contains_date['content']) if contains_date else article.get('date_publish', None)
+            except:
+                pass
+
+            # Insert into MongoDB
+            try:
+                db[colname].insert_one(article)
+                url_count += 1
+                print(f"Inserted into '{colname}': {article['title'][:50]} ...")
+            except DuplicateKeyError:
+                print(f"Duplicate article, not inserted: {url}")
+        except Exception as e:
+            print(f"Error scraping {url}: {e}")
+
+    print(f"Total articles inserted into {colname}: {url_count}")
+
+# Main execution
+if __name__ == "__main__":
+    for month in TARGET_MONTHS:
+        all_urls = []
+        for day in range(1, DAYS_IN_MONTH[month] + 1):
+            daily_urls = get_article_urls(TARGET_YEAR, month, day)
+            all_urls.extend(daily_urls)
+
+        print(f"Total unique articles found for {month}: {len(all_urls)}")
+        scrape_articles(all_urls, month)

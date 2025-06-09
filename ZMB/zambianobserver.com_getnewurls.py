@@ -22,7 +22,7 @@ source = 'zambianobserver.com'
 
 # base = 'https://zambianobserver.com/post-sitemap'
 
-# for i in range(1, 4+1):
+# for i in range(22, 22+1):
 #     url = base + str(i) + '.xml'
 #     # mundo, nacionales, noticias-del-dia, espectaculos, ciencia
 #     hdr = {'User-Agent': 'Mozilla/5.0'} #header settings

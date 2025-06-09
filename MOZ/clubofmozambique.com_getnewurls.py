@@ -28,7 +28,7 @@ category = ['?newstype=politics-society&category=politics','?newstype=politics-s
 page_start = [0,0,0,0,0]
 # page_end = [1, 1, 1, 1, 1]
 
-page_end = [13, 5, 7, 25, 6]
+page_end = [34, 15, 18, 60, 15]
 
 for c, ps, pe in zip(category, page_start, page_end):
     for p in range(ps, pe+1):

@@ -21,9 +21,9 @@ db = MongoClient('mongodb://zungru:balsas.rial.tanoaks.schmoe.coffing@db-wibbels
 
 source = 'solomonstarnews.com'
 direct_URLs = []
-sitemap_base = 'https://www.solomonstarnews.com/wp-sitemap-posts-post-'
+sitemap_base = 'https://www.sibconline.com.sb/post-sitemap'
 
-for i in range(13, 14): # smaller numbered-sitemaps host the more recent stuff.
+for i in range(14, 15): # smaller numbered-sitemaps host the more recent stuff.
     sitemap = sitemap_base + str(i) + '.xml'
     print('Scraping from ', sitemap, ' ...')
     hdr = {'User-Agent': 'Mozilla/5.0'} #header settings

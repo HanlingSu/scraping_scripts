@@ -38,8 +38,8 @@ direct_URLs = []
 categorise = ['main_Incidents', 'main_world', 'main_economy', 'main_policy', 'main_society', 'tags/Окно%20в%20Китай' ]
 # pages = [45, 245, 140, 60, 10, 1]
 
-page_start = [0,0,0,0,0,0]
-page_end = [40,183,80,60,400,7]
+page_start = [41,183,80,60,400,7]
+page_end = [40,250,110,70,550,7]
 # pages = [950, 140, 80, 35, 1, 260]
 
 

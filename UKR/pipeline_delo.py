@@ -395,7 +395,7 @@ def pipeline(sitemap,
         #num is match the corresponding month
         # begin_num = 1
         # end_num = 4
-        selected_months = [9,10,11,12]
+        selected_months = [11,12,1,2,3,4]
         for num in selected_months:
             # if num not in selected_month:
             #     continue

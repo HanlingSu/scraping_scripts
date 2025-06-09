@@ -38,7 +38,7 @@ len_all_inserted_url_count = 0
 len_final_urls = 0
 
 years = range(2024, 2025)
-months = range(10, 13)
+months = range(12, 13)
 days = range(1, 32)
 direct_URLs = []
 for year in years:

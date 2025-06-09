@@ -50,9 +50,9 @@ urls = []
 source = 'lemonde.fr'
 #https://www.lemonde.fr/sitemap/articles/2021-10-04.xml
 ## STEP 0: Define dates
-yearn = "2024"
+yearn = "2025"
 #monthn = "09" # XX
-mondays = ["12-02", "12-09", "12-16", "12-23"] # enter the number of every Monday you want to visit
+mondays = ["01-06", "01-13", "01-20", "01-27"] # enter the number of every Monday you want to visit
 #mondays = ["11-01", "10-04","01-10"] # enter the number of every Monday you want to visit
 
 

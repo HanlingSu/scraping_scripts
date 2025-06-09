@@ -48,7 +48,7 @@ base = "https://www.dailyjanakantha.com/news/"
 
 direct_URLs = []
 # 706475
-for i in range(733525,752713):
+for i in range(752713, 789177):
     direct_URLs.append(base + str(i))
 
 blacklist =  [( i['blacklist_url_patterns']) for i in db.sources.find({'source_domain' : source})][0]

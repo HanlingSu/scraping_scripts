@@ -50,11 +50,11 @@ urls = []
 
 # Define Pages you'll scrape from the sitemap
 page_0 = 36
-page_1 = 37
+page_1 = 38
 pageslist = list(range(page_0, page_1))
 
 # Define the dates you want to scrape
-yearmonth = "2024/09"
+yearmonth = "2024/12"
 
 #https://asiatimes.com/post-sitemap65.xml
 #"https://asiatimes.com/post-sitemap" + str(pagex) + ".xml"

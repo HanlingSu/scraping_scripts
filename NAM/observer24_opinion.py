@@ -23,7 +23,7 @@ for document in documents:
     primary_location = document['primary_location']
     
 
-for p in range(1, 18):
+for p in range(1, 10):
     link = sitemap + str(p)
         
     print(link)

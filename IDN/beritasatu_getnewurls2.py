@@ -27,7 +27,7 @@ direct_URLs = []
 categories= ['nasional', 'megapolitan', 'nusantara', 'ekonomi', 'internasional']
                 #main       immediate news  local news          world news
 page_start = [1, 1, 1, 1, 1]
-page_end = [120, 700, 35, 90, 40]
+page_end = [150, 800, 55, 130, 50]
 # only change before each update
 
 for c, ps, pe in zip(categories, page_start, page_end):

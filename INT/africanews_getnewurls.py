@@ -42,8 +42,9 @@
 # source = 'africanews.com'
 
  ## Define YEAR and MONTH to update:
-year_up = 2024
-month_up = 8
+
+year = 2024
+month = 12
 
 # ### EXTRACTING ulrs from sitemaps:
 # headers = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.102 Safari/537.36'}

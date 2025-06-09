@@ -20,8 +20,8 @@ direct_URLs = []
 sitemap_base = 'https://www.diariolibre.com/sitemapnoticias/'
 
 # 36
-for year in range(2024, 2025):
-    for month in range(8, 12):
+for year in range(2025, 2026):
+    for month in range(1, 5):
         if month <10:
             year_month = str(year) + '0' +str(month)
         else:

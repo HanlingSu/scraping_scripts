@@ -22,9 +22,8 @@ direct_URLs = []
 base = 'https://www.malaysiakini.com/news/'
 
 hdr = {'User-Agent': 'Mozilla/5.0'}
-start = 717926
-# 711988
-end = 727705
+start = 727705
+end = 739246
 url_count = 0
 processed_url_count = 0
 

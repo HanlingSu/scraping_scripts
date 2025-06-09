@@ -60,7 +60,7 @@ urls = []
 
 # date_dict = {} 
 # # post-sitemap 
-for j in range(135,136):
+for j in range(135,138):
     url = 'https://cnnespanol.cnn.com/post-sitemap' + str(j) + '.xml'
 
     print("First Sitemap: ", url)

@@ -19,7 +19,7 @@ direct_URLs = []
 categories = ['vlast',  'obschestvo', 'ekonomika',  'proisshestvija']
                  #power     society     economic        incidents  
 page_start = [0, 0, 0, 0]
-page_end = [25, 50, 16, 18 ]
+page_end = [45, 80, 30, 25 ]
 # page_end = [570, 1613, 228, 381]
 
 

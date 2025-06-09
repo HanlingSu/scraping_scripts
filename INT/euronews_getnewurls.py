@@ -61,7 +61,7 @@ source = 'euronews.com'
 #https://arabic.euronews.com/sitemaps/ar/articles.xml
 
 ## STEP 0: Define dates
-yearmonth = ["-2024-12"]
+yearmonth = ["-2025-02"]
 #, "-2021-12", "-2021-11","-2022-2"]
 
 for yearm in yearmonth:

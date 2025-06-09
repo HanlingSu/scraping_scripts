@@ -54,7 +54,7 @@ scraper = cloudscraper.create_scraper(
 hdr = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.102 Safari/537.36'}
 
 opinion_base = 'https://168.am/section/opinion/'
-for p in range(1, 15):
+for p in range(1, 10):
     url = opinion_base + 'page/' +str(p)
     soup = BeautifulSoup(scraper.get(url).text)
     for i in soup.find_all('div', {'class' : 'realated-item clearfix'}):

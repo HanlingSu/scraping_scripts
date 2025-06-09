@@ -523,13 +523,15 @@ def pipeline(sitemap,
         
         #keywords = [ ('was',630),('on',650), ('has',700), ('an',650), ('not',920),('were',210), ('not',920), ('all',50), ('have',400)]
         
-        keywords = [('general',300),('political',30),('economic',40),('greendeal',4), ('telecom',7),('pharmacy',5), ('investments',5)]
+        keywords = [('general',1000),('political',120),('economic',160),('greendeal',20), ('telecom',24),('pharmacy',20), ('investments',20)]
+    
         for keyword_tuple in keywords:
             
             keyword = keyword_tuple[0]
             num_page = int(keyword_tuple[1])
+            start_page = round(num_page*0.3)
             
-            for page in range(0,num_page):
+            for page in range(start_page,num_page):
                 #collect urls
                 print(f'keyword: {keyword} -------------------------- {page}/{num_page} ')
                 urls3 = collect_urls_keyword(keyword=keyword, page=page)

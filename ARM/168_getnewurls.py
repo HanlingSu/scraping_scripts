@@ -43,8 +43,8 @@ headers = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_5) AppleW
 
 ## CHANGE: initial and final sitemaps:
 # 1. armenian
-initialsitemap = 261
-finalsitemap = 265
+initialsitemap = 266
+finalsitemap = 278
 
 # 2. english
 initialsitemap_en = 6

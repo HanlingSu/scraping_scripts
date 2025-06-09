@@ -20,7 +20,7 @@ source = 'elviajero.com.do'
 
 sitemap_base = 'https://www.elviajero.com.do/wp-sitemap-posts-post-'
 
-for p in range(6, 7):
+for p in range(6, 8):
     
     sitemap = sitemap_base + str(p)  + '.xml'
     print(sitemap  )

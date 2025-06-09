@@ -56,7 +56,7 @@ headers = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_5) AppleW
 # direct_URLs = ['https://www.azatutyun.am' + i for i in direct_URLs]
 url_count = 0
 processed_url_count = 0
-for i in range(32980323,  33114780):
+for i in range(33254507,  33353901):
     url = 'https://www.azatutyun.am/a/'+ str(i) + '.html'
 
 # final_result = direct_URLs.copy()
@@ -66,7 +66,6 @@ for i in range(32980323,  33114780):
 # for url in final_result:
     ## INSERTING IN THE DB:
     try:
-        print(url)
         #header = {'User-Agent': ('Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_3) AppleWebKit/537.36''(KHTML, like Gecko) Chrome/35.0.1916.47 Safari/537.36')}
         header = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.102 Safari/537.36'}
         response = requests.get(url, headers=header)
@@ -76,10 +75,12 @@ for i in range(32980323,  33114780):
         article['date_download']=datetime.now()
         article['download_via'] = "Direct2"
         article['source_domain'] = source
-        article['language'] = 'hy'
+        # article['language'] = 'hy'
         
         ## Fixing what needs to be fixed:
         soup = BeautifulSoup(response.content, 'html.parser')
+        article['url'] = soup.find('meta', {'property' : 'og:url'})['content']
+        print(article['url'])
 
         # Get Title:
         try:

@@ -50,7 +50,7 @@ categories = ['pakistan', 'world',]
 base = 'https://tribune.com.pk/'
 
 page_start = [1, 1]
-page_end = [700, 300]
+page_end = [150, 60]
 
 for c, ps, pe in zip(categories, page_start, page_end):
     for p in range(ps, pe+1):

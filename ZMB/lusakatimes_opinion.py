@@ -42,7 +42,7 @@ base = 'https://www.lusakatimes.com/zambiancolumn/page/'
 direct_URLs = []
 
 
-for p in range(2, 430):
+for p in range(1, 22):
     link = base + str(p) 
     # print(link)
     hdr = {'User-Agent': 'Mozilla/5.0'} #header settings

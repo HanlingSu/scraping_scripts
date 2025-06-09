@@ -21,7 +21,7 @@ source = 'rs.n1info.com'
 direct_URLs = []
 sitemap_base = 'https://rs.n1info.com/sitemap/sitemap_n1info_post_'
 
-for i in range(1, 17): # smaller numbered-sitemaps host the more recent stuff.
+for i in range(18, 24): # smaller numbered-sitemaps host the more recent stuff.
     sitemap = sitemap_base + str(i) + '.xml'
     print('Scraping from ', sitemap, ' ...')
     hdr = {'User-Agent': 'Mozilla/5.0'} #header settings
@@ -38,7 +38,7 @@ blacklist =  [( i['blacklist_url_patterns']) for i in db.sources.find({'source_d
 blacklist = re.compile('|'.join([re.escape(word) for word in blacklist]))
 direct_URLs = [word for word in direct_URLs if not blacklist.search(word)]
 
-final_result = list(set(direct_URLs))
+final_result = direct_URLs.copy()
 print('Total number of urls found: ', len(final_result))
 
 
@@ -72,7 +72,7 @@ for url in final_result:
                 maintext = ''
                 for i in soup.find('div', {'class' : 'entry-content'}).find_all('p'):
                     if not i.find('section'):
-                        maintext += i.text.strip()
+                        maintext += i.text.strip().replace('Podeli         :', '')
                     article['maintext']  = maintext
             except:
                 article['maintext'] = article['maintext'] 

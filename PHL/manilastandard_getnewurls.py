@@ -43,8 +43,8 @@ source = 'manilastandard.net'
 direct_URLs = []
 base = 'https://manilastandard.net/page/'
 
-for i in range(1, 1400):
-    link = base + str(i) + '?s=+'
+for i in range(300, 430):
+    link = base + str(i) + '?s=+&year=2024'
     hdr = {'User-Agent': 'Mozilla/5.0'} #header settings
     req = requests.get(link, headers = hdr)
     soup = BeautifulSoup(req.content)

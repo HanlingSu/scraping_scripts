@@ -47,9 +47,9 @@ source = 'sindonews.com'
 
 
 
-for year in range(2024, 2025):
+for year in range(2025, 2026):
     year_str = str(year)
-    for month in range(9, 12):
+    for month in range(1, 4):
         direct_URLs = []
         if month <10:
             month_str = '0'+str(month)

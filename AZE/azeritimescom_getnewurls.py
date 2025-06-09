@@ -32,7 +32,11 @@ direct_URLs = []
 #     print(len(direct_URLs))
 
 
-direct_URLs = pd.read_csv('Downloads/peace-machine/peacemachine/getnewurls/AZE/azeritimes.csv')['0']
+direct_URLs = pd.read_csv('Downloads/peace-machine/peacemachine/getnewurls/AZE/azeritimes.csv')
+
+text = """ """
+
+direct_URLs = text.split('\n')
 final_result = direct_URLs.copy()
 print(len(final_result))
 

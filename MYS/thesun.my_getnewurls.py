@@ -20,14 +20,14 @@ source = 'thesun.my'
 
 
 
-base = 'https://thesun.my/search-result/-/search/the/false/true/20240901/20241203/relevance/false/false/0/0/meta/0/0/0/'
+base = 'https://thesun.my/search-result/-/search/the/false/true/20241203/20250331/relevance/false/false/0/0/meta/0/0/0/'
 hdr = {'User-Agent': 'Mozilla/5.0'}
 len_final_result = 0
 url_count = 0
 processed_url_count = 0
 
 
-for p in range(1, 1045+1):
+for p in range(1, 1237+1):
     direct_URLs = []
 
     link = base + str(p) 

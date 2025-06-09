@@ -43,8 +43,8 @@ source = '1in.am'
 headers = {'User-Agent': 'MLP Bot'}
 
 ## CHANGE: initial and final sitemaps
-initialsitemap = 435
-finalsitemap = 440
+initialsitemap = 440
+finalsitemap = 455
 
 
 # Scraping from sitemaps

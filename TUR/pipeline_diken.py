@@ -33,7 +33,7 @@ db = MongoClient('mongodb://zungru:balsas.rial.tanoaks.schmoe.coffing@db-wibbels
 
 # Each sitemap includes 1000 links. Currently there are 165. In the next update, we can scrape only those between 1 and x-166 where x is the biggest sitemap number available. 
 start_sitemap = 1 #CHANGE
-end_sitemap = 7 #CHANGE
+end_sitemap = 14 #CHANGE
 
 
 

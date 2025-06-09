@@ -21,7 +21,7 @@ source = 'jornaldomingo.co.mz'
 
 sitemap_base = 'https://www.jornaldomingo.co.mz/post-sitemap'
 
-for i in range(19, 21):
+for i in range(20, 22):
     sitemap = sitemap_base + str(i) + '.xml'
     print(sitemap)
     hdr = {'User-Agent': 'Mozilla/5.0'} #header settings

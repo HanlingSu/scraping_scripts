@@ -532,7 +532,7 @@ def pipeline(sitemap,
     if keyword:
         
         #keywords = [ ('was',630),('on',650), ('has',700), ('an',650), ('not',920),('were',210), ('not',920), ('all',50), ('have',400)]
-        keywords = [('ozbekiston',5), ('jahon',7)]
+        keywords = [('ozbekiston',10), ('jahon',14)]
         for keyword_tuple in keywords:
             
             keyword = keyword_tuple[0]

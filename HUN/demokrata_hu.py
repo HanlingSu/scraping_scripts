@@ -97,7 +97,7 @@ def demokrata_story(soup):
 
 
 links = []
-sitemapurl = 'http://demokrata.hu/wp-content/uploads/sitemap/enews_article_sitemap16.xml'
+sitemapurl = 'http://demokrata.hu/wp-content/uploads/sitemap/enews_article_sitemap17.xml'
 reqs = requests.get(sitemapurl, headers=headers)
 soup = BeautifulSoup(reqs.text, 'html.parser')
 for link in soup.find_all('loc'):
@@ -114,7 +114,7 @@ print('TOTAL LINKS:', len(links))
 
 ## INSERTING IN THE DB:
 url_count = 0
-for url in links[::-1]:
+for url in links:
     print(url)
     if url == "":
         continue

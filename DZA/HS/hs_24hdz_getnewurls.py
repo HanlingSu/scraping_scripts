@@ -34,7 +34,7 @@ sitemap_base = 'https://www.24hdz.dz/post-sitemap'
 
 category = ['actualites','economie', 'maghreb', 'monde']
 page_start = [1, 1, 1, 1]
-page_end = [15, 3, 1, 2]
+page_end = [25, 5, 1, 8]
 for c, ps, pe  in zip(category, page_start, page_end):
     for p in range(ps, pe+1):
         url = 'https://www.24hdz.dz/category/' + c + '/page/' + str(p)

@@ -18,7 +18,7 @@ direct_URLs = []
 sitemap_base = 'https://kloop.kg/post-sitemap'
 
 # 36
-for i in range(39, 40):
+for i in range(39, 41):
     sitemap = sitemap_base + str(i) + '.xml'
     print(sitemap  )
     hdr = {'User-Agent': 'Mozilla/5.0'} #header settings

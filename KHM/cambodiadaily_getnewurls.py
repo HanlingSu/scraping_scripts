@@ -32,7 +32,7 @@ base = 'https://www.cambodiadaily.com/post-sitemap'
 
 direct_URLs = []
 
-for p in range(21,22):
+for p in range(20,22):
     url = base + str(p) +'.xml'
     print(url)
     req = requests.get(url, headers = header)

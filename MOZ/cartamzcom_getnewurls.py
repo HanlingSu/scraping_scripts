@@ -13,30 +13,42 @@ from newsplease import NewsPlease
 from dotenv import load_dotenv
 import re
 import json
+import cloudscraper
+
+
 # db connection:
 db = MongoClient('mongodb://zungru:balsas.rial.tanoaks.schmoe.coffing@db-wibbels.sas.upenn.edu/?authSource=ml4p&tls=true').ml4p
 
-direct_URLs = []
+scraper = cloudscraper.create_scraper(
+    browser={
+        'browser': 'firefox',
+        'platform': 'windows',
+        'mobile': False
+    }
+)
+
+direct_URLs = set()
 source = 'cartamz.com'
-base = 'https://cartamz.com/index.php/'
+base = 'https://cartamz.com/category/'
 category = ['crime', 'politica', 'economia-e-negocios', 'sociedade', 'cartaz']
 page_start = [0,0,0,0,0]
-page_end = [1, 280, 128, 190, 54]
+page_end = [1, 40, 35, 30, 3]
+
 
 for c, ps, pe in zip(category, page_start, page_end):
-    for p in range(ps+1, pe+1, 6):
-        url = base + c + '?start=' + str(p)
+    for p in range(pe+1, pe+10):
+        url = base + c + '/page/' + str(p)
         print(url)
-        hdr = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.102 Safari/537.36'} #header settings
-        req = requests.get(url, headers = hdr)
-        soup = BeautifulSoup(req.content)
-        item = soup.find_all('h3', {'class':"catItemTitle"})
+        soup = BeautifulSoup(scraper.get(url).text)
+        item = soup.find_all('h3')
         for i in item:
-            direct_URLs.append(i.find('a')['href'])
-
+            try:
+                direct_URLs.add(i.find('a')['href'])
+            except:
+                pass
         print('Now scraped ', len(direct_URLs), ' articles from previous pages.')
 
-final_result = ['https://cartamz.com' + i for i in direct_URLs]
+final_result = direct_URLs.copy()
 print(len(final_result))
 
 
@@ -49,14 +61,14 @@ for url in final_result:
         ## SCRAPING USING NEWSPLEASE:
         try:
             #header = {'User-Agent': ('Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_3) AppleWebKit/537.36''(KHTML, like Gecko) Chrome/35.0.1916.47 Safari/537.36')}
-            header = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.102 Safari/537.36'}
-            response = requests.get(url, headers=header)
-            # process
-            article = NewsPlease.from_html(response.text, url=url).__dict__
+            soup = BeautifulSoup(scraper.get(url).text)
+            # time.sleep(60)
+            article = NewsPlease.from_html(scraper.get(url).text).__dict__
             # add on some extras
             article['date_download']=datetime.now()
             article['download_via'] = "Direct2"
             article['source_domain'] = source
+            article['url'] = url
             # title, date, and main text has no problem
            
             print("newsplease date: ", article['date_publish'])

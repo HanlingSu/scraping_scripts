@@ -16,30 +16,42 @@ direct_URLs = []
 source = 'panamaamerica.com.pa'
 
 
+# link = "https://www.panamaamerica.com.pa/servicios/sitemap/archivo/noticias_2024.xml"
 
-# find location
-documents = db.sources.find({'source_domain': source}, { 'source_domain':1, 'primary_location': 1, '_id': 0 })
-for document in documents:
-    primary_location = document['primary_location']
+# print(link)
+# hdr = {'User-Agent': 'Mozilla/5.0'} #header settings
+# req = requests.get(link, headers = hdr)
+# soup = BeautifulSoup(req.content)
+# for i in soup.find_all('loc'):
+#     direct_URLs.append(i.text)
+# print(len(direct_URLs))
 
 base = 'https://www.panamaamerica.com.pa/'
-category = ['actualidad', 'sociedad', 'judicial', 'provincias', 'mundo', 'aldea-global', 'sucesos']
-page_start = [1, 1, 1, 1, 1, 1, 1]
-page_end = [0, 20, 0, 30, 0, 0, 3]
+category = ['politica', 'sociedad', 'judicial', 'provincias', 'mundo', 'aldea-global', 'sucesos', 'economia']
+page_start = [1, 1, 1, 1, 1, 1, 1, 1]
+page_end = [20, 20, 20, 30, 10, 10, 10, 10]
 
 for c, ps, pe in zip(category, page_start, page_end):
-    for p in range(11, pe+1):
+    for p in range(5, 10):
         link = base + c + '?page=' + str(p)
         print(link)
         hdr = {'User-Agent': 'Mozilla/5.0'} #header settings
         req = requests.get(link, headers = hdr)
         soup = BeautifulSoup(req.content)
-        for i in soup.find_all('h2', {'class' : 'titulo'}):
+        for i in soup.find_all('div', {'class' : 'title-wrapper titulo'}):
             direct_URLs.append(i.find('a')['href'])
         print(len(direct_URLs))
 
 direct_URLs = ['https://www.panamaamerica.com.pa' + i for i in direct_URLs]
+
+
+blacklist =  [( i['blacklist_url_patterns']) for i in db.sources.find({'source_domain' : source})][0]
+blacklist = re.compile('|'.join([re.escape(word) for word in blacklist]))
+direct_URLs = [word for word in direct_URLs if not blacklist.search(word)]
+
 final_result = direct_URLs.copy()
+
+
 print(len(final_result))
 
 url_count = 0
@@ -88,9 +100,9 @@ for url in final_result:
                 db['urls'].insert_one({'url': article['url']})
             except DuplicateKeyError:
                 myquery = { "url": url, "source_domain" : source}
-                db[colname].delete_one(myquery)
-                db[colname].insert_one(article)
-                print("DUPLICATE! Updated.")
+                # db[colname].delete_one(myquery)
+                # db[colname].insert_one(article)
+                print("DUPLICATE! Pass.")
                 pass
                 
         except Exception as err: 

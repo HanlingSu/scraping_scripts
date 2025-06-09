@@ -16,24 +16,24 @@ db = MongoClient('mongodb://zungru:balsas.rial.tanoaks.schmoe.coffing@db-wibbels
 
 source = 'ipn.md'
 
-base = 'https://www.ipn.md/ro/'
-categories = ['politica-7965', 'societate-7967', 'economie-7966','special-7978', 'alegeri-2023-8012']
+base = 'https://ipn.md/category/'
+categories = ['politica', 'societate', 'economie','special', 'conferinte']
 
 page_start = [1, 1, 1, 1, 1,1]
-page_end = [50, 90, 34, 3, 1]
+page_end = [120, 220, 100, 8, 2]
 # page_end = [340, 1168, 235, 277, 1008, 667, 133]
 
 direct_URLs = []
 
 for c, ps, pe in zip(categories, page_start, page_end):
-    for p in range(ps, pe+1):
-        link = base + c + '.html?page=' + str(p)
+    for p in range(ps, 20+1):
+        link = base + c + '/page/' + str(p)
         # print(link)
         hdr = {'User-Agent': 'Mozilla/5.0'} #header settings
         req = requests.get(link, verify=False)
 
         soup = BeautifulSoup(req.content)
-        item = soup.find_all('h2')
+        item = soup.find_all('h3')
         for i in item:
             direct_URLs.append(i.find('a')['href'])
         direct_URLs = list(set(direct_URLs))
@@ -66,17 +66,17 @@ for url in final_result:
 
             soup = BeautifulSoup(response.content, 'html.parser')
 
-            print('cutsom parser title ', article['title'] )
-            try:
-                maintext = ''
-                for i in soup.find('div', {'class' : 'post-content uli'}).find_all('p'):
-                    maintetx += i.text
-                article['maintext'] = maintext.strip()
-            except:
-                article['maintext'] = soup.find('div', {'class' : 'post-content uli'}).text.strip()
+            print('cutsom parser title: ', article['title'] )
+            # try:
+            #     maintext = ''
+            #     for i in soup.find('div', {'class' : 'inner-post-entry entry-content'}).find_all('p'):
+            #         maintetx += i.text
+            #     article['maintext'] = maintext.strip()
+            # except:
+            #     article['maintext'] = soup.find('div', {'class' : 'inner-post-entry entry-content'}).text.strip()
 
             if  article['maintext']:
-                print('custom parser maintext', article['maintext'][:50])
+                print('custom parser maintext: ', article['maintext'][:50])
             
             # custom parser
             

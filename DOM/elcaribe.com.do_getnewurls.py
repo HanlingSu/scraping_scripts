@@ -8,7 +8,6 @@ from datetime import datetime
 from dateutil.relativedelta import relativedelta
 from pymongo.errors import DuplicateKeyError
 from newsplease import NewsPlease
-import langid
 import cloudscraper
 import re
 
@@ -21,11 +20,11 @@ source = 'elcaribe.com.do'
 sitemap_base = 'https://www.elcaribe.com.do/post-sitemap'
 
 # 2553
-for p in range(2650, 2715):
+for p in range(2715, 2800):
     
     sitemap = sitemap_base + str(p)  + '.xml'
     print(sitemap  )
-    hdr = {'User-Agent': 'Mozilla/5.0'} #header settings
+    hdr ={'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.102 Safari/537.36'} #header settings
     response = requests.get(sitemap, headers=hdr)
     soup = BeautifulSoup(response.content)
     item = soup.find_all('loc')

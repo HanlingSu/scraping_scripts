@@ -17,11 +17,10 @@ db = MongoClient('mongodb://zungru:balsas.rial.tanoaks.schmoe.coffing@db-wibbels
 source = 'maliweb.net'
 
 base = 'https://www.maliweb.net/category/'
-categories = ['politique', 'economie', 'la-situation-politique-et-securitaire-au-nord',\
-    'international']
+categories = ['politique', 'economie', 'la-situation-politique-et-securitaire-au-nord', 'international']
 
 page_start = [1, 1, 1, 1]
-page_end = [25, 25, 2, 65]
+page_end = [45, 35, 5, 110]
 
 direct_URLs = []
 

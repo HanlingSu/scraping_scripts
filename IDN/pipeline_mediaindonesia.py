@@ -493,7 +493,7 @@ def pipeline(sitemap,
             keyword = keyword_tuple[0]
             num_page = int(keyword_tuple[1])
             
-            for pg in range(0,num_page):
+            for pg in range(0, num_page):
                 #collect urls
                 page = pg*20
                 print(f'keyword: {keyword} -------------------------- {page}/{num_page} ')

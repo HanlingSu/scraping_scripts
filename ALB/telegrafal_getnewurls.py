@@ -23,7 +23,7 @@ source = 'telegraf.al'
 direct_URLs = []
 
 page_start = 1
-page_end = 330
+page_end = 300
 base = 'https://telegraf.al/page/'
 
 for p in range(page_start, page_end+1):

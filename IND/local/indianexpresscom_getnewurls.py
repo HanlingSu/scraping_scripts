@@ -30,11 +30,11 @@ headers = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_5) AppleW
 final_count = 0
 final_inserted_url_count =0
 
-for year in range(2024, 2025):
+for year in range(2025, 2026):
     year_str = str(year)
     
     # scraping by month
-    for month in range(9, 13):
+    for month in range(1, 4):
         if month < 10:
             month_str = '0' + str(month)
         else:

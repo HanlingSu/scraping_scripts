@@ -44,14 +44,14 @@ source = 'kohsantepheapdaily.com.kh'
 
 ## STEP 0: Define dates
 ## years:
-start_year = 2024
-end_year = 2024
+start_year = 2025
+end_year = 2025
 
 years = list(range(start_year, end_year+1))
 
 ## months:
-start_month = 10
-end_month = 12
+start_month = 1
+end_month = 5
 
 months = list(range(start_month, end_month+1))
 

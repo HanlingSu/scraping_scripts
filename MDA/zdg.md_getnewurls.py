@@ -17,7 +17,7 @@ direct_URLs = []
 
 sitemap_base = 'https://www.zdg.md/sitemap-posttype-post.'
 
-for i in range(2024, 2025 ):
+for i in range(2025, 2026 ):
     direct_URLs = []
     sitemap = sitemap_base + str(i) + '.xml'
     print(sitemap )

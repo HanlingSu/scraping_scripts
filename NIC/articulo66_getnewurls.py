@@ -41,7 +41,7 @@ headers = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_5) AppleW
 
 
 ## COLLECTING URLS
-urls = []
+urls = set()
 
 ## NEED TO DEFINE SOURCE!
 source = 'articulo66.com'
@@ -93,7 +93,7 @@ def articulo66_story(soup):
 
 # STEP 0: URLs from the "todas-nuestras-noticias" section
 sections = ['politica','nacionales','internacionales']
-endnumbers = [37,42,35]
+endnumbers = [18,40,32]
 
 #https://www.articulo66.com/categorias/politica/
 #https://www.articulo66.com/categorias/politica/page/906/
@@ -118,7 +118,7 @@ for section in sections:
         soup = BeautifulSoup(reqs.text, 'html.parser')
 
         for link in soup.find_all('h3', {'class' : 'jeg_post_title'}):
-                urls.append(link.find('a')['href']) 
+                urls.add(link.find('a')['href']) 
         
         print("URLs so far: ", len(urls))
 

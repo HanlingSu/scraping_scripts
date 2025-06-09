@@ -16,7 +16,6 @@ from dotenv import load_dotenv
 # db connection:
 db = MongoClient('mongodb://zungru:balsas.rial.tanoaks.schmoe.coffing@db-wibbels.sas.upenn.edu/?authSource=ml4p&tls=true').ml4p
 
-direct_URLs = []
 # base = 
 categories = ['indonesia/politics', 'indonesia/jakarta', 'indonesia/society', 'indonesia/archipelago', 'business/economy', \
     'world/asia-pacific', 'world/americas', 'world/europe', 'world/middle-east-africa', 'life/health']
@@ -27,8 +26,11 @@ page_start = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
 # page_end = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
 
 page_end = [12, 3, 6, 7, 7, 10, 5, 5, 2, 2 ]
-for c, ps, pe in zip(categories, page_end, page_end):
+for c, ps, pe in zip(categories, page_start, page_end):
+    direct_URLs = []
+
     for p in range(ps, pe+1):
+
         link = base + c + '?page=' + str(p)
         
         hdr = {'User-Agent': 'Mozilla/5.0'} #header settings

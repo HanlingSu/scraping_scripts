@@ -38,10 +38,10 @@ base = 'https://www.nation.com.pk/archives/'
 
 category = ['headlines', 'latest', 'national', 'international', 'lahore', 'karachi', 'islamabad']
 # category = ['editorials']
-year = range(2024, 2025)
+year = range(2025, 2026)
 
 month_str = []
-for i in range(9, 12):
+for i in range(1, 4):
     month_str.append(calendar.month_abbr[i] )
 
 day = range(1, 32)
@@ -66,7 +66,7 @@ for yy in year:
             for c in category:
                 date_str = dd + '-' + mm +'-' + yyyy +'/'
                 url = base + date_str + c
-                print(url)
+                # print(url)
                 req = requests.get(url, headers = headers)
                 soup = BeautifulSoup(req.content)
                 item = soup.find_all('h3', {'class' : 'jeg_post_title category-page-title'})

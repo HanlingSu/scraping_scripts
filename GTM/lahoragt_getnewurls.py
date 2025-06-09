@@ -19,7 +19,7 @@ source = 'lahora.gt'
 
 sitemap_base = 'https://lahora.gt/post-sitemap'
 
-for i in range(173, 180):
+for i in range(182, 183):
     sitemap = sitemap_base + str(i) + '.xml' 
     print(sitemap)
     hdr = {'User-Agent': 'Mozilla/5.0'} #header settings

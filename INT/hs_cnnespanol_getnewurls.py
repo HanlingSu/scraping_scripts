@@ -32,7 +32,7 @@ base = 'https://cnnespanol.cnn.com/post-sitemap'
 
 direct_URLs = []
 
-for p in range(128,129):
+for p in range(128,138):
     url = base + str(p) +'.xml'
     print(url)
     req = requests.get(url, headers = header)

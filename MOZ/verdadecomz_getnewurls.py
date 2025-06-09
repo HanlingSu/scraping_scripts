@@ -20,7 +20,7 @@ direct_URLs = []
 source = 'verdade.co.mz'
 sitemap_base = 'https://verdade.co.mz/wp-sitemap-posts-post-'
 
-for i in range(35, 36):
+for i in range(35, 37):
     sitemap = sitemap_base + str(i) + '.xml'
     print(sitemap)
     hdr = {'User-Agent': 'Mozilla/5.0'} #header settings

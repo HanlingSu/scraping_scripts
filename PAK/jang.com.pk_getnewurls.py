@@ -36,7 +36,7 @@ base = "https://jang.com.pk/news/"
 
 direct_URLs = []
 # 660000
-for i in range(1390235,1419152):
+for i in range(1419152,1454952):
     direct_URLs.append(base + str(i))
 
 

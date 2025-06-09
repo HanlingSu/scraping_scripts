@@ -46,7 +46,7 @@ urls = []
 source = "neweasterneurope.eu"
 
 # URLs from Query:
-endnumberx = 5
+endnumberx = 11
 for i in range(1, endnumberx):
     if i == 1:
         url = 'https://neweasterneurope.eu/posts/'
@@ -66,7 +66,7 @@ for i in range(1, endnumberx):
 # URLs from Sitemap:
 
 
-url = 'https://neweasterneurope.eu/post-sitemap4.xml'
+url = 'https://neweasterneurope.eu/post-sitemap5.xml'
 #print(url)
 print("Sitemap: ", url)
 

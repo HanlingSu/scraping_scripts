@@ -29,9 +29,9 @@ url_count = 0
 processed_url_count = 0
 total_final_result = 0
 
-for year in range(2024, 2025):
+for year in range(2025, 2026):
 
-    for month in range(10, 13):
+    for month in range(1, 5):
 
         direct_URLs = []
         if month <10:
@@ -39,7 +39,7 @@ for year in range(2024, 2025):
         else:
             strmonth = str(month)
 
-        for day in range(1, 27):
+        for day in range(1, 31):
             if day < 10:
                 strday = '0' + str(day)
             else:
@@ -120,9 +120,9 @@ for year in range(2024, 2025):
                             print("Inserted! in ", colname, " - number of urls so far: ", url_count)
                         db['urls'].insert_one({'url': article['url']})
                     except DuplicateKeyError:
-                        db[colname].delete_one({'url' : url, 'source_domain' : source})
-                        db[colname].insert_one(article)
-                        print("DUPLICATE! Updated.")
+                        # db[colname].delete_one({'url' : url, 'source_domain' : source})
+                        # db[colname].insert_one(article)
+                        print("DUPLICATE! Pass.")
                         pass
                         
                 except Exception as err: 

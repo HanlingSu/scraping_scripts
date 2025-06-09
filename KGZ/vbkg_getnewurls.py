@@ -21,9 +21,9 @@ processed_url_count = 0
 len_final_result = 0
 base = 'https://www.vb.kg/?date='
 
-for year in range( 2024, 2025):
+for year in range( 2025, 2026):
     year_str = str(year)
-    for month in range(8, 12):
+    for month in range(1, 5):
         direct_URLs = []
         if month<10:
             month_str = '0' + str(month)

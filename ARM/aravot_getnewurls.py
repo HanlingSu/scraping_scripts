@@ -42,8 +42,8 @@ source = 'aravot.am'
 headers = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.102 Safari/537.36'}
 
 ## CHANGE: initial and final sitemaps
-initialsitemap = 233
-finalsitemap = 238
+initialsitemap = 239
+finalsitemap = 247
 
 # Scraping from sitemaps
 for j in range(initialsitemap,finalsitemap+1):

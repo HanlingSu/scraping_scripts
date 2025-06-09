@@ -32,7 +32,7 @@ db = MongoClient('mongodb://zungru:balsas.rial.tanoaks.schmoe.coffing@db-wibbels
 detectlanguage.configuration.api_key = "81762acd6a7244ef736911adbadb09e3"
 
 start = 1
-end = 100
+end = 40
 
 direct_URLs = []
 hdr = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.102 Safari/537.36'}
@@ -44,11 +44,10 @@ for i in range( start, end + 1):
     req = requests.get(url, headers = hdr)
     soup = BeautifulSoup(req.content)
 
-    for i in soup.find_all('li', {'class' : 'col-xs-12 col-sm-12 col-md-12 col-lg-12 fui-grid__inner'}):
-        direct_URLs.append(i.find('a')['href'])
+    for i in soup.find('div', {'class' : 'news'}).find_all('div', {'class'  : 'news__item news__item--unopenable accordeon__item sticky-btn-parent'}):
+        direct_URLs.append(i['data-article-id'])
     print('Now collected', len(direct_URLs), 'articles ... ')
-
-direct_URLs= [ 'https://rus.azattyq.org' + i for i in direct_URLs]
+direct_URLs= [ 'https://rus.azattyq.org/a/' + i +'.html'for i in direct_URLs]
 final_result = list(set(direct_URLs))
 
 print(len(final_result))

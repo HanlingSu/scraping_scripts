@@ -24,7 +24,7 @@ source = 'frontpageafricaonline.com'
 
 direct_URLs = []
 base = 'https://frontpageafricaonline.com/post-sitemap'
-for p in range(31, 33):
+for p in range(32, 34):
     sitemap = base+str(p) +'.xml'
     print(sitemap)
     req = requests.get(sitemap, headers = headers)

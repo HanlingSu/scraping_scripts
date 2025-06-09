@@ -12,14 +12,14 @@ import re
 # db connection:
 db = MongoClient('mongodb://zungru:balsas.rial.tanoaks.schmoe.coffing@db-wibbels.sas.upenn.edu/?authSource=ml4p&tls=true').ml4p
 
-sitemap_base = 'https://www.prensalibre.com/sitemap.xml?yyyy=2024&mm='
+sitemap_base = 'https://www.prensalibre.com/sitemap.xml?yyyy=2025&mm='
 
 source = 'prensalibre.com'
 
 direct_URLs = []
 
 # scraping from sitemap
-for month in range(8,11):
+for month in range(1,3):
     if month >= 10:
         month = str(month)
     else:

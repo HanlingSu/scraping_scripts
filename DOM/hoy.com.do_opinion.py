@@ -28,9 +28,9 @@ for p in range(1, 1680):
     hdr = {'User-Agent': 'Mozilla/5.0'} #header settings
     response = requests.get(sitemap, headers=hdr)
     soup = BeautifulSoup(response.content)
-    for link in soup.findAll('h1', {'class':'post-title'}):
+    for link in soup.findAll('loc'):
         try:
-            direct_URLs.append(link.find('a')['href'])
+            direct_URLs.append(link.text)
         except:
             pass
     print("Urls so far: ",len(direct_URLs))

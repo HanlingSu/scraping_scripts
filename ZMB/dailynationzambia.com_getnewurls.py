@@ -29,7 +29,7 @@ for document in documents:
 direct_URLs = []
 base = 'https://dailynationzambia.com/wp-sitemap-posts-post-'
 #18
-for p in range(14, 15):
+for p in range(14, 16):
     url = base+str(p)+'.xml'
     req = requests.get(url, headers = headers)
     soup = BeautifulSoup(req.content)
@@ -85,8 +85,8 @@ for url in final_result[::-1]:
                 print("newsplease maintext: ", article['maintext'][:50])
 
                 
-                if dateparser.parse(soup.find('div', {'class' : 'entry-content entry clearfix'}).find('p').text) is not None:
-                    date = soup.find('div', {'class' : 'entry-content entry clearfix'}).find('p').text
+                if dateparser.parse(soup.find('meta', {'property' : 'article:published_time'})['content']) is not None:
+                    date = soup.find('meta', {'property' : 'article:published_time'})['content']
                     
                     article['date_publish'] = dateparser.parse(date)
                     

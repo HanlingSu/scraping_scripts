@@ -19,7 +19,7 @@ source = 'voceabasarabiei.md'
 sitemap_base = 'https://voceabasarabiei.md/post-sitemap'
 
 #13 last 100
-for i in range(19, 20):
+for i in range(24, 27):
     sitemap = sitemap_base + str(i) + '.xml'
     print(sitemap  )
     hdr = {'User-Agent': 'Mozilla/5.0'} #header settings

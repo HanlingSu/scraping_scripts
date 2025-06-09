@@ -35,11 +35,11 @@ source = 'laprensa.hn'
 
 base_list = []
 
-base = 'https://www.laprensa.hn/busquedas/-/search/e/false/false/20230801/20230901/date/true/true/0/0/meta/0/0/0/'
+base = 'https://www.laprensa.hn/busquedas/-/search/e/false/false/20250101/20250301/date/true/true/0/0/meta/0/0/0/'
 
 hdr = {'User-Agent': 'Mozilla/5.0'} #header settings
 
-for i in range(1, 349):
+for i in range(349, 522):
     base_list.append(base + str(i))
 
 print('Scrape ', len(base_list), ' page of search result for ', source)
@@ -52,7 +52,7 @@ for b in base_list:
         req = requests.get(b, headers = headers)
         soup = BeautifulSoup(req.content)
         
-        item = soup.find_all('div', {'class' : 'headline'})
+        item = soup.find_all('div', {'class' : 'card-title title'})
         for i in item:
             url = i.find('a', href=True)['href']
             if url:

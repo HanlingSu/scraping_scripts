@@ -53,7 +53,7 @@ category = ['24', '23']
             # news, opinion
 
 page_start = [1, 1]
-page_end = [90, 1]
+page_end = [150, 2]
 for c, ps, pe in zip(category, page_start, page_end):
     for p in range(ps, pe+1):
         url = 'https://informante.web.na/?cat=' + c + '&paged=' + str(p)

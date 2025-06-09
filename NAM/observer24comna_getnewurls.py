@@ -15,7 +15,7 @@ db = MongoClient('mongodb://zungru:balsas.rial.tanoaks.schmoe.coffing@db-wibbels
 
 direct_URLs = []
 
-sitemap = 'https://www.observer24.com.na/post-sitemap9.xml'
+sitemap = 'https://www.observer24.com.na/post-sitemap10.xml'
 source = 'observer24.com.na'
 
 # 96

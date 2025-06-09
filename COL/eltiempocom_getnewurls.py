@@ -16,9 +16,9 @@ direct_URLs = []
 source = 'eltiempo.com'
 
 # sitemap_base = 'https://www.eltiempo.com/sitemap-articles-'
-for year in range(2024, 2025):
+for year in range(2025, 2026):
     year_str = str(year)
-    for month in range(8, 11):
+    for month in range(1, 5):
         if month<10:
             month_str = '0' + str(month)
         else:
@@ -80,11 +80,11 @@ for url in final_result:
             print("newsplease title: ", article['title'])
 
             try:
-                maintext = soup.find('div', {'class' : 'c-detail__body'}).text
+                maintext = soup.find('div', {'class' : 'c-cuerpo'}).text
                 article['maintext'] = maintext.strip()
             except:
                 maintext = ''
-                for i in soup.find('div', {'class' : 'c-detail__body'}).find_all('div', {'class': 'paragraph'}):
+                for i in soup.find('div', {'class' : 'c-cuerpo'}).find_all('div', {'class': 'paragraph'}):
                     maintext += i.text
                 article['maintext'] = maintext.strip()
 

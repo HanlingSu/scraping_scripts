@@ -22,30 +22,30 @@ db = MongoClient('mongodb://zungru:balsas.rial.tanoaks.schmoe.coffing@db-wibbels
 
 
 
-base = 'https://www.thediliweekly.com/tl/'
+base = 'https://www.thediliweekly.com/category/'
 source = 'thediliweekly.com'
 
-category = ['notisias', 'editorial1']
-page_start = [1, 1]
-page_end = [48, 84]
+category = ['notisias', 'editorial1', 'kapital', 'english-page', 'dezenvolvimentu', 'saude', 'seguransadefeza', 'jender', 'labarikjoventude', 'direitos-humanos']
+page_start =  [1] * len(category)
+page_end = [3] * len(category)
 
 
 for ps, pe, c in zip(page_start, page_end, category):
     direct_URLs = []
-    for p in range(ps, pe+1, 6):
+    for p in range(ps, pe+1):
         link = base + c + '?start=' + str(p) 
         print(link)
         hdr = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.102 Safari/537.36'}
         req = requests.get(link, headers = hdr)
         soup = BeautifulSoup(req.content)
         try:
-            for h1 in soup.find_all('h1', {'class' : 'title'}):
-                direct_URLs.append(h1.find('a')['href'])
+            for h3 in soup.find_all('h3', {'class' : 'entry-title td-module-title'}):
+                direct_URLs.append(h3.find('a')['href'])
         except:
             pass
         print(len(direct_URLs))
 
-    direct_URLs = ['https://www.thediliweekly.com' + i for i in direct_URLs]
+    # direct_URLs = ['https://www.thediliweekly.com' + i for i in direct_URLs]
     final_result = direct_URLs.copy()
 
     print('Now have collected', len(final_result), 'articles from', c)
@@ -73,21 +73,16 @@ for ps, pe, c in zip(page_start, page_end, category):
                 
                 print("newsplease title: ", article['title'])
 
-                try:
-                    date = soup.find('dd', {'class' : 'rt-date-published'}).text.strip().split(':')[-1]
-                    article['date_publish'] = dateparser.parse(date)
-                except:
-                    date = soup.find('dd', {'class' : 'rt-date-published'}).split(':')[-1]
-                    article['date_publish'] = dateparser.parse(date)
+               
                 print("newsplease date: ", article['date_publish'])
 
                 try:
-                    maintext= soup.find('article', {'class' : 'item-page'}).text
+                    maintext= soup.find('div', {'class' : 'td-post-content tagdiv-type'}).text
                     article['maintext'] = maintext.strip()
                     
                 except:
                     maintext = ''
-                    for i in soup.find('article', {'class' : 'item-page'}).find_all('p'):
+                    for i in soup.find('div', {'class' : 'td-post-content tagdiv-type'}).find_all('p'):
                         maintext += i.text
                     article['maintext'] = maintext.strip()
                 print("newsplease maintext: ", article['maintext'][:50])

@@ -25,7 +25,7 @@ source = 'malawivoice.com'
 
 direct_URLs = []
 sitemap_base = 'https://www.malawivoice.com/post-sitemap'
-for i in range(11, 12+1):
+for i in range(12, 13+1):
     
     sitemap = sitemap_base + str(i) +'.xml'
     print('Now scraping: ', sitemap)

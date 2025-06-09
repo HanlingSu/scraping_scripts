@@ -15,9 +15,9 @@ db = MongoClient('mongodb://zungru:balsas.rial.tanoaks.schmoe.coffing@db-wibbels
 
 direct_URLs = []
 
-sitemap_base = 'https://timpul.md/sitemap-'
+sitemap_base = 'https://timpul.md/post-sitemap'
 
-for i in range(96, 97):
+for i in range(192, 193):
     direct_URLs = []
     sitemap = sitemap_base + str(i) + '.xml'
     print(sitemap )

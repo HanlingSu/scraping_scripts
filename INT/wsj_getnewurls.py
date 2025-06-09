@@ -49,8 +49,8 @@ urls = []
 source = 'wsj.com'
 #https://www.wsj.com/news/archive/2021/08/19
 ## STEP 0: Define dates
-yearn = "2024"
-monthn = "12" # XX
+yearn = "2025"
+monthn = "1" # XX
 daystart = "1"
 dayend = "31" 
 

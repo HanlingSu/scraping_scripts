@@ -49,8 +49,8 @@ urls = []
 
 ## NEED TO DEFINE SOURCE!
 source = 'lemonde.fr'
-yearn = "2024"
-mondays = ["12-02", "12-09", "12-16", "12-23"]  # Enter the dates of every Monday you want to visit
+yearn = "2025"
+mondays = ["03-01", "10-01", "19-01", "26-01"]  # Enter the dates of every Monday you want to visit
 
 for monday in mondays:
     url = f"https://www.lemonde.fr/sitemap/articles/{yearn}-{monday}.xml"

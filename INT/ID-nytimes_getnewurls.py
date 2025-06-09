@@ -1,128 +1,97 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-Edited on Jan 19 2024
-
-@author: Hanling
-
-This script updates nytimes.com using daily sitemaps.
-It can be run as often as one desires. 
+Script to scrape NYTimes articles (Jan, Feb, Mar 2025) 
+and insert them into MongoDB.
 """
-# Packages:
-import random
-import sys
-import cloudscraper
-sys.path.append('../')
-import os
-import re
-from p_tqdm import p_umap
-from tqdm import tqdm
-from pymongo import MongoClient
-import random
-from urllib.parse import urlparse
-from datetime import datetime
-from dateutil.relativedelta import relativedelta
-from pymongo.errors import DuplicateKeyError
-from pymongo.errors import CursorNotFound
+
 import requests
-from newsplease import NewsPlease
-from dotenv import load_dotenv
+import cloudscraper
 from bs4 import BeautifulSoup
-import dateparser
-import pandas as pd
+from datetime import datetime
+from pymongo import MongoClient
+from pymongo.errors import DuplicateKeyError
+from newsplease import NewsPlease
+import re
 
-# db connection:
+# Database connection
 db = MongoClient('mongodb://zungru:balsas.rial.tanoaks.schmoe.coffing@db-wibbels.sas.upenn.edu/?authSource=ml4p&tls=true').ml4p
+source = "nytimes.com"
 
-# headers for scraping
-headers = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.102 Safari/537.36'}
+# Headers & scraper
+headers = {
+    'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.102 Safari/537.36'
+}
+scraper = cloudscraper.create_scraper(browser={'browser': 'firefox', 'platform': 'windows', 'mobile': False})
 
-scraper = cloudscraper.create_scraper(
-    browser={
-        'browser': 'firefox',
-        'platform': 'windows',
-        'mobile': False
-    }
-)
+# Define months for January, February, March 2025
+TARGET_YEAR = 2025
+TARGET_MONTHS = [1, 2, 3]  # January, February, March
 
-## COLLECTING URLS
-urls = []
+# Step 1: Get URLs from NYTimes Sitemaps
+article_urls = []
 
-## NEED TO DEFINE SOURCE!
-source = 'nytimes.com'
+def get_article_urls():
+    """Extract article URLs from NYTimes sitemaps for Jan, Feb, Mar 2025."""
+    for month in TARGET_MONTHS:
+        month_str = f"{month:02d}"  # Format as "01", "02", "03"
+        sitemap_url = f"https://www.nytimes.com/sitemaps/new/sitemap-{TARGET_YEAR}-{month_str}.xml.gz"
 
-## STEP 0: Define dates 
-year = 2024
-month = 12
-year_str = str(year)
-month_str = '0' + str(month)  
+        print(f"Extracting from: {sitemap_url}")
+        response = requests.get(sitemap_url, headers=headers)
+        soup = BeautifulSoup(response.text, 'html.parser')
 
-# Loop through each day in August
-for day in range(1, 32):  
-    if day < 10:
-        day_str = '0' + str(day)
-    else:
-        day_str = str(day)
+        for link in soup.find_all('loc'):
+            url = link.text
+            if "nytimes.com" in url:
+                article_urls.append(url)
 
-    url = f"https://www.nytimes.com/sitemaps/new/sitemap-{year_str}-{month_str}.xml.gz"
-    print("Extracting from:", url)
-    reqs = requests.get(url, headers=headers)
-    soup = BeautifulSoup(reqs.text, 'html.parser')
-    try:
-        for i in soup.find_all('loc'):
-            urls.append(i.text)
-    except:
-        pass
-    print("URLs so far:", len(urls))
+    print(f"Total unique articles extracted: {len(article_urls)}")
 
-# STEP 1: Get rid of urls from blacklisted sources
-blacklist = [(i['blacklist_url_patterns']) for i in db.sources.find({'source_domain': source})][0]
-blacklist = re.compile('|'.join([re.escape(word) for word in blacklist]))
-urls = [word for word in urls if not blacklist.search(word)]
+def apply_blacklist():
+    """Filter out blacklisted categories from URLs."""
+    blacklist = [(i['blacklist_url_patterns']) for i in db.sources.find({'source_domain': source})][0]
+    blacklist = re.compile('|'.join([re.escape(word) for word in blacklist]))
+    return [url for url in article_urls if not blacklist.search(url)]
 
-# List of unique urls:
-list_urls = urls.copy()
+def scrape_articles():
+    """Scrape articles and insert them into MongoDB."""
+    url_count = {1: 0, 2: 0, 3: 0}  # Track inserted articles per month
 
-print("Total number of USABLE urls found:", len(list_urls))
-
-## INSERTING IN THE DB:
-url_count = 0
-for url in list_urls:
-    if url == "" or url is None:
-        continue
-    if "nytimes.com" in url:
-        print(url, "FINE")
-        ## SCRAPING USING NEWSPLEASE:
+    for url in article_urls:
         try:
-            soup = BeautifulSoup(scraper.get(url).text, 'html.parser')
-            article = NewsPlease.from_html(scraper.get(url).text).__dict__
+            print(f"Scraping: {url}")
+            response = scraper.get(url).text
+            article = NewsPlease.from_html(response).__dict__
+
+            # Add metadata
             article['date_download'] = datetime.now()
             article['download_via'] = "Direct2"
+            article['source_domain'] = source
 
-            # Filter to only insert articles 
-            if article['date_publish'] and article['date_publish'].year == 2024 and article['date_publish'].month == 9:
-                print("newsplease date:", article['date_publish'])
-                print("newsplease title:", article['title'])
-                print("newsplease maintext:", article['maintext'][:50])
-
-                ## Inserting into the db
-                try:
-                    year = article['date_publish'].year
-                    month = article['date_publish'].month
-                    colname = f'articles-{year}-{month}'
-                except:
-                    colname = 'articles-nodate'
-                try:
-                    db[colname].insert_one(article)
-                    if colname != 'articles-nodate':
-                        url_count += 1
-                    print("Inserted! in", colname, "- number of urls so far:", url_count)
-                except DuplicateKeyError:
-                    print("DUPLICATE! Not inserted.")
+            # Ensure the article belongs to Jan, Feb, or Mar 2025
+            if article['date_publish'] and article['date_publish'].year == TARGET_YEAR:
+                month = article['date_publish'].month
+                if month in TARGET_MONTHS:
+                    colname = f'articles-{TARGET_YEAR}-{month}'
+                    try:
+                        db[colname].insert_one(article)
+                        url_count[month] += 1
+                        print(f"Inserted into '{colname}': {article['title'][:50]} ...")
+                    except DuplicateKeyError:
+                        print(f"Duplicate article, not inserted: {url}")
+                else:
+                    print(f"Skipping article {url} - Not from Jan/Feb/Mar 2025.")
             else:
-                print("Article not from september 2024, skipping.")
-        except Exception as err: 
-            print("ERRORRRR......", err)
-            pass
+                print(f"Skipping article {url} - No valid date.")
 
-print("Done inserting", url_count, "manually collected urls from", source, "into the db.")
+        except Exception as e:
+            print(f"Error scraping {url}: {e}")
+
+    print(f"Total articles inserted: January({url_count[1]}), February({url_count[2]}), March({url_count[3]})")
+
+# Main execution
+if __name__ == "__main__":
+    get_article_urls()
+    article_urls = apply_blacklist()
+    scrape_articles()

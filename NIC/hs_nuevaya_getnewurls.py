@@ -65,7 +65,7 @@ header = {'User-Agent': ('Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_3) AppleWe
 
 category = ['nacionales', 'internacionales',  'destacadas', 'sucesos', 'opinion-ya']
 page_start = [1, 1, 1, 1, 1]
-page_end = [0,0,0,0, 5]
+page_end = [28,30,55,60, 5]
 base = 'https://nuevaya.com.ni/'
 
 for c, ps, pe in zip(category, page_start, page_end):

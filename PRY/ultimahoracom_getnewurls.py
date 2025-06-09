@@ -40,7 +40,7 @@ from dotenv import load_dotenv
 db = MongoClient('mongodb://zungru:balsas.rial.tanoaks.schmoe.coffing@db-wibbels.sas.upenn.edu/?authSource=ml4p&tls=true').ml4p
 
 direct_URLs = []
-sitemap = 'https://www.ultimahora.com/sitemap-202407.xml'
+sitemap = 'https://www.ultimahora.com/sitemap-202412.xml'
 
 hdr = {'User-Agent': 'Mozilla/5.0'} #header settings
 req = requests.get(sitemap, headers = hdr)

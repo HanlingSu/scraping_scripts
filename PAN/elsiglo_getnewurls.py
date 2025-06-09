@@ -19,7 +19,7 @@ direct_URLs = []
 sitemap_base = 'https://elsiglo.com.pa/megasitemap/'
 source = 'elsiglo.com.pa'
 
-for p in range(13, 14):
+for p in range(0, 1):
     sitemap = sitemap_base+str(p)+'.xml'
     print(sitemap)
     hdr = {'User-Agent': 'Mozilla/5.0'} #header settings
@@ -42,7 +42,7 @@ print(len(final_result))
 url_count = 0
 processed_url_count = 0
 
-for url in final_result:
+for url in final_result[::-1]:
     if url:
         print(url, "FINE")
         ## SCRAPING USING NEWSPLEASE:

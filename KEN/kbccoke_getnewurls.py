@@ -21,7 +21,7 @@ direct_URLs = []
 # base = 'https://www.kbc.co.ke/post-sitemap'
 source = 'kbc.co.ke'
 
-# direct_URLs = pd.read_csv('/home/mlp2/Downloads/peace-machine/peacemachine/getnewurls/KEN/kbccoke.csv')['0']
+direct_URLs = pd.read_csv('/home/mlp2/Downloads/peace-machine/peacemachine/getnewurls/KEN/kbccoke.csv')['0']
 # for i in range(1, 2):
 #     sitemap = base + str(i) + '.xml'
 #     print(sitemap)
@@ -36,17 +36,17 @@ source = 'kbc.co.ke'
 
 #     print('Now scraped ', len(direct_URLs), ' articles from previous sitemaps.')
 
-base = 'https://www.kbc.co.ke/category/news/page/'
-for p in range(1, 3):
-    url = base + str(p)
-    print(url)
-    hdr = {'User-Agent': 'Mozilla/5.0'} #header settings
-    req = requests.get(url, headers = hdr)
-    soup = BeautifulSoup(req.content)
+# base = 'https://www.kbc.co.ke/category/news/page/'
+# for p in range(1, 3):
+#     url = base + str(p)
+#     print(url)
+#     hdr = {'User-Agent': 'Mozilla/5.0'} #header settings
+#     req = requests.get(url, headers = hdr)
+#     soup = BeautifulSoup(req.content)
 
-    for i in soup.find('div', {'class' :'td-ss-main-content'}).find_all('h3', {'class' : 'entry-title td-module-title'}):
-        direct_URLs.append(i.find('a')['href'])
-    print(len(direct_URLs))
+#     for i in soup.find('div', {'class' :'td-ss-main-content'}).find_all('h3', {'class' : 'entry-title td-module-title'}):
+#         direct_URLs.append(i.find('a')['href'])
+#     print(len(direct_URLs))
 
 
 blacklist =  [( i['blacklist_url_patterns']) for i in db.sources.find({'source_domain' : source})][0]

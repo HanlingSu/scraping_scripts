@@ -38,7 +38,7 @@ source = 'novamakedonija.com.mk'
 category = ['makedonija','ekonomija','svet' ]
 
 page_start = [1, 1, 1]
-page_end = [200, 28, 105]
+page_end = [300, 40, 140]
 direct_URLs = []
 
 for c, ps, pe in zip(category, page_start, page_end):

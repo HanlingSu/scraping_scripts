@@ -107,7 +107,7 @@ def hvg_story(soup):
 ## econ news first
 baseurl1 = 'https://hvg.hu/gazdasag/'
 links = []
-for i in range(1, 63): ##CHANGE: There were 6481 pages when scraped. So the first x - 6481 pages need to be scraped next time. 
+for i in range(1, 90): ##CHANGE: There were 6481 pages when scraped. So the first x - 6481 pages need to be scraped next time. 
     linkpageURL = baseurl1 + str(i) + '?ver=1'
     print(linkpageURL)
     #reqs = requests.get(linkpageURL, headers=headers)

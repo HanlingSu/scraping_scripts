@@ -48,12 +48,12 @@ urls = []
 source = 'scmp.com'
 
 ## NEED TO DEFINE STARTING MONTH TO UPDATE: 
-yearup = 2024
-monthstart = 9
+yearup = 2025
+monthstart = 2  
 
 
 # STEP O: get urls from sitemaps:,'https://www.scmp.com/sitemap_article.xml','https://www.scmp.com/sitemap_economy.xml','https://www.scmp.com/sitemap_business.xml'
-sitemaps = ['https://www.scmp.com/sitemap_news.xml']
+sitemaps = ['https://www.scmp.com/sitemap/articles.xml']
 
 for url in sitemaps:
     print("Extracting from: ", url)

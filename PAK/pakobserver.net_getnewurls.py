@@ -36,7 +36,7 @@ base = 'https://pakobserver.net/post-sitemap'
 
 direct_URLs = []
 
-for p in range(229,236):
+for p in range(235,244):
     sitemap = base + str(p) +'.xml'
     req = requests.get(sitemap, headers = header)
     soup = BeautifulSoup(req.text)
@@ -49,7 +49,7 @@ final_result = direct_URLs.copy()
 url_count = 0
 processed_url_count = 0
 
-for url in final_result:
+for url in final_result[::-1]:
     try:
         print(url)
         #header = {'User-Agent': ('Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_3) AppleWebKit/537.36''(KHTML, like Gecko) Chrome/35.0.1916.47 Safari/537.36')}

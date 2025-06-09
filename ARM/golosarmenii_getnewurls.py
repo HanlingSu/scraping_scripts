@@ -47,8 +47,8 @@ headers = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_5) AppleW
 #headers = {'User-Agent': 'MLP Bot'}
 
 ## CHANGE: initial and final sitemaps
-yearini = 2024
-yearend = 2024
+yearini = 2025
+yearend = 2025
 
 
 # Scraping from sitemaps

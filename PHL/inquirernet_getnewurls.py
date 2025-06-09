@@ -43,7 +43,7 @@ direct_URLs = []
 base = 'https://newsinfo.inquirer.net/category/latest-stories/page/'
 
 # opinion_base = "https://opinion.inquirer.net/category/editorial/page/"
-for i in range(1, 390):
+for i in range(1, 450):
     link = base + str(i) 
     hdr = {'User-Agent': 'Mozilla/5.0'} #header settings
     req = requests.get(link, headers = hdr)

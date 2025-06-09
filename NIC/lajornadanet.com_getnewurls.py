@@ -45,7 +45,7 @@ for j in range(26,28):
         direct_URLs.append(link.text)
 
     print(len(direct_URLs))
-file_address = "/home/mlp2/Downloads/peace-machine/peacemachine/getnewurls/NIC/lajornadanet.csv"
+# file_address = "/home/mlp2/Downloads/peace-machine/peacemachine/getnewurls/NIC/lajornadanet.csv"
 # direct_URLs = pd.read_csv(file_address)['0']
 
 

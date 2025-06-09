@@ -17,17 +17,17 @@ direct_URLs = []
 source = 'elheraldo.hn'
 
 # scrape search result
-base = 'https://www.elheraldo.hn/busquedas/-/search/el/false/false/20240701/20240731/date/true/true/0/0/meta/0/0/0/100'
+base = 'https://www.elheraldo.hn/busquedas/-/search/el/false/false/20250101/20250231/date/true/true/0/0/meta/0/0/0/'
 
 start_page = 1
-end_page = 315
+end_page = 550
 # 890
 for i in range(start_page, end_page+1):
     base_link = base + str(i) 
     print(base_link)
     req = requests.get(base_link, headers = hdr)
     soup = BeautifulSoup(req.content)
-    item = soup.find_all('div', {'class' : 'TIT_IMG_INF2_TXT'})
+    item = soup.find_all('div', {'class' : 'card-title title'})
 
     for i in item:
         direct_URLs.append(i.find('a')['href'])

@@ -49,8 +49,8 @@ source = 'csmonitor.com'
 
 ## Step 0: define starting month and year:
 
-year_up = 2024
-month_up = 12
+year_up = 2025
+month_up = 2
 
 ## STEP 1: COLLECTING URLS FROM KEYWORD SEARCHES:
 # keywords:

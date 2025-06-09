@@ -15,7 +15,6 @@ import sys
 sys.path.append('../')
 import os
 import re
-from p_tqdm import p_umap
 from tqdm import tqdm
 from pymongo import MongoClient
 import random
@@ -52,7 +51,7 @@ scraper = cloudscraper.create_scraper(
 direct_URLs = []
 
 # post-sitemap 
-for j in range(32,34):
+for j in range(33,34):
     url = 'https://confidencial.digital/post-sitemap' + str(j) + '.xml'
 
     print("Sitemap: ", url)
@@ -69,8 +68,8 @@ for j in range(32,34):
 
 blacklist =  [( i['blacklist_url_patterns']) for i in db.sources.find({'source_domain' : source})][0]
 blacklist = re.compile('|'.join([re.escape(word) for word in blacklist]))
-direct_URLs = [i for i in direct_URLs if "/opinion/" in i]
-# direct_URLs = [word for word in direct_URLs if not blacklist.search(word)]
+# direct_URLs = [i for i in direct_URLs if "/opinion/" in i]
+direct_URLs = [word for word in direct_URLs if not blacklist.search(word)]
 
 final_result = direct_URLs.copy()
 
@@ -115,27 +114,27 @@ for url in final_result[::-1]:
             colname = 'articles-nodate'
         try:
             #TEMP: deleting the stuff i included with the wrong domain:
-            #myquery = { "url": final_url, "source_domain" : 'web.archive.org'}
-            #db[colname].delete_one(myquery)
+            
             # Inserting article into the db:
             if '/opinion/' in url:
                 colname = 'opinion-'+colname
-                db[colname].insert_one(article)
-                article['primary_location'] = 'NIC'
-                print("Inserted! in ", colname, " - number of urls so far: ", url_count)
 
-            else:
-                db[colname].insert_one(article)
             # count:
+            db[colname].insert_one(article)
+            
             if colname != 'articles-nodate':
                 url_count = url_count + 1
                 print("Inserted! in ", colname, " - number of urls so far: ", url_count)
             else:
                 print("Inserted! in ", colname)
-            db['urls'].insert_one({'url': article['url']})
+            # db['urls'].insert_one({'url': article['url']})
 
         except DuplicateKeyError:
-            print("DUPLICATE! Not inserted.")
+            myquery = { "url": url, "source_domain" : source}
+            db[colname].delete_one(myquery)
+            db[colname].insert_one(article)
+
+            print("DUPLICATE! Updated.")
     except Exception as err: 
         print("ERRORRRR......", err)
         pass

@@ -36,7 +36,7 @@ base = 'https://makfax.com.mk/sitemap-pt-post-p'
 
 direct_URLs = []
 for year in range(2024, 2025):
-    for month in range(9, 12):
+    for month in range(12, 13):
         monthly_URLs = []
         year_str = str(year)
         if month <10:

@@ -34,9 +34,9 @@ final_inserted_url_count =0
 
 hdr = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.102 Safari/537.36'}
 
-for year in range(2024, 2025):
+for year in range(2025, 2026):
     year_str = str(year)
-    for month in range(9, 13):
+    for month in range(1, 4):
         direct_URLs = []
         month_str = datetime.strptime(str(month), "%m").strftime("%B").lower()
         print('Now scraping', str(year), str(month), '...')

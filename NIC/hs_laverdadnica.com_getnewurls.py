@@ -73,7 +73,7 @@ for c, ps, pe in zip(category, page_start, page_end):
         print(url)
         reqs = requests.get(url, headers=header)
         soup = BeautifulSoup(reqs.text, 'html.parser')
-        for i in soup.find_all('h3', {'class' : 'elementor-post__title'}):
+        for i in soup.find_all('h3', {'class' : 'elementor-post__title'})[:20]:
             direct_URLs.append(i.find('a')['href'])
         print('Now scraped ', len(direct_URLs), 'articles from previous pages ... ')
     # print(direct_URLs)

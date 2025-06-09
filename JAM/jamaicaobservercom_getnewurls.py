@@ -17,20 +17,20 @@ base_list = []
 
 source = 'jamaicaobserver.com'
 
-direct_URLs = []
-sitemap_base = 'https://www.jamaicaobserver.com/post-sitemap'
+# direct_URLs = []
+# sitemap_base = 'https://www.jamaicaobserver.com/post-sitemap'
 hdr = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.102 Safari/537.36'}
 
-start = 475
-end = 480
-for i in range(start, end+1):
-    sitemap = sitemap_base + str(i) + '.xml'
-    req = requests.get(sitemap, headers = hdr)
-    soup = BeautifulSoup(req.content)
-    item = soup.find_all('loc')
-    for i in item:
-        direct_URLs.append(i.text)
-    print('Now scraped ', len(direct_URLs), ' articles from previous page.')
+# start = 482
+# end = 487
+# for i in range(start, end+1):
+#     sitemap = sitemap_base + str(i) + '.xml'
+#     req = requests.get(sitemap, headers = hdr)
+#     soup = BeautifulSoup(req.content)
+#     item = soup.find_all('loc')
+#     for i in item:
+#         direct_URLs.append(i.text)
+#     print('Now scraped ', len(direct_URLs), ' articles from previous page.')
 
 
 
@@ -51,34 +51,29 @@ for i in range(start, end+1):
 
 
  #header settings
-# sitemap = 'https://www.jamaicaobserver.com/section?Template=sitemap_google&start_date='
+sitemap = 'https://www.jamaicaobserver.com/'
 
 # sitemap_list = []
 
-# direct_URLs = []
-# for year in range(2022, 2023):
-#     year_str = str(year)
-#     for month in range(4, 8):
+direct_URLs = []
+for year in range(2025, 2026):
+    year_str = str(year)
+    for month in range(1,4):
         
-#         if month >=10:
-#             month_str = str(month)
-#         else:
-#             month_str = '0' + str(month)
-#         for day in range(1, 32):
-#             if day >=10:
-#                 day_str = str(day)
-#             else:
-#                 day_str= '0' + str(day)
-#             date = year_str+month_str+day_str
+        if month >=10:
+            month_str = str(month)
+        else:
+            month_str = '0' + str(month)
+        for p in range(1, 100):
 
-#             sitemap_date = sitemap + str(date) + '&end_date='+str(date)+'&mime=xml'
-#             req = requests.get(sitemap_date, headers = hdr)
-#             soup = BeautifulSoup(req.content)
-#             item = soup.find_all('loc')
-#             for i in item:
-#                 direct_URLs.append(i.text)
-#         print('Scraping ', year_str, month_str, ' articles ...')
-#         print('Now scraped ', len(direct_URLs), ' articles from previous page.')
+            sitemap_date = sitemap + year_str + '/' + month_str + '/page/' +str(p)
+            req = requests.get(sitemap_date, headers = hdr)
+            soup = BeautifulSoup(req.content)
+            item = soup.find_all('div', {'class' : 'title'})
+            for i in item:
+                direct_URLs.append(i.find('a')['href'])
+    print('Scraping ', year_str, month_str, ' articles ...')
+    print('Now scraped ', len(direct_URLs), ' articles from previous page.')
 
 
             

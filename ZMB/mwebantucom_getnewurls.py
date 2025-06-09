@@ -21,7 +21,7 @@ direct_URLs = []
 base = 'https://www.mwebantu.com/page/'
 source = 'mwebantu.com'
 
-for i in range(1, 40):
+for i in range(1, 65):
     url = base + str(i) + '?s='
     # mundo, nacionales, noticias-del-dia, espectaculos, ciencia
     hdr = {'User-Agent': 'Mozilla/5.0'} #header settings

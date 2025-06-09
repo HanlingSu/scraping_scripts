@@ -30,9 +30,8 @@ db = MongoClient('mongodb://zungru:balsas.rial.tanoaks.schmoe.coffing@db-wibbels
 
 direct_URLs = []
 category = ['societe', 'politique', 'monde', 'economie']
-page_start = [20, 18, 30, 10]
-page_end = [20, 18, 30, 10]
-# page_end = [1, 1, 1, 1]
+page_start = [1, 1, 1, 1]
+page_end = [30, 27, 48, 16]
 base = 'https://www.nouvelobs.com/'
 source = 'nouvelobs.com'
 

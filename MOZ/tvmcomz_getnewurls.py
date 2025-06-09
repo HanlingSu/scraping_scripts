@@ -24,11 +24,11 @@ category = ['nacional', 'economia', 'politica', 'educacao', 'mundo', 'saude']
 # category = ['2-noticias']
 page_start = [0,0,0,0,0, 0]
 # page_start = [150,]
-page_end = [15, 15, 140, 10, 10, 10]
+# page_end = [30, 15, 140, 10, 10, 10]
 # page_end = [350,]
 
-for c, ps, pe in zip(category, page_start, page_end):
-    for p in range(ps, pe+1, 5):
+for c, ps, pe in zip(category, page_start, page_start):
+    for p in range(ps, pe+5, 5):
         url = base + c + '?start=' + str(p)
         print(url)
         hdr = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.102 Safari/537.36'} #header settings

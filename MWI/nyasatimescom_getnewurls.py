@@ -31,7 +31,7 @@ base = 'https://www.nyasatimes.com/category/'
 
 category = ['national', 'politics', 'columns', 'education', 'health', 'news']
 page_start = [1, 1, 1, 1, 1, 1] 
-page_end = [0,0,3,0,0,0] #30, 8, 5, 5, 3, 25
+page_end = [30, 8, 5, 5, 3, 25] #30, 8, 5, 5, 3, 25
 
 direct_URLs = []
 for c, ps, pe in zip(category, page_start, page_end):

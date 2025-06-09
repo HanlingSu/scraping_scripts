@@ -61,7 +61,7 @@ category = ['/avances-de-honduras/', '/noticias-de-politica-en-honduras/', '/suc
     '/periodismo-ciudadanos-honduras/', '/coronavirus/']
 
 page_start = [1,1,1,1,1,1]
-page_end = [0, 11, 100, 90, 1,1]
+page_end = [200, 11, 90, 50, 3,1]
 for c, ps, pe in zip(category, page_start, page_end):
     for p in range(ps, pe+1):
         url = 'https://tiempo.hn/category' + c + 'page/' + str(p)

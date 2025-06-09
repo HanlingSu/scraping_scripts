@@ -17,8 +17,7 @@ direct_URLs = []
 
 sitemap_base = 'https://www.namibian.com.na/post-sitemap'
 
-# 96
-for i in range(60, 65):
+for i in range(106, 112):
     sitemap = sitemap_base + str(i) + '.xml'
     print(sitemap  )
     hdr = {'User-Agent': 'Mozilla/5.0'} #header settings
@@ -79,9 +78,9 @@ for url in final_result:
                     print("Inserted! in ", colname, " - number of urls so far: ", url_count)
                 db['urls'].insert_one({'url': article['url']})
             except DuplicateKeyError:
-                myquery = { "url": url, "source_domain" : source}
-                db[colname].delete_one(myquery)
-                db[colname].insert_one(article)
+                # myquery = { "url": url, "source_domain" : source}
+                # db[colname].delete_one(myquery)
+                # db[colname].insert_one(article)
                 print("DUPLICATE! Updated.")
                 pass
                 

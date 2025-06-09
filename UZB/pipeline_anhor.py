@@ -425,8 +425,8 @@ def pipeline(sitemap,
         '''
         Unit: each sitemap
         '''        
-        begin_num = 56
-        end_num =68
+        begin_num = 65
+        end_num =81
         
         for num in range(begin_num, end_num):
             

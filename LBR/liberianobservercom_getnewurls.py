@@ -24,9 +24,9 @@ source = 'liberianobserver.com'
 
 direct_URLs = []
 # base = 'https://www.liberianobserver.com/article/sitemap.xml?page='
-base = "https://www.liberianobserver.com/search/?tncms_csrf_token=200506e5b2427ae3b4977f8e86872ce720ef41ebb1278d02b231442d2565ae1d.174ca589a270969274eb&d1=2024-08-10&d2=2024-11-10&t=article&s=start_time&sd=desc&l=25&nsa=eedition&q=+&app%5B0%5D=editorial&o="
-for p in range(0, 33):
-    url = base+str(p*25)
+base = "https://www.liberianobserver.com/search/?tncms_csrf_token=916d675b61d57da2bb15377bbe4b13df12c51605c665d1f10aca1c87239b953a.ce3573bdd7f5881a5b5e&d1=2025-01-01&d2=2025-04-17&sd=desc&l=10&nsa=eedition&q=+&app%5B0%5D=editorial&o="
+for p in range(0, 210):
+    url = base+str(p*10)
     print(url)
     req = requests.get(url, headers = headers)
     soup = BeautifulSoup(req.content)

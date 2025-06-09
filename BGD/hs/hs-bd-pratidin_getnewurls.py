@@ -53,9 +53,9 @@ source = 'bd-pratidin.com'
 
 base = "https://www.bd-pratidin.com/daily-sitemap/"
 
-for year in range(2024, 2025):
-    for month in range(9, 10):
-        for day in range(18, 32):
+for year in range(2025, 2026):
+    for month in range(1, 4):
+        for day in range(1, 32):
             # year str
             year_str = str(year)
             # month str
@@ -116,8 +116,8 @@ for url in final_result:
         # TITLE:
         #if article['title'] == None:
         try:
-            contains_title = soup.find("meta", {"property":"og:title"})
-            article_title = contains_title['content']
+            contains_title = soup.find("h1", {"class":"card-title n_head"})
+            article_title = contains_title.text
             article['title'] = article_title
         except:
             article_title = article['title']

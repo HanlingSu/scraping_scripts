@@ -17,7 +17,7 @@ direct_URLs = []
 
 
 sitemap_base = 'http://skopjediem.com/post-sitemap'
-for i in range(8, 10):
+for i in range(9, 10):
     sitemap = sitemap_base + str(i) + '.xml'
     print(sitemap  )
     hdr = {'User-Agent': 'Mozilla/5.0'} #header settings

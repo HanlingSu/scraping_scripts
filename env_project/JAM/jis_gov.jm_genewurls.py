@@ -24,32 +24,43 @@ from pymongo.errors import DuplicateKeyError
 from pymongo.errors import CursorNotFound
 from newsplease import NewsPlease
 from dotenv import load_dotenv
+import cloudscraper 
 
+scraper = cloudscraper.create_scraper(
+    browser={
+        'browser': 'firefox',
+        'platform': 'windows',
+        'mobile': False
+    }
+)
 
 hdr = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.102 Safari/537.36'}
 
 # db connection:
 db = MongoClient('mongodb://zungru:balsas.rial.tanoaks.schmoe.coffing@db-wibbels.sas.upenn.edu/?authSource=ml4p&tls=true').ml4p
 
-source = 'insideclimatenews.org'
+source = 'jis.gov.jm'
+direct_URLs = set()
+categories = ['climate-change', 'agriculture', 'energy', 'mining']
+# 145, 'environment', 
+pages = (14, 290, 40, 23) 
 
-direct_URLs = []
+for c, max_p in zip(categories, pages):
+    for p in range(1, max_p + 1): 
+        url = 'https://jis.gov.jm/category/' + str(c) + '/page/' + str(p)
+    #   url = 'https://jis.gov.jm/category/climate-change/page/' + str(p) + '/'
+        print("Getting urls from: ", url)
 
-for p in range(1, 12):
-    sitemap = 'https://insideclimatenews.org/post-sitemap' + str(p) + '.xml'
-    print("Getting urls from: ",sitemap)
-    reqs = requests.get(sitemap, headers=hdr)
-    soup = BeautifulSoup(reqs.text, 'html.parser')
-    for i in soup.find_all('loc'):
-        direct_URLs.append(i.text)
-    print('Now scraped ', len(direct_URLs), 'articles from previous months ... ')
+        soup = BeautifulSoup(scraper.get(url).text)
+
+        for i in soup.find_all('h3', {'class':'entry-title'}):
+            direct_URLs.add(i.find('a')['href'])
+
+        print('Now scraped ', len(direct_URLs), 'articles from previous months ... ')
 
 
-print('There are ', len(direct_URLs), 'sitemaps ')
-
-
-final_result = direct_URLs.copy()
-
+print('There are ', len(direct_URLs), 'urls')
+final_result = list(direct_URLs).copy()
 
 print('The total count of final result is: ', len(final_result))
 
@@ -61,9 +72,8 @@ for url in final_result:
         ## SCRAPING USING NEWSPLEASE:
         try:
             # process
-            response = requests.get(url, verify=False)
-            soup = BeautifulSoup(response.content)
-            article = NewsPlease.from_html(response.text, url=url).__dict__
+            soup = BeautifulSoup(scraper.get(url).text)
+            article = NewsPlease.from_html(scraper.get(url).text).__dict__
 
             # add on some extras
             article['date_download']=datetime.now()
@@ -106,3 +116,4 @@ for url in final_result:
         pass
 
 print("Done inserting ", url_count, " manually collected urls from ",  source, " into the db.")
+

@@ -21,7 +21,7 @@ source = 'hoy.com.do'
 sitemap_base = 'https://hoy.com.do/wp-sitemap-posts-post-'
 
 # 36
-for p in range(511, 512):
+for p in range(519, 527):
     
     sitemap = sitemap_base + str(p)  + '.xml'
     print(sitemap  )
